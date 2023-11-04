@@ -1,0 +1,75 @@
+﻿@page
+@model ChampionsConsulting.Pages.Login.CreateUserModel
+@{
+}
+
+<h2>Sign up:</h2>
+<br />
+@{
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["FailMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["FailMessage"]</div>
+    }
+
+    <form asp-page="CreateUser">
+        <div class="form-text">First Name</div>
+        <input asp-for="FirstName" placeholder="First Name" class="form-control" id="FirstNameInput" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Last Name</div>
+        <input asp-for="LastName" placeholder="Last Name" class="form-control" id="LastNameInput" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Username</div>
+        <input asp-for="Username" placeholder="Username" class="form-control" id="UsernameInput" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Password</div>
+        <input asp-for="Password" placeholder="Password" class="form-control" id="PasswordInput" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Email</div>
+        <input asp-for="Email" placeholder="Email" class="form-control" id="EmailInput" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Role</div>
+        <select asp-for="UserType" placeholder="Role" class="form-select" id="UserTypeInput">
+            <option selected>Attendee</option>
+            <option value="Presenter">Presenter</option>
+        </select>
+        <span asp-validation-for="UserType" class="text-danger"></span>
+        <br />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <br />
+
+        <input type="submit" class="btn btn-primary" value="Create" />
+        <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+        <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+        <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+    </form>
+}
+
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('FirstNameInput').value = 'John';
+        document.getElementById('LastNameInput').value = 'Smith';
+        document.getElementById('UsernameInput').value = 'Test-Username';
+        document.getElementById('PasswordInput').value = 'TestPass';
+        document.getElementById('EmailInput').value = 'TestEmail@example.com';
+        document.getElementById('UserTypeInput').value = 'Attendee';
+    });
+</script>
