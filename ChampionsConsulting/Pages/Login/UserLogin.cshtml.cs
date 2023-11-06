@@ -30,9 +30,18 @@ namespace ChampionsConsulting.Pages.Login
 
             SqlParameter[] parameters = new SqlParameter[]
             {
-        new SqlParameter("@Username", Username),
-        new SqlParameter("@Password", Password)
+                new SqlParameter("@Username", Username),
+                new SqlParameter("@Password", Password)
             };
+
+            //For incomplete form
+            if (Username == null || Password == null)
+            {
+                ViewData["LoginMessage"] = "Please enter all information";
+                DBClass.Lab3DBConnection.Close();
+                ModelState.Clear(); // used to ignore validation
+                return Page();
+            }
 
             using (SqlCommand command = new SqlCommand(loginQuery, DBClass.Lab3DBConnection))
             {
@@ -65,7 +74,7 @@ namespace ChampionsConsulting.Pages.Login
         }
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("Index");
+            return RedirectToPage("../Index");
         }
     }
 }
