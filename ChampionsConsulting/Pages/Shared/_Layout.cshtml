@@ -22,7 +22,7 @@
                         @{
                             @if (Context.Session.GetString("UserType") == "Admin")
                             {
-                                /*<li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/LoginSummary">My Home</a>
                                 </li>
                                 <li class="nav-item">
@@ -36,12 +36,12 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/Search">Event Search</a>
-                                </li>*/
+                                </li>
                             }
                             @if (Context.Session.GetString("UserType") == "Presenter")
                             {
-                                /*<li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/LoginSummary"> My Home</a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage"> My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/ChooseConference">Create Meeting</a>
@@ -50,21 +50,20 @@
                                     <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
-                                </li>*/
+                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                </li>
                             }
-
                             @if (Context.Session.GetString("UserType") == "Attendee")
                             {
-                                /*<li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/LoginSummary">My Home</a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
-                                </li>*/
+                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                </li>
                             }
                         }
                     </ul>
