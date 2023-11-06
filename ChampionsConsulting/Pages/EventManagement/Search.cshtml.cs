@@ -17,11 +17,11 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            return RedirectToPage("/SearchResult", new { Keyword, Presenter });
+            return RedirectToPage("/EventManagement/SearchResult", new { Keyword, Presenter });
         }
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("Index");
+            return RedirectToPage("../Index");
         }
     }
 }

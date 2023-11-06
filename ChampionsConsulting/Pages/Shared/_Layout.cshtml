@@ -23,7 +23,7 @@
                             @if (Context.Session.GetString("UserType") == "Admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/LoginSummary">My Home</a>
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/ChooseConference">Create Meeting</a>
@@ -32,10 +32,10 @@
                                     <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Users">User Data</a>
+                                    <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
+                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
                                 </li>
                             }
                             @if (Context.Session.GetString("UserType") == "Presenter")
@@ -71,7 +71,7 @@
                         if (Context.Session.GetString("Username") != null)
                         {
                             <a class="nav-link text-light">@Context.Session.GetString("Username")</a>
-                            <form method="get" asp-page="/Search" id="SearchButton">
+                            <form method="get" asp-page="/EventManagement/Search" id="SearchButton">
                                 <button type="submit" class="btn btn-outline-light">Search</button>
                             </form>
                             <form method="get" asp-page="/Login/UserLogin">
