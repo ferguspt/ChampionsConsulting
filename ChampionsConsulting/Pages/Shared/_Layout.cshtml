@@ -10,22 +10,86 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color: #34005e">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">ChampionsConsulting</a>
+                <a class="navbar-brand mb-0 h1" asp-area="" asp-page="/Index">Champions Consulting</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+                        @{
+                            @if (Context.Session.GetString("UserType") == "Admin")
+                            {
+                                /*<li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/LoginSummary">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/ChooseConference">Create Meeting</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Users">User Data</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
+                                </li>*/
+                            }
+                            @if (Context.Session.GetString("UserType") == "Presenter")
+                            {
+                                /*<li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/LoginSummary"> My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/ChooseConference">Create Meeting</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
+                                </li>*/
+                            }
+
+                            @if (Context.Session.GetString("UserType") == "Attendee")
+                            {
+                                /*<li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/LoginSummary">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/ChooseConference2">Sign up for an event</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/Search">Event Search</a>
+                                </li>*/
+                            }
+                        }
                     </ul>
+                    @{
+                        if (Context.Session.GetString("Username") != null)
+                        {
+                            <a class="nav-link text-light">@Context.Session.GetString("Username")</a>
+                            <form method="get" asp-page="/Search" id="SearchButton">
+                                <button type="submit" class="btn btn-outline-light">Search</button>
+                            </form>
+                            <form method="get" asp-page="/Login/UserLogin">
+                                <button type="submit" class="btn btn-outline-warning">Log Out</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a class="nav-link text-light">No user is logged in</a>
+                            <form method="get" asp-page="/Login/UserLogin" id="LoginButton">
+                                <button type="submit" class="btn btn-outline-light">Login</button>
+                            </form>
+                            <form method="get" asp-page="/Login/CreateUser" id="SignUpButton">
+                                <button type="submit" class="btn btn-outline-warning">Sign Up</button>
+                            </form>
+                        }
+                     }
                 </div>
             </div>
         </nav>

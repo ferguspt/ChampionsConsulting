@@ -46,7 +46,7 @@ namespace ChampionsConsulting.Pages.Login
                     HttpContext.Session.SetString("Username", reader["Username"].ToString());
                     HttpContext.Session.SetString("UserType", reader["UserType"].ToString());
                     DBClass.Lab3DBConnection.Close();
-                    return RedirectToPage("/LoginSummary");
+                    return RedirectToPage("/Login/UserPage");
                 }
                 else
                 {

@@ -75,7 +75,7 @@ namespace ChampionsConsulting.Pages.Login
         // Used to return to the main page
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("Index");
+            return RedirectToPage("../Index");
         }
 
 

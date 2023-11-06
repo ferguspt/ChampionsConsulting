@@ -1,0 +1,79 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.CreateEventModel
+@{
+}
+
+@{
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["FailMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["FailMessage"]</div>
+    }
+
+    @if (HttpContext.Session.GetString("Username") != null)
+    {
+        <h2>Create Event:</h2>
+        <br />
+        <form asp-page="CreateEvent">
+            <div class="form-text">Event Name</div>
+            <input asp-for="EventName" placeholder="Event Name" class="form-control" id="EventNameInput" />
+            <span asp-validation-for="EventName" class="text-danger"></span>
+            <br />
+
+            <div class="form-text">Event Description</div>
+            <input asp-for="EventDescription" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+            <span asp-validation-for="EventDescription" class="text-danger"></span>
+            <br />
+
+            <div class="form-text">Start Date</div>
+            <input asp-for="StartDate" type="date" placeholder="Start Date" class="form-control" id="StartDateInput" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+            <br />
+
+            <div class="form-text">End Date</div>
+            <input asp-for="EndDate" type="date" placeholder="End Date" class="form-control" id="EndDateInput" />
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+            <br />
+
+            <div class="form-text">Redistration Deadline</div>
+            <input asp-for="RegistrationDeadline" type="date" placeholder="Registration Deadline" class="form-control" id="RegistrationDeadlineInput" />
+            <span asp-validation-for="RegistrationDeadline" class="text-danger"></span>
+            <br />
+
+            <div class="form-text">Capacity</div>
+            <input asp-for="Capacity" placeholder="Capacity" class="form-control" id="CapacityInput" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+            <br />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <br />
+
+            <input type="submit" class="btn btn-primary" value="Create" />
+            <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+            <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+            <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+        </form>
+    }
+
+    @if (HttpContext.Session.GetString("Username") == null)
+    {
+        <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+    }
+}
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('EventNameInput').value = 'Test Event Name';
+        document.getElementById('EventDescriptionInput').value = 'Event Stuff';
+        document.getElementById('StartDateInput').value = '2023-10-10';
+        document.getElementById('EndDateInput').value = '2023-10-20';
+        document.getElementById('RegistrationDeadlineInput').value = '2023-10-05';
+        document.getElementById('CapacityInput').value = '1000';
+    });
+</script>
