@@ -1,9 +1,10 @@
 ﻿@page
-@model ChampionsConsulting.Pages.EventManagement.CreateSubEventModel
+@model ChampionsConsulting.Pages.EventManagement.CreateEvent2Model
 @{
 }
 
-<h2>Create Sub Event:</h2>
+
+<h2>Create Meeting:</h2>
 <br />
 @{
     @if (TempData["SuccessMessage"] != null)
@@ -18,15 +19,15 @@
 
     @if (HttpContext.Session.GetString("Username") != null)
     {
-        <form asp-page="CreateSubEvent">
-            <div class="form-text">Sub Event Name</div>
-            <input asp-for="SubEventName" placeholder="Meeting Name" class="form-control" id="MeetingNameInput" />
-            <span asp-validation-for="SubEventName" class="text-danger"></span>
+        <form asp-page="CreateMeeting">
+            <div class="form-text">Meeting Name</div>
+            <input asp-for="MeetingName" placeholder="Meeting Name" class="form-control" id="MeetingNameInput" />
+            <span asp-validation-for="MeetingName" class="text-danger"></span>
             <br />
 
-            <div class="form-text">Sub Event Description</div>
-            <input asp-for="SubEventDescription" placeholder="Meeting Description" class="form-control" id="MeetingDescriptionInput" />
-            <span asp-validation-for="SubEventDescription" class="text-danger"></span>
+            <div class="form-text">Meeting Description</div>
+            <input asp-for="MeetingDescription" placeholder="Meeting Description" class="form-control" id="MeetingDescriptionInput" />
+            <span asp-validation-for="MeetingDescription" class="text-danger"></span>
             <br />
 
             <div class="form-text">Start Time</div>
@@ -39,7 +40,7 @@
             <span asp-validation-for="EndTime" class="text-danger"></span>
             <br />
 
-            <select asp-for="SubEventType" asp-items="Model.SubEvents">
+            <select asp-for="MeetingType" asp-items="Model.Meetings">
                 <option value="Admin Meeting">Admin Meeting</option>
                 <option value="Panel">Panel</option>
                 <option value="Presentaion">Presentation</option>>

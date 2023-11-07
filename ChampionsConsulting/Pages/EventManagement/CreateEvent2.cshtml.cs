@@ -7,15 +7,15 @@ using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages.EventManagement
 {
-    public class CreateSubEventModel : PageModel
+    public class CreateEvent2Model : PageModel
     {
         [BindProperty]
         [Required]
-        public String SubEventName { get; set; }
+        public String MeetingName { get; set; }
 
         [BindProperty]
         [Required]
-        public String SubEventDescription { get; set; }
+        public String MeetingDescription { get; set; }
 
         [BindProperty]
         [Required]
@@ -35,9 +35,9 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         [BindProperty]
         [Required]
-        public String SubEventType { get; set; }
+        public String MeetingType { get; set; }
 
-        public List<SelectListItem>? SubEvents { get; set; }
+        public List<SelectListItem>? Meetings { get; set; }
 
         public void OnGet()
         {
@@ -45,7 +45,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            string selectQuery = $"SELECT * FROM Meeting WHERE MeetingName = '{SubEventName}'";
+            string selectQuery = $"SELECT * FROM Meeting WHERE MeetingName = '{MeetingName}'";
             SqlDataReader MeetingReader = DBClass.MeetingReader(selectQuery);
 
             if (MeetingReader.HasRows)
@@ -58,7 +58,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
 
             // If the event name is unique, proceed to create the event
-            if (SubEventName != null && SubEventDescription != null && StartTime != null && EndTime != null)
+            if (MeetingName != null && MeetingDescription != null && StartTime != null && EndTime != null)
             {
                 TempData["SuccessMessage"] = "Event created successfully.";
                 DBClass.Lab3DBConnection.Close();
@@ -81,19 +81,19 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("ChooseConference");
+            return RedirectToPage("/EventManagement/CreateEvent");
         }
 
         // Used to clear all text fields by reloading the page
         public IActionResult OnPostClearHandler()
         {
             ModelState.Clear(); // used to ignore validation
-            SubEventName = null;
-            SubEventDescription = null;
+            MeetingName = null;
+            MeetingDescription = null;
             StartTime = null;
             EndTime = null;
             RoomID = null;
-            SubEventType = null;
+            MeetingType = null;
 
             return Page();
         }

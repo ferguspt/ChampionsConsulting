@@ -1,6 +1,7 @@
 using ChampionsConsulting.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
@@ -9,98 +10,57 @@ namespace ChampionsConsulting.Pages.EventManagement
     public class CreateEventModel : PageModel
     {
         [BindProperty]
-        [Required]
-        public String EventName { get; set; }
+        public int EventID { get; set; }
 
         [BindProperty]
-        [Required]
-        public String EventDescription { get; set; }
+        public string SelectQuery { get; set; }
 
-        [BindProperty]
-        [Required]
-        public String StartDate { get; set; }
+        public List<SelectListItem>? Events { get; set; }
 
-        [BindProperty]
-        [Required]
-        public String EndDate { get; set; }
-
-        [BindProperty]
-        [Required]
-        public String RegistrationDeadline { get; set; }
-
-        [BindProperty]
-        [Required]
-        public String Capacity { get; set; }
-
+        // Gets all the events from the DB
         public void OnGet()
         {
+            SqlDataReader EventReader = DBClass.EventReader();
+
+            Events = new List<SelectListItem>();
+
+            while (EventReader.Read())
+            {
+                Events.Add(
+                    new SelectListItem(
+                        EventReader["EventName"].ToString(),
+                        EventReader["EventID"].ToString()));
+            }
+
+            DBClass.Lab3DBConnection.Close();
         }
 
         public IActionResult OnPost()
         {
-            string selectQuery = "SELECT * FROM Event WHERE EventName = @EventName";
-
-            SqlParameter[] parameters = new SqlParameter[]
+            // If statement for when the user chooses a event
+            if (EventID >= 1 && EventID <= 10)
             {
-                new SqlParameter("@EventName", EventName),
-                new SqlParameter("@EventDescription", EventDescription),
-                new SqlParameter("@Capacity", Capacity)
-            };
+                SelectQuery = "SELECT MeetingID, MeetingName, MeetingDescription, MeetingDate FROM Meeting WHERE EventID = " + EventID;
 
-            using (SqlCommand command = new SqlCommand(selectQuery, DBClass.Lab3DBConnection))
-            {
-                command.Parameters.AddWithValue("@EventName", EventName);
-                command.Parameters.AddWithValue("@EventDescription", EventDescription);
-                command.Parameters.AddWithValue("@Capacity", Capacity);
+                DBClass.MeetingReader(SelectQuery);
 
-                SqlDataReader EventReader = DBClass.EventReader(selectQuery, parameters);
-
-                if (EventReader.HasRows)
-                {
-                    ModelState.AddModelError("EventName", "Event already exists.");
-                    TempData["FailMessage"] = "Event already exists.";
-                    DBClass.Lab3DBConnection.Close();
-                    ModelState.Clear(); // Used to ignore validation
-                    return Page();
-                }
-                if (EventName != null && EventDescription != null && Capacity != null)
-                {
-                    TempData["SuccessMessage"] = "Event created successfully.";
-                    DBClass.Lab3DBConnection.Close();
-                    ModelState.Clear(); // Used to ignore validation
-                    return Page();
-                }
-
-                ModelState.AddModelError(string.Empty, "Try populating");
                 DBClass.Lab3DBConnection.Close();
+
+                return RedirectToPage("/EventManagement/CreateEvent2");
+            }
+
+            // If user clicks "Submit" without choosing a choice
+            else
+            {
+                TempData["ErrorMessage"] = "Please select a choice!";
+                OnGet();
                 return Page();
             }
         }
 
-        // Used to populate text fields
-        public IActionResult OnPostPopulateHandler()
-        {
-            ModelState.Clear(); // used to ignore validation
-            return Page();
-        }
-
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("Index");
-        }
-
-        // Used to clear all text fields by reloading the page
-        public IActionResult OnPostClearHandler()
-        {
-            ModelState.Clear(); // used to ignore validation
-            EventName = null;
-            EventDescription = null;
-            StartDate = null;
-            EndDate = null;
-            RegistrationDeadline = null;
-            Capacity = null;
-
-            return Page();
+            return RedirectToPage("../Index");
         }
     }
 }
