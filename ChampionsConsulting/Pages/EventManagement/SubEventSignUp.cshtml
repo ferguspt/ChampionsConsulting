@@ -1,0 +1,29 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.SubEventSignUpModel
+@{
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@if (HttpContext.Session.GetString("Username") != null)
+{
+    <form asp-action="ChooseEvent">
+        <h2>Choose an event to sign up for:</h2>
+        <br />
+        <select asp-for="EventID" asp-items="Model.Events">
+            <option value="">Choose an event</option>
+        </select>
+        <br />
+        <br />
+        <input asp-for="EventID" type="submit" value="Select" class="btn btn-primary" />
+        <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+    </form>
+}
+
+@if (HttpContext.Session.GetString("Username") == null)
+{
+    <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+}

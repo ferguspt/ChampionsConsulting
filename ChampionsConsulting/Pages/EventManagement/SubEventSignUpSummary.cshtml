@@ -1,0 +1,42 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.SubEventSignUpSummaryModel
+@{
+}
+
+<div class="alert alert-success">Registration Successful!</div>
+
+@if (HttpContext.Session.GetString("Username") != null)
+{
+    <form method="post">
+        <table class="table">
+            <tr>
+                <th>Meeting Name</th>
+                <th>Meeting Type</th>
+                <th>Meeting Date</th>
+                <th>Meeting Status</th>
+                <th>Event Name</th>
+                <th>Location</th>
+                <th>Event Status</th>
+
+            </tr>
+            @foreach (var data in Model.Data)
+            {
+                <tr>
+                    <td>@data.MeetingName</td>
+                    <td>@data.MeetingType</td>
+                    <td>@data.MeetingDate.ToShortDateString()</td>
+                    <td>@data.MeetingStatus</td>
+                    <td>@data.EventName</td>
+                    <td>@data.LocationName</td>
+                    <td>@data.EventStatus</td>
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Done" class="btn btn-primary" />
+    </form>
+}
+
+@if (HttpContext.Session.GetString("Username") == null)
+{
+    <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+}

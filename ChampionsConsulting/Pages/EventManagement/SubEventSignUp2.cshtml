@@ -1,0 +1,45 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.SubEventSignUp2Model
+@{
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@if (HttpContext.Session.GetString("Username") != null)
+{
+    <form method="post">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Meeting</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Select</th>
+            </tr>
+            @foreach (var meeting in Model.Meetings)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" name="MeetingID" value="@meeting.MeetingID" />
+                        @meeting.MeetingID
+                    </td>
+                    <td>@meeting.MeetingName</td>
+                    <td>@meeting.MeetingDescription</td>
+                    <td>@meeting.MeetingDate.ToShortDateString()</td>
+                    <td>
+                        <input name="Checked" type="checkbox" value="@meeting.MeetingID" />
+                    </td>
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </form>
+}
+
+@if (HttpContext.Session.GetString("Username") == null)
+{
+    <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+}
