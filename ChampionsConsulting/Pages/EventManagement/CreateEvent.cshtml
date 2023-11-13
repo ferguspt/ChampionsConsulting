@@ -25,7 +25,7 @@
     <br />
 
     <div class="form-text">Event Location</div>
-    <input asp-for="LocationID" placeholder="Location ID" class="form-control" id="LocationIDInput" />
+    <input asp-for="LocationID" placeholder="Location" class="form-control" id="LocationIDInput" />
     <span asp-validation-for="LocationID" class="text-danger"></span>
     <br />
 
@@ -43,10 +43,10 @@
     document.getElementById('PopulateButton').addEventListener('click', function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        document.getElementById('EventNameInput').value = 'Test Event Name';
-        document.getElementById('EventDescriptionInput').value = 'New Event';
-        document.getElementById('StartDateAndTimeInput').value = '1/1/2023 8:00 AM';
-        document.getElementById('EndDateAndTimeInput').value = '1/7/2023 8:00 AM';
+        document.getElementById('EventNameInput').value = 'AI Global Expo ';
+        document.getElementById('EventDescriptionInput').value = 'AI Panels and Socials with prominant figures in the community';
+        document.getElementById('StartDateAndTimeInput').value = '5/15/2024 8:00 AM';
+        document.getElementById('EndDateAndTimeInput').value = '5/30/2024 8:00 AM';
         document.getElementById('RoomIDInput').value = '1';
     });
 </script>

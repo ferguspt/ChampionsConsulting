@@ -36,7 +36,6 @@ namespace ChampionsConsulting.Pages.EventManagement
         public IActionResult OnPost()
         {
             string CreateQuery = @"INSERT INTO Events (Name, Description, StartDateAndTime, EndDateAndTime, LocationID) VALUES (" + "'" + Name + "','" + Description + "','" + StartDateAndTime.ToString() + "','" + EndDateAndTime.ToString() + "'," + LocationID + ");";
-
             if (Name == null || Description == null || StartDateAndTime == null || EndDateAndTime == null)
             {
                 ModelState.AddModelError(string.Empty, "Try populating");
