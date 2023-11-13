@@ -25,9 +25,9 @@ namespace ChampionsConsulting.Pages.Login
             "INNER JOIN Meeting ON Event.EventID = Meeting.EventID " +
             "WHERE [User].Username = '" + HttpContext.Session.GetString("Username") + "'";
 
-            SqlDataReader dataReader = DBClass.UserReader(SelectQuery);
+            //SqlDataReader dataReader = DBClass.UserReader(SelectQuery);
 
-            while (dataReader.Read())
+            /*while (dataReader.Read())
             {
                 Data.Add(new UserDataAll
                 {
@@ -41,7 +41,7 @@ namespace ChampionsConsulting.Pages.Login
                     MeetingStatus = dataReader["MeetingStatus"].ToString()
                 });
             }
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();*/
         }
 
         public IActionResult OnPost()

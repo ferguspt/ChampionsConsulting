@@ -20,9 +20,9 @@ namespace ChampionsConsulting.Pages.AdminPages
 
         public void OnGet(int userID)
         {
-            SelectQuery = "SELECT [User].FirstName, [User].LastName, [User].Email, [User].PhoneNumber, [User].Username, " +
-            "[User].UserType, Event.EventName, Location.LocationName, Event.EventStatus, Meeting.MeetingName, Meeting.MeetingDate, " +
-            "Meeting.MeetingType, Meeting.MeetingStatus FROM [User] INNER JOIN EventAttendance ON [User].UserID = EventAttendance.UserID " +
+            SelectQuery = "SELECT Users.FirstName, Users.LastName, Users.Email, Users.Phone, Users.Username, " +
+            "Users.UserType, Event.Name, SubEvent.Name, SubEvent.StartDateAndTime, " +
+            "FROM Users INNER JOIN EventAttendance ON [User].UserID = EventAttendance.UserID " +
             "INNER JOIN Event ON EventAttendance.EventID = Event.EventID INNER JOIN Location ON Event.LocationID = Location.LocationID " +
             "INNER JOIN Meeting ON Event.EventID = Meeting.EventID " +
             "WHERE [User].userID = " + userID;
@@ -51,7 +51,7 @@ namespace ChampionsConsulting.Pages.AdminPages
                     MeetingStatus = dataReader["MeetingStatus"].ToString()
                 });
             }
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
         }
 
         public IActionResult OnPost()

@@ -36,7 +36,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                             EventReader["EventID"].ToString()));
                 }
 
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 return Page();
             }
         }
@@ -50,7 +50,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
                 DBClass.MeetingReader(SelectQuery);
 
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
 
                 return RedirectToPage("/EventManagement/SubEventSignUp2", new { SelectQuery });
             }

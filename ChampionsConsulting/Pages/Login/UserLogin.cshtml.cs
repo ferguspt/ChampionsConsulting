@@ -26,7 +26,7 @@ namespace ChampionsConsulting.Pages.Login
 
         public IActionResult OnPost()
         {
-            string loginQuery = "SELECT Username, UserType FROM [User] WHERE Username = @Username AND UserPassword = @Password";
+            string loginQuery = "SELECT Username, UserType FROM Users WHERE Username = @Username AND UserPassword = @Password";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -38,12 +38,12 @@ namespace ChampionsConsulting.Pages.Login
             if (Username == null || Password == null)
             {
                 ViewData["LoginMessage"] = "Please enter all information";
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 ModelState.Clear(); // used to ignore validation
                 return Page();
             }
 
-            using (SqlCommand command = new SqlCommand(loginQuery, DBClass.Lab3DBConnection))
+            using (SqlCommand command = new SqlCommand(loginQuery, DBClass.CCDBConnection))
             {
                 command.Parameters.AddWithValue("@Username", Username);
                 command.Parameters.AddWithValue("@Password", Password);
@@ -54,13 +54,13 @@ namespace ChampionsConsulting.Pages.Login
                 {
                     HttpContext.Session.SetString("Username", reader["Username"].ToString());
                     HttpContext.Session.SetString("UserType", reader["UserType"].ToString());
-                    DBClass.Lab3DBConnection.Close();
+                    DBClass.CCDBConnection.Close();
                     return RedirectToPage("/Login/UserPage");
                 }
                 else
                 {
                     ViewData["LoginMessage"] = "Username and/or Password Incorrect";
-                    DBClass.Lab3DBConnection.Close();
+                    DBClass.CCDBConnection.Close();
                     return Page();
                 }
             }

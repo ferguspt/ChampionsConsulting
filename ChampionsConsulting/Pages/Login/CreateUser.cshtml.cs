@@ -45,7 +45,7 @@ namespace ChampionsConsulting.Pages.Login
             {
                 ModelState.AddModelError("Username", "Username already exists.");
                 TempData["FailMessage"] = "Username already exists.";
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 ModelState.Clear(); // used to ignore validation
                 return Page();
             }
@@ -53,14 +53,14 @@ namespace ChampionsConsulting.Pages.Login
             if (Username != null && Password != null && FirstName != null && LastName != null && Email != null)
             {
                 DBClass.CreateHashedUser(Username, Password);
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 TempData["SuccessMessage"] = "User created successfully.";
                 return Page();
             }
 
             ModelState.AddModelError("Error", "Please enter information");
             TempData["FailMessage"] = "Please enter information.";
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
             ModelState.Clear(); // used to ignore validation
             return Page();
         }

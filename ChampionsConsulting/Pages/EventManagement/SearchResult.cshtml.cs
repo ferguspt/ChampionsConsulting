@@ -36,7 +36,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
                 });
             }
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
         }
 
         public IActionResult OnPost()

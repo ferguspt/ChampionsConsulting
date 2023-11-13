@@ -3,29 +3,51 @@
 @{
 }
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
-}
+<form asp-page="Create Event">
+    <div class="form-text">Event Name</div>
+    <input asp-for="EventName" placeholder="Event Name" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="EventName" class="text-danger"></span>
+    <br />
 
-@{
-    @if (HttpContext.Session.GetString("Username") != null)
-    {
-        <form asp-action="ChooseEvent">
-            <h2>Choose an event to create a meeting for:</h2>
-            <br />
-            <select asp-for="EventID" asp-items="Model.Events">
-                <option value="">Choose an event</option>
-            </select>
-            <br />
-            <br />
-            <input asp-for="EventID" type="submit" value="Select" class="btn btn-primary" />
-            <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
-        </form>
-    }
+    <div class="form-text">Event Description</div>
+    <input asp-for="EventDescription" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+    <span asp-validation-for="EventDescription" class="text-danger"></span>
+    <br />
 
-    @if (HttpContext.Session.GetString("Username") == null)
-    {
-        <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
-    }
-}
+    <div class="form-text">Start Time</div>
+    <input asp-for="StartDateAndTime" type="time" placeholder="Start Time" class="form-control" id="StartDateAndTimeInput" />
+    <span asp-validation-for="StartDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">End Time</div>
+    <input asp-for="EndDateAndTime" type="time" placeholder="End Time" class="form-control" id="EndDateAndTimeInput" />
+    <span asp-validation-for="EndDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Event Location</div>
+    <input asp-for="LocationID" placeholder="Location ID" class="form-control" id="LocationIDInput" />
+    <span asp-validation-for="LocationID" class="text-danger"></span>
+    <br />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br />
+
+    <input type="submit" class="btn btn-primary" value="Create" />
+    <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+    <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+    <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+</form>
+
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('EventNameInput').value = 'Test Event Name';
+        document.getElementById('EventDescriptionInput').value = 'New Event';
+        document.getElementById('StartDateAndTimeInput').value = '1/1/2023 8:00 AM';
+        document.getElementById('EndDateAndTimeInput').value = '1/7/2023 8:00 AM';
+        document.getElementById('RoomIDInput').value = '1';
+    });
+</script>
+

@@ -6,21 +6,21 @@ namespace ChampionsConsulting.Pages.DB
     public class DBClass
     {
         // Connection object at the class level
-        public static SqlConnection Lab3DBConnection = new SqlConnection();
+        public static SqlConnection CCDBConnection = new SqlConnection();
         public static SqlConnection AUTHDBConnection = new SqlConnection();
 
         // Connection string
         // ";TrustServerCertificate=True"
-        public static readonly String Lab3DBConnString = "Server=Localhost; Database=Lab3; Trusted_Connection=True";
+        public static readonly String CCConnString = "Server=Localhost; Database=ChampionsConsulting; Trusted_Connection=True";
         public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
 
         //Readers for data tables
         public static SqlDataReader UserReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM [User]";
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
+            cmdProductRead.CommandText = "SELECT * FROM Users";
             cmdProductRead.Connection.Open();
 
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -31,8 +31,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader UserReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -44,8 +44,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader LoginReader(string selectQuery, SqlParameter[] parameters)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
 
             // Add parameters to the command
@@ -64,8 +64,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader EventReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM [Event]";
             cmdProductRead.Connection.Open();
 
@@ -77,8 +77,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader EventReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -90,8 +90,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader EventReaderCheck(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -103,8 +103,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader EventReader(string selectQuery, SqlParameter[] parameters)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
 
             // Add parameters to the command
@@ -124,8 +124,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader ConferenceReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM Conference";
             cmdProductRead.Connection.Open();
 
@@ -137,8 +137,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader ConferenceReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -150,8 +150,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader RoomReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM Room";
             cmdProductRead.Connection.Open();
 
@@ -163,8 +163,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader RoomReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -176,8 +176,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader MeetingReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM Meeting";
             cmdProductRead.Connection.Open();
 
@@ -189,8 +189,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader MeetingReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -202,8 +202,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader LocationReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM Location";
             cmdProductRead.Connection.Open();
 
@@ -215,8 +215,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader LocationReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -225,12 +225,12 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
-        public static SqlDataReader EventAttendenceReader()
+        public static SqlDataReader AttendEventReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
-            cmdProductRead.CommandText = "SELECT * FROM EventAttendance";
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
+            cmdProductRead.CommandText = "SELECT * FROM AttendEvent";
             cmdProductRead.Connection.Open();
 
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -238,11 +238,11 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
-        public static SqlDataReader EventAttendenceReader(string selectQuery)
+        public static SqlDataReader AttendEventReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -254,8 +254,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader MeetingAttendanceReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = "SELECT * FROM MeetingAttendance";
             cmdProductRead.Connection.Open();
 
@@ -267,8 +267,8 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlDataReader MeetingAttendanceReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = Lab3DBConnection;
-            cmdProductRead.Connection.ConnectionString = Lab3DBConnString;
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
             cmdProductRead.CommandText = selectQuery;
             cmdProductRead.Connection.Open();
 
@@ -282,11 +282,11 @@ namespace ChampionsConsulting.Pages.DB
         public static int SecureLogin(string Username, string Password)
         {
             string loginQuery =
-                "SELECT COUNT(*) FROM User where Username = @Username and UserPassword = @Password";
+                "SELECT COUNT(*) FROM Users where Username = @Username and UserPassword = @Password";
 
             SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = Lab3DBConnection;
-            cmdLogin.Connection.ConnectionString = Lab3DBConnString;
+            cmdLogin.Connection = CCDBConnection;
+            cmdLogin.Connection.ConnectionString = CCConnString;
 
             cmdLogin.CommandText = loginQuery;
             cmdLogin.Parameters.AddWithValue("@Username", Username);    //@[value] means treat input like a normal string
@@ -305,7 +305,7 @@ namespace ChampionsConsulting.Pages.DB
         public static int LoginQuery(string loginQuery)
         {
             SqlCommand cmdLogin = new SqlCommand();
-            cmdLogin.Connection = new SqlConnection(Lab3DBConnString);
+            cmdLogin.Connection = new SqlConnection(CCConnString);
             cmdLogin.CommandText = loginQuery;
 
             cmdLogin.Connection.Open();
@@ -319,7 +319,7 @@ namespace ChampionsConsulting.Pages.DB
         public static int ParameterizedLogin(string Username, string Password)
         {
             SqlCommand cmdParameterizedLogin = new SqlCommand();
-            cmdParameterizedLogin.Connection = new SqlConnection(Lab3DBConnString);
+            cmdParameterizedLogin.Connection = new SqlConnection(CCConnString);
             cmdParameterizedLogin.CommandType = System.Data.CommandType.StoredProcedure;
             cmdParameterizedLogin.Parameters.AddWithValue("@Username", Username);
             cmdParameterizedLogin.Parameters.AddWithValue("@Password", Password);

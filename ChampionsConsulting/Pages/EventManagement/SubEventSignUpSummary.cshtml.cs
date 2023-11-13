@@ -43,10 +43,10 @@ namespace ChampionsConsulting.Pages.EventManagement
                         MeetingStatus = dataReader["MeetingStatus"].ToString()
                     });
                 }
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
             }
 
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
         }
 
         public IActionResult OnPost()

@@ -28,7 +28,7 @@ namespace ChampionsConsulting.Pages.AdminPages
                         UserReader["UserID"].ToString()));
             }
 
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
         }
         public IActionResult OnPost()
         {

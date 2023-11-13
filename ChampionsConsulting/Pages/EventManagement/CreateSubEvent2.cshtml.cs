@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages.EventManagement
 {
-    public class CreateEvent2Model : PageModel
+    public class CreateSubEvent2Model : PageModel
     {
         [BindProperty]
         [Required]
@@ -52,7 +52,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             {
                 ModelState.AddModelError("MeetingName", "Meeting already exists.");
                 TempData["FailMessage"] = "Meeting already exists.";
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 ModelState.Clear(); // used to ignore validation
                 return Page();
             }
@@ -61,14 +61,14 @@ namespace ChampionsConsulting.Pages.EventManagement
             if (MeetingName != null && MeetingDescription != null && StartTime != null && EndTime != null)
             {
                 TempData["SuccessMessage"] = "Event created successfully.";
-                DBClass.Lab3DBConnection.Close();
+                DBClass.CCDBConnection.Close();
                 ModelState.Clear(); // used to ignore validation
                 return Page();
             }
 
             // Input validation
             ModelState.AddModelError(string.Empty, "Try populating");
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
             return Page();
         }
 

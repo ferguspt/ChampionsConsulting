@@ -40,7 +40,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                     MeetingDate = DateTime.Parse(meetingReader["MeetingDate"].ToString())
                 });
             }
-            DBClass.Lab3DBConnection.Close();
+            DBClass.CCDBConnection.Close();
         }
 
         // Redirects to display what presentations are signed up for
