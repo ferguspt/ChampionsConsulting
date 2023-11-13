@@ -11,11 +11,11 @@ namespace ChampionsConsulting.Pages.EventManagement
     {
         [BindProperty]
         [Required]
-        public String EventName { get; set; }
+        public String Name { get; set; }
 
         [BindProperty]
         [Required]
-        public String EventDescription { get; set; }
+        public String Description { get; set; }
 
         [BindProperty]
         [Required]
@@ -35,50 +35,19 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            //string CreateQuery = $"SELECT * FROM Event WHERE MeetingName = '{EventName}'";
-            string CreateQuery = $"INSERT INTO Event VALUES ({EventName},{EventDescription}," +
-                $"{StartDateAndTime},{EndDateAndTime},{LocationID});";
+            string CreateQuery = @"INSERT INTO Events (Name, Description, StartDateAndTime, EndDateAndTime, LocationID) VALUES (" + "'" + Name + "','" + Description + "','" + StartDateAndTime.ToString() + "','" + EndDateAndTime.ToString() + "'," + LocationID + ");";
 
-            //SqlCommand cmdCreateEvent = new SqlCommand();
-            SqlDataAdapter cmdCreateEventAdapter = new SqlDataAdapter();
-            SqlCommand cmdCreateEventCommand = new SqlCommand(CreateQuery, DBClass.CCDBConnection);
-            //cmdCreateEvent.Connection = DBClass.CCDBConnection;
-            cmdCreateEventCommand.Connection.ConnectionString = DBClass.CCConnString;
-            cmdCreateEventCommand.Connection.Open();
-
-            
-
-            if (cmdCreateEventCommand.ExecuteNonQuery() == 1)
+            if (Name == null || Description == null || StartDateAndTime == null || EndDateAndTime == null)
             {
-                cmdCreateEventCommand.Connection.Close();
-            }
-
-
-
-            SqlDataReader MeetingReader = DBClass.MeetingReader(CreateQuery);
-
-            if (MeetingReader.HasRows)
-            {
-                ModelState.AddModelError("MeetingName", "Meeting already exists.");
-                TempData["FailMessage"] = "Meeting already exists.";
+                ModelState.AddModelError(string.Empty, "Try populating");
                 DBClass.CCDBConnection.Close();
-                ModelState.Clear(); // used to ignore validation
                 return Page();
             }
-
-            // If the event name is unique, proceed to create the event
-            if (EventName != null && EventDescription != null && StartDateAndTime != null && EndDateAndTime != null)
-            {
-                TempData["SuccessMessage"] = "Event created successfully.";
-                DBClass.CCDBConnection.Close();
-                ModelState.Clear(); // used to ignore validation
-                return Page();
-            }
-
-            // Input validation
-            ModelState.AddModelError(string.Empty, "Try populating");
+            DBClass.InsertQuery(CreateQuery);
+            TempData["SuccessMessage"] = "Event created successfully.";
             DBClass.CCDBConnection.Close();
             return Page();
+            //return RedirectToPage("/EventManagement/CreateEvent");
         }
 
         // Used to populate text fields
@@ -98,8 +67,8 @@ namespace ChampionsConsulting.Pages.EventManagement
         public IActionResult OnPostClearHandler()
         {
             ModelState.Clear(); // used to ignore validation
-            EventName = null;
-            EventDescription = null;
+            Name = null;
+            Description = null;
             StartDateAndTime = DateTime.MinValue;
             EndDateAndTime = DateTime.MaxValue;
             LocationID = null;

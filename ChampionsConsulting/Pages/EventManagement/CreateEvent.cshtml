@@ -5,22 +5,22 @@
 
 <form asp-page="Create Event">
     <div class="form-text">Event Name</div>
-    <input asp-for="EventName" placeholder="Event Name" class="form-control" id="EventNameInput" />
-    <span asp-validation-for="EventName" class="text-danger"></span>
+    <input asp-for="Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="Name" class="text-danger"></span>
     <br />
 
     <div class="form-text">Event Description</div>
-    <input asp-for="EventDescription" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
-    <span asp-validation-for="EventDescription" class="text-danger"></span>
+    <input asp-for="Description" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+    <span asp-validation-for="Description" class="text-danger"></span>
     <br />
 
     <div class="form-text">Start Time</div>
-    <input asp-for="StartDateAndTime" type="time" placeholder="Start Time" class="form-control" id="StartDateAndTimeInput" />
+    <input asp-for="StartDateAndTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
     <span asp-validation-for="StartDateAndTime" class="text-danger"></span>
     <br />
 
     <div class="form-text">End Time</div>
-    <input asp-for="EndDateAndTime" type="time" placeholder="End Time" class="form-control" id="EndDateAndTimeInput" />
+    <input asp-for="EndDateAndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
     <span asp-validation-for="EndDateAndTime" class="text-danger"></span>
     <br />
 

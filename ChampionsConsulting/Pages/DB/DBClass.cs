@@ -11,7 +11,7 @@ namespace ChampionsConsulting.Pages.DB
 
         // Connection string
         // ";TrustServerCertificate=True"
-        public static readonly String CCConnString = "Server=Localhost; Database=ChampionsConsulting; Trusted_Connection=True";
+        public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
         public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
 
         //Readers for data tables
@@ -66,7 +66,7 @@ namespace ChampionsConsulting.Pages.DB
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = CCDBConnection;
             cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = "SELECT * FROM [Event]";
+            cmdProductRead.CommandText = "SELECT * FROM Events";
             cmdProductRead.Connection.Open();
 
             SqlDataReader tempReader = cmdProductRead.ExecuteReader();
@@ -378,6 +378,16 @@ namespace ChampionsConsulting.Pages.DB
 
             cmdLogin.Connection.Open();
             cmdLogin.ExecuteNonQuery();
+        }
+
+        public static void InsertQuery(string sqlQuery)
+        {
+            SqlCommand cmdInsert = new SqlCommand();
+            cmdInsert.Connection = CCDBConnection;
+            cmdInsert.Connection.ConnectionString = CCConnString;
+            cmdInsert.CommandText = sqlQuery;
+            cmdInsert.Connection.Open();
+            cmdInsert.ExecuteNonQuery();
         }
     }
 }

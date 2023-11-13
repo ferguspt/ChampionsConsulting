@@ -40,7 +40,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             // If statement for when the user chooses a event
             if (EventID >= 1 && EventID <= 10)
             {
-                SelectQuery = "SELECT EventID, Name, Description, StartDateAndTime FROM Event WHERE EventID = " + EventID;
+                SelectQuery = "SELECT EventID, Name, Description, StartDateAndTime FROM [Event] WHERE EventID = " + EventID;
 
                 DBClass.EventReader(SelectQuery);
 

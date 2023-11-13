@@ -32,7 +32,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                 {
                     Events.Add(
                         new SelectListItem(
-                            EventReader["EventName"].ToString(),
+                            EventReader["Name"].ToString(),
                             EventReader["EventID"].ToString()));
                 }
 
@@ -44,9 +44,9 @@ namespace ChampionsConsulting.Pages.EventManagement
         public IActionResult OnPost()
         {
             // If statement for when the user chooses a event
-            if (EventID >= 1 && EventID <= 10)
+            if (EventID >= 1 && EventID < Events.Count)
             {
-                SelectQuery = "SELECT MeetingID, MeetingName, MeetingDescription, MeetingDate FROM Meeting WHERE EventID = " + EventID;
+                SelectQuery = "SELECT SubEventID, Name, Description, StartDateAndTime, EndDateAndTime FROM SubEvent WHERE EventID = " + EventID;
 
                 DBClass.MeetingReader(SelectQuery);
 
