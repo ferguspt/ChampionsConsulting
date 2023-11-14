@@ -17,26 +17,26 @@ namespace ChampionsConsulting.Pages.DB
         //Readers for data tables
         public static SqlDataReader UserReader()
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = CCDBConnection;
-            cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = "SELECT * FROM Users";
-            cmdProductRead.Connection.Open();
+            SqlCommand cmdUserRead = new SqlCommand();
+            cmdUserRead.Connection = CCDBConnection;
+            cmdUserRead.Connection.ConnectionString = CCConnString;
+            cmdUserRead.CommandText = "SELECT * FROM Users";
+            cmdUserRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdUserRead.ExecuteReader();
 
             return tempReader;
         }
 
         public static SqlDataReader UserReader(string selectQuery)
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = CCDBConnection;
-            cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = selectQuery;
-            cmdProductRead.Connection.Open();
+            SqlCommand cmdUserRead = new SqlCommand();
+            cmdUserRead.Connection = CCDBConnection;
+            cmdUserRead.Connection.ConnectionString = CCConnString;
+            cmdUserRead.CommandText = selectQuery;
+            cmdUserRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdUserRead.ExecuteReader();
 
             return tempReader;
         }
@@ -89,37 +89,62 @@ namespace ChampionsConsulting.Pages.DB
 
         public static SqlDataReader EventReaderCheck(string selectQuery)
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = CCDBConnection;
-            cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = selectQuery;
-            cmdProductRead.Connection.Open();
+            SqlCommand cmdEventRead = new SqlCommand();
+            cmdEventRead.Connection = CCDBConnection;
+            cmdEventRead.Connection.ConnectionString = CCConnString;
+            cmdEventRead.CommandText = selectQuery;
+            cmdEventRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdEventRead.ExecuteReader();
 
             return tempReader;
         }
 
         public static SqlDataReader EventReader(string selectQuery, SqlParameter[] parameters)
         {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = CCDBConnection;
-            cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = selectQuery;
+            SqlCommand cmdEventRead = new SqlCommand();
+            cmdEventRead.Connection = CCDBConnection;
+            cmdEventRead.Connection.ConnectionString = CCConnString;
+            cmdEventRead.CommandText = selectQuery;
 
             // Add parameters to the command
             if (parameters != null)
             {
-                cmdProductRead.Parameters.AddRange(parameters);
+                cmdEventRead.Parameters.AddRange(parameters);
             }
 
-            cmdProductRead.Connection.Open();
+            cmdEventRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            SqlDataReader tempReader = cmdEventRead.ExecuteReader();
 
             return tempReader;
         }
 
+        public static SqlDataReader SubEventReader()
+        {
+            SqlCommand cmdSubEventRead = new SqlCommand();
+            cmdSubEventRead.Connection = CCDBConnection;
+            cmdSubEventRead.Connection.ConnectionString = CCConnString;
+            cmdSubEventRead.CommandText = "SELECT * FROM SubEvent";
+            cmdSubEventRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdSubEventRead.ExecuteReader();
+
+            return tempReader;
+        }
+
+        public static SqlDataReader SubEventReader(string selectQuery)
+        {
+            SqlCommand cmdSubEventRead = new SqlCommand();
+            cmdSubEventRead.Connection = CCDBConnection;
+            cmdSubEventRead.Connection.ConnectionString = CCConnString;
+            cmdSubEventRead.CommandText = selectQuery;
+            cmdSubEventRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdSubEventRead.ExecuteReader();
+
+            return tempReader;
+        }
 
         public static SqlDataReader ConferenceReader()
         {
@@ -186,7 +211,7 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
-        public static SqlDataReader MeetingReader(string selectQuery)
+        public static SqlDataReader SubEventReader(string selectQuery)
         {
             SqlCommand cmdProductRead = new SqlCommand();
             cmdProductRead.Connection = CCDBConnection;

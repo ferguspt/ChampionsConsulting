@@ -48,7 +48,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             {
                 SelectQuery = "SELECT SubEventID, Name, Description, StartDateAndTime, EndDateAndTime FROM SubEvent WHERE EventID = " + EventID;
 
-                DBClass.MeetingReader(SelectQuery);
+                DBClass.SubEventReader(SelectQuery);
 
                 DBClass.CCDBConnection.Close();
 

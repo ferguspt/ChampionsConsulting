@@ -11,19 +11,19 @@ namespace ChampionsConsulting.Pages.EventManagement
     {
         [BindProperty]
         [Required]
-        public String MeetingName { get; set; }
+        public String SubEventName { get; set; }
 
         [BindProperty]
         [Required]
-        public String MeetingDescription { get; set; }
+        public String EventName { get; set; }
 
         [BindProperty]
         [Required]
-        public String StartTime { get; set; }
+        public DateTime StartTime { get; set; }
 
         [BindProperty]
         [Required]
-        public String EndTime { get; set; }
+        public DateTime EndTime { get; set; }
 
         [BindProperty]
         [Required]
@@ -35,9 +35,9 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         [BindProperty]
         [Required]
-        public String MeetingType { get; set; }
+        public String SubEventType { get; set; }
 
-        public List<SelectListItem>? Meetings { get; set; }
+        public List<SelectListItem>? SubEvents { get; set; }
 
         public void OnGet()
         {
@@ -45,10 +45,10 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            string selectQuery = $"SELECT * FROM Meeting WHERE MeetingName = '{MeetingName}'";
-            SqlDataReader MeetingReader = DBClass.MeetingReader(selectQuery);
+            string selectQuery = $"SELECT * FROM SubEvent WHERE EventID = '{EventID}'";
+            SqlDataReader SubEventReader = DBClass.SubEventReader(selectQuery);
 
-            if (MeetingReader.HasRows)
+            if (SubEventReader.HasRows)
             {
                 ModelState.AddModelError("MeetingName", "Meeting already exists.");
                 TempData["FailMessage"] = "Meeting already exists.";
@@ -58,7 +58,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
 
             // If the event name is unique, proceed to create the event
-            if (MeetingName != null && MeetingDescription != null && StartTime != null && EndTime != null)
+            if (SubEventName != null && EventName != null && StartTime != null && EndTime != null)
             {
                 TempData["SuccessMessage"] = "Event created successfully.";
                 DBClass.CCDBConnection.Close();
@@ -88,12 +88,12 @@ namespace ChampionsConsulting.Pages.EventManagement
         public IActionResult OnPostClearHandler()
         {
             ModelState.Clear(); // used to ignore validation
-            MeetingName = null;
-            MeetingDescription = null;
+            SubEventName = null;
+            EventName = null;
             StartTime = null;
             EndTime = null;
             RoomID = null;
-            MeetingType = null;
+            SubEventType = null;
 
             return Page();
         }

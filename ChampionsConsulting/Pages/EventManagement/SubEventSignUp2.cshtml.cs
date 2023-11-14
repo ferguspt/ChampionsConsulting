@@ -28,7 +28,7 @@ namespace ChampionsConsulting.Pages.EventManagement
         // Grabs the presentations from the event that is chosen
         public void OnGet(string SelectQuery)
         {
-            SqlDataReader meetingReader = DBClass.MeetingReader(SelectQuery);
+            SqlDataReader meetingReader = DBClass.SubEventReader(SelectQuery);
 
             while (meetingReader.Read())
             {

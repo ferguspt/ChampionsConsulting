@@ -17,6 +17,8 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public List<SelectListItem>? Events { get; set; }
 
+        int EventListSize = 0;
+
         // Gets all the events from the DB
         public void OnGet()
         {
@@ -30,6 +32,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                     new SelectListItem(
                         EventReader["Name"].ToString(),
                         EventReader["EventID"].ToString()));
+                EventListSize++;
             }
 
             DBClass.CCDBConnection.Close();
@@ -38,15 +41,15 @@ namespace ChampionsConsulting.Pages.EventManagement
         public IActionResult OnPost()
         {
             // If statement for when the user chooses a event
-            if (EventID >= 1 && EventID <= 10)
+            if (EventID >= 1 && EventID <= EventListSize)
             {
-                SelectQuery = "SELECT EventID, Name, Description, StartDateAndTime FROM [Event] WHERE EventID = " + EventID;
+                SelectQuery = "SELECT EventID, Name, Description, StartDateAndTime FROM Events WHERE EventID = " + EventID;
 
-                DBClass.EventReader(SelectQuery);
+                DBClass.SubEventReader(SelectQuery);
 
                 DBClass.CCDBConnection.Close();
 
-                return RedirectToPage("/EventManagement/CreateEvent2");
+                return RedirectToPage("/EventManagement/CreateSubEvent2");
             }
 
             // If user clicks "Submit" without choosing a choice

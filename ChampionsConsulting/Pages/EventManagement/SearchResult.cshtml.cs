@@ -22,7 +22,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                                 "[User] ON MeetingAttendance.UserID = [User].UserID WHERE EventDescription " +
                                 "LIKE '%" + Keyword + "%' AND concat_ws(' ', FirstName, LastName) LIKE '%" + Presenter + "%'";
 
-            SqlDataReader reader = DBClass.MeetingReader(searchQuery);
+            SqlDataReader reader = DBClass.SubEventReader(searchQuery);
 
             while (reader.Read())
             {

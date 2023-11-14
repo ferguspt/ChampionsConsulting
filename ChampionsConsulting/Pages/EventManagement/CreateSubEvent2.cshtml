@@ -21,13 +21,13 @@
     {
         <form asp-page="CreateMeeting">
             <div class="form-text">Meeting Name</div>
-            <input asp-for="MeetingName" placeholder="Meeting Name" class="form-control" id="MeetingNameInput" />
-            <span asp-validation-for="MeetingName" class="text-danger"></span>
+            <input asp-for="SubEventName" placeholder="Meeting Name" class="form-control" id="MeetingNameInput" />
+            <span asp-validation-for="SubEventName" class="text-danger"></span>
             <br />
 
             <div class="form-text">Meeting Description</div>
-            <input asp-for="MeetingDescription" placeholder="Meeting Description" class="form-control" id="MeetingDescriptionInput" />
-            <span asp-validation-for="MeetingDescription" class="text-danger"></span>
+            <input asp-for="EventName" placeholder="Meeting Description" class="form-control" id="MeetingDescriptionInput" />
+            <span asp-validation-for="EventName" class="text-danger"></span>
             <br />
 
             <div class="form-text">Start Time</div>
@@ -40,7 +40,7 @@
             <span asp-validation-for="EndTime" class="text-danger"></span>
             <br />
 
-            <select asp-for="MeetingType" asp-items="Model.Meetings">
+            <select asp-for="SubEventType" asp-items="Model.SubEvents">
                 <option value="Admin Meeting">Admin Meeting</option>
                 <option value="Panel">Panel</option>
                 <option value="Presentaion">Presentation</option>>

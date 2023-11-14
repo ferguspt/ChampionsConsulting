@@ -28,7 +28,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                     "Room ON Meeting.RoomID = Room.RoomID AND Location.LocationID = Room.LocationID " +
                     "WHERE MeetingID = " + i;
 
-                SqlDataReader dataReader = DBClass.MeetingReader(SelectQuery);
+                SqlDataReader dataReader = DBClass.SubEventReader(SelectQuery);
 
                 while (dataReader.Read())
                 {
