@@ -211,18 +211,18 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
-        public static SqlDataReader SubEventReader(string selectQuery)
-        {
-            SqlCommand cmdProductRead = new SqlCommand();
-            cmdProductRead.Connection = CCDBConnection;
-            cmdProductRead.Connection.ConnectionString = CCConnString;
-            cmdProductRead.CommandText = selectQuery;
-            cmdProductRead.Connection.Open();
+        //public static SqlDataReader SubEventReader(string selectQuery)
+        //{
+        //    SqlCommand cmdProductRead = new SqlCommand();
+        //    cmdProductRead.Connection = CCDBConnection;
+        //    cmdProductRead.Connection.ConnectionString = CCConnString;
+        //    cmdProductRead.CommandText = selectQuery;
+        //    cmdProductRead.Connection.Open();
 
-            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+        //    SqlDataReader tempReader = cmdProductRead.ExecuteReader();
 
-            return tempReader;
-        }
+        //    return tempReader;
+        //}
 
         public static SqlDataReader LocationReader()
         {

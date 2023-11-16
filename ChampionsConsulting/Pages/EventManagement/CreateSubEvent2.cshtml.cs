@@ -90,8 +90,8 @@ namespace ChampionsConsulting.Pages.EventManagement
             ModelState.Clear(); // used to ignore validation
             SubEventName = null;
             EventName = null;
-            StartTime = null;
-            EndTime = null;
+            StartTime = DateTime.MinValue;
+            EndTime = DateTime.MinValue;
             RoomID = null;
             SubEventType = null;
 
