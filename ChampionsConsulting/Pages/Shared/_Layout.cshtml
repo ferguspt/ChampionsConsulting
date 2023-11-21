@@ -52,8 +52,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
                                 </li>
+                                // <li class="nav-item">
+                                //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                // </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                    <a class="nav-link text-light" asp-page="/EventManagement/EventInformation">Edit Events</a>
                                 </li>
                             }
                             @if (Context.Session.GetString("UserType") == "Presenter")
