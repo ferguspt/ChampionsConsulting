@@ -17,9 +17,9 @@ namespace ChampionsConsulting.Pages.DB
 
         // AWS Connection String
         // use this when interacting with AWS
-        private static readonly String CCConnString = @"Server=ccmaindb.cwgsbvg63wsa.us-east-2.rds.amazonaws.com; 
+        private static readonly String CCConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com;
                                                         Database=CCDB;uid=CCAdmin;password=1Champions!";
-        public static readonly String AuthConnString = @"Server=ccmaindb.cwgsbvg63wsa.us-east-2.rds.amazonaws.com; 
+        public static readonly String AuthConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com; 
                                                         Database=AUTH;uid=CCAdmin;password=1Champions!";
 
         //Readers for data tables
