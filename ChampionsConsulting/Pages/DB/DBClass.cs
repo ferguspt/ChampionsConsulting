@@ -9,10 +9,18 @@ namespace ChampionsConsulting.Pages.DB
         public static SqlConnection CCDBConnection = new SqlConnection();
         public static SqlConnection AUTHDBConnection = new SqlConnection();
 
-        // Connection string
-        // ";TrustServerCertificate=True"
-        public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
-        public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
+        // Localhost Connection string
+        // Use this when testing things locally
+        // public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
+        // public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
+
+
+        // AWS Connection String
+        // use this when interacting with AWS
+        private static readonly String CCConnString = @"Server=ccmaindb.cwgsbvg63wsa.us-east-2.rds.amazonaws.com; 
+                                                        Database=CCDB;uid=CCAdmin;password=1Champions!";
+        public static readonly String AuthConnString = @"Server=ccmaindb.cwgsbvg63wsa.us-east-2.rds.amazonaws.com; 
+                                                        Database=AUTH;uid=CCAdmin;password=1Champions!";
 
         //Readers for data tables
         public static SqlDataReader UserReader()
