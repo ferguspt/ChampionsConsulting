@@ -29,24 +29,48 @@ namespace ChampionsConsulting.Pages.EventManagement
         [Required]
         public String LocationID { get; set; }
 
-        public void OnGet()
+        public List<SelectListItem>? Location { get; set; }
+
+        public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                return RedirectToPage("/Login/UserLogin");
+            }
+            else
+            {
+                SqlDataReader LocationReader = DBClass.LocationReader();
+
+                Location = new List<SelectListItem>();
+
+                while (LocationReader.Read())
+                {
+                    Location.Add(new SelectListItem(
+                        LocationReader["Place"].ToString(),
+                        LocationReader["LocationID"].ToString()
+                        ));
+                }
+
+                DBClass.CCDBConnection.Close();
+                return Page();
+            }
         }
 
         public IActionResult OnPost()
         {
             string CreateQuery = @"INSERT INTO Events (Name, Description, StartDateAndTime, EndDateAndTime, LocationID) VALUES (" + "'" + Name + "','" + Description + "','" + StartDateAndTime.ToString() + "','" + EndDateAndTime.ToString() + "'," + LocationID + ");";
-            if (Name == null || Description == null || StartDateAndTime == null || EndDateAndTime == null)
+
+            if (Name == null || Description == null || StartDateAndTime == null || EndDateAndTime == null || LocationID == null)
             {
                 ModelState.AddModelError(string.Empty, "Try populating");
                 DBClass.CCDBConnection.Close();
                 return Page();
             }
+
             DBClass.InsertQuery(CreateQuery);
             TempData["SuccessMessage"] = "Event created successfully.";
             DBClass.CCDBConnection.Close();
-            return Page();
-            //return RedirectToPage("/EventManagement/CreateEvent");
+            return RedirectToPage("/EventManagement/CreateEvent2", new { EventName = Name });
         }
 
         // Used to populate text fields
