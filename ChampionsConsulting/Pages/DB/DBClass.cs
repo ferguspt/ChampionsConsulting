@@ -442,6 +442,19 @@ namespace ChampionsConsulting.Pages.DB
 
             cmdConferenceRead.ExecuteNonQuery();
         }
+
+        public static void DeleteEvent(Event c)
+        {
+            String sqlQuery = "Delete From Events Where Name = '" + c.Name + "';";
+
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+
+            cmdConferenceRead.ExecuteNonQuery();
+        }
     }
 }
 
