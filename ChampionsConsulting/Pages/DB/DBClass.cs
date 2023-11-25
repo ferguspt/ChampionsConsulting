@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
+using ChampionsConsulting.Pages.DataClasses;
 
 namespace ChampionsConsulting.Pages.DB
 {
@@ -421,6 +422,25 @@ namespace ChampionsConsulting.Pages.DB
             cmdInsert.CommandText = sqlQuery;
             cmdInsert.Connection.Open();
             cmdInsert.ExecuteNonQuery();
+        }
+
+        public static void UpdateEvent(Event c)
+        {
+            String sqlQuery = "Update Events SET";
+            sqlQuery += "Name='" + c.Name + "',";
+            sqlQuery += "Description='" + c.Description + "',";
+            sqlQuery += "StartDateAndTime='" + c.StartDateAndTime + "',";
+            sqlQuery += "EndDateAndTime='" + c.EndDateAndTime + "',";
+            sqlQuery += "LocationID='" + c.LocationID + "'"
+                + "'Where EventNumber=" + c.EventID;
+
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+
+            cmdConferenceRead.ExecuteNonQuery();
         }
     }
 }

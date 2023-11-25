@@ -1,0 +1,70 @@
+﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
+@model ChampionsConsulting.Pages.EventManagement.EditModel
+@{
+}
+
+@* <form asp-page="Edit">
+    <div class="form-text">Event Name</div>
+    <input type="text" asp-for="NewEvent.Name" placeholder="Event Name" />
+    <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
+    <br/>
+    <div class="form-text">Event Description</div>
+    <input type="text" asp-for="NewEvent.Description" placeholder="Description" />
+    <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
+    <br/>
+    <div class="form-text">Event Start Date and Time</div>
+    <input type="text" asp-for="NewEvent.StartDateAndTime" placeholder="Event Location" />
+    <span asp-validation-for="NewEvent.StartDateAndTime" class="text-danger"></span>
+    <br/>
+    <div class="form-text">Event EndDateAndTime</div>
+    <input type="text" asp-for="NewEvent.EndDateAndTime" placeholder="Event Date" />
+    <span asp-validation-for="NewEvent.EndDateAndTime" class="text-danger"></span>
+    <br/>
+    <div class="form-text">LocationID</div>
+    <input type="text" asp-for="NewEvent.LocationID" placeholder="Event Time" />
+    <span asp-validation-for="NewEvent.LocationID" class="text-danger"></span>
+    <br />
+    <button type="submit" class="btn btn-primary">Update Event</button>
+    <button asp-page="EventInformation" asp-page-handler="PopulateHandler" formnovalidate>Populate</button>
+    <button asp-page="EventInformation" asp-page-handler="ClearHandler" formnovalidate>Clear</button>
+</form>
+ *@
+
+
+<form asp-page="Create Event">
+    <div class="form-text">Event Name</div>
+    <input asp-for="NewEvent.Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Event Description</div>
+    <input asp-for="NewEvent.Description" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+    <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Start Time</div>
+    <input asp-for="NewEvent.StartDateAndTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
+    <span asp-validation-for="NewEvent.StartDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">End Time</div>
+    <input asp-for="NewEvent.EndDateAndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
+    <span asp-validation-for="NewEvent.EndDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Choose Location</div>
+    <select asp-for="NewEvent.LocationID" asp-items="Model.Location">
+        <option value="" id="LocationID">Choose Location</option>
+    </select>
+    <br />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br />
+
+    <input type="submit" class="btn btn-primary" value="Update" />
+    <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+    <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+    <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+</form>
