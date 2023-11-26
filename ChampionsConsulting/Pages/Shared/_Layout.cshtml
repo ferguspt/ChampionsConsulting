@@ -34,9 +34,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
-                                </li>
+                                // <li class="nav-item">
+                                //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                // </li>
                             }
                             @if (Context.Session.GetString("UserType") == "Organizer")
                             {
@@ -67,9 +67,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up for an event</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
-                                </li>
+                                // <li class="nav-item">
+                                //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                // </li>
                             }
                             @if (Context.Session.GetString("UserType") == "Participant")
                             {
@@ -77,11 +77,17 @@
                                     <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up for an event</a>
+                                    <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                    <a class="nav-link text-light" asp-page="/EventManagement/CheckIn">Check in</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/FeedBack">Provide Feedback</a>
+                                </li>
+                                // <li class="nav-item">
+                                //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
+                                // </li>
                             }
                         }
                     </ul>
