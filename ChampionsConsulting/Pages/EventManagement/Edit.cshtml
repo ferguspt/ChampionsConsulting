@@ -5,35 +5,13 @@
 @{
 }
 
-@* <form asp-page="Edit">
-    <div class="form-text">Event Name</div>
-    <input type="text" asp-for="NewEvent.Name" placeholder="Event Name" />
-    <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
-    <br/>
-    <div class="form-text">Event Description</div>
-    <input type="text" asp-for="NewEvent.Description" placeholder="Description" />
-    <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
-    <br/>
-    <div class="form-text">Event Start Date and Time</div>
-    <input type="text" asp-for="NewEvent.StartDateAndTime" placeholder="Event Location" />
-    <span asp-validation-for="NewEvent.StartDateAndTime" class="text-danger"></span>
-    <br/>
-    <div class="form-text">Event EndDateAndTime</div>
-    <input type="text" asp-for="NewEvent.EndDateAndTime" placeholder="Event Date" />
-    <span asp-validation-for="NewEvent.EndDateAndTime" class="text-danger"></span>
-    <br/>
-    <div class="form-text">LocationID</div>
-    <input type="text" asp-for="NewEvent.LocationID" placeholder="Event Time" />
-    <span asp-validation-for="NewEvent.LocationID" class="text-danger"></span>
+
+<form asp-page="Edit">
+    <div class="form-text">Enter EventID to change</div>
+    <input asp-for="NewEvent.EventID" placeholder="EventID" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="NewEvent.EventID" class="text-danger"></span>
     <br />
-    <button type="submit" class="btn btn-primary">Update Event</button>
-    <button asp-page="EventInformation" asp-page-handler="PopulateHandler" formnovalidate>Populate</button>
-    <button asp-page="EventInformation" asp-page-handler="ClearHandler" formnovalidate>Clear</button>
-</form>
- *@
 
-
-<form asp-page="Create Event">
     <div class="form-text">Event Name</div>
     <input asp-for="NewEvent.Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
     <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
@@ -68,3 +46,15 @@
     <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
     <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
 </form>
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('EventNameInput').value = 'AI Global Expo ';
+        document.getElementById('EventDescriptionInput').value = 'AI Panels and Socials with prominant figures in the community';
+        document.getElementById('StartDateAndTimeInput').value = '5/15/2024 8:00 AM';
+        document.getElementById('EndDateAndTimeInput').value = '5/30/2024 8:00 AM';
+        document.getElementById('LocationID').value = '1';
+    });
+</script>

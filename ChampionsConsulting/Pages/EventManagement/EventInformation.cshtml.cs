@@ -27,7 +27,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPostDeleteHandler()
         {
-            return Page();
+            return RedirectToPage("/Delete");
         }
     }
 }

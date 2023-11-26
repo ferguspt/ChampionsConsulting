@@ -18,6 +18,10 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         [BindProperty]
         [Required]
+        public int EventID { get; set; }
+
+        [BindProperty]
+        [Required]
         public String Name { get; set; }
 
         [BindProperty]
@@ -69,18 +73,24 @@ namespace ChampionsConsulting.Pages.EventManagement
             {
                 DBClass.UpdateEvent(NewEvent);
                 DBClass.CCDBConnection.Close();
-                return RedirectToPage("/Events/UpdatedEventInfo");
+                return Page();
             }
             else
             {
-                return Page();
+                return RedirectToPage("/EventManagement/UpdatedEventInfo");
             }
 
         }
 
+        public IActionResult OnPostPopulateHandler()
+        {
+            ModelState.Clear(); // used to ignore validation
+            return Page();
+        }
+
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("../Index");
+            return RedirectToPage("/EventManagement/EventInformation");
         }
 
         public IActionResult OnPostClearHandler()

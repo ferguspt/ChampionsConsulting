@@ -2,7 +2,7 @@
 {
     public class Event
     {
-        public String EventID { get; set; }
+        public int EventID { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
         public DateTime StartDateAndTime { get; set; }

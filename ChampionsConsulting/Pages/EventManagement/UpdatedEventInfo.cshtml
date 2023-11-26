@@ -1,0 +1,67 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.UpdatedEventInfoModel
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
+
+@{
+}
+
+
+
+<h2 class="h2">Events:</h2>
+
+<table class="table table-bordered table-responsive table-striped table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Name:</th>
+
+            <th>Description:</th>
+
+            <th>StartDateAndTime:</th>
+
+            <th>EndDateAndTime:</th>
+
+            <th>Location:</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @{
+
+            SqlDataReader ConferenceReader = DBClass.EventReader();
+
+            while (ConferenceReader.Read())
+
+            {
+
+                <tr>
+
+                    <td>@ConferenceReader["Name"]</td>
+
+                    <td>@ConferenceReader["Description"]</td>
+
+                    <td>@ConferenceReader["StartDateAndTime"]</td>
+
+                    <td>@ConferenceReader["EndDateAndTime"]</td>
+
+                    <td>@ConferenceReader["LocationID"]</td>
+
+                </tr>
+
+            }
+
+
+
+            DBClass.CCDBConnection.Close();
+
+        }
+
+    </tbody>
+
+</table>
