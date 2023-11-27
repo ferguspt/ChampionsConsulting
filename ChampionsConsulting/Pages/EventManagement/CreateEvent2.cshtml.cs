@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Data.SqlClient;
 using System.Xml.Linq;
 
@@ -10,7 +11,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 {
     public class CreateEvent2Model : PageModel
     {
-        [BindProperty]
+        [TempData]
         [Required]
         public int EventId { get; set; }
         [BindProperty]
@@ -29,15 +30,11 @@ namespace ChampionsConsulting.Pages.EventManagement
         [Required]
         public DateTime EndTime { get; set; }
 
-        //[BindProperty]
-        //[Required]
-        //public string SubEventType { get; set; }
-
         public IActionResult OnGet(string Event)
         {
             SqlDataReader EventReader = DBClass.EventReader();
 
-            string SelectQuery = "SELECT EventID, Name FROM Events Where Name = '" + Event + "';";
+            string SelectQuery = "SELECT EventID, Name FROM Events Where Name = '" + Event + "' DESC;";
 
             if (!EventReader.HasRows)
             {
@@ -64,7 +61,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
             else
             {
-                string insertQuery = @"INSERT INTO SubEvent (Name, Description, StartDateAndTime, EndDateAndTime, EventID) VALUES (" + "'" + SubEventName + "','" + SubEventDescription + "','" + StartTime.ToString() + "','" + EndTime.ToString() + "'," + EventId + ");";
+                string insertQuery = @"INSERT INTO SubEvent (Name, Description, StartDateAndTime, EndDateAndTime, EventID) VALUES (" + "'" + SubEventName + "','" + SubEventDescription + "','" + StartTime.ToString() + "','" + EndTime.ToString() + "'," + EventId.ToString() + ");";
                 DBClass.InsertQuery(insertQuery);
                 TempData["SuccessMessage"] = "Sub Event created successfully.";
                 DBClass.CCDBConnection.Close();

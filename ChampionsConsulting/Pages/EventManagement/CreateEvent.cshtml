@@ -3,14 +3,14 @@
 @{
 }
 
-@{
+@* @{
     if (TempData["SuccessMessage"] != null)
     {
         <div class="alert alert-success">@TempData["SuccessMessage"]</div>
     }
-}
+} *@
 
-
+<h2>Create New Event</h2>
 <form asp-page="Create Event">
     <div class="form-text">Event Name</div>
     <input asp-for="Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
