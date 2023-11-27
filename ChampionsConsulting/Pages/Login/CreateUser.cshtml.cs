@@ -38,7 +38,7 @@ namespace ChampionsConsulting.Pages.Login
 
         public IActionResult OnPost()
         {
-            string selectQuery = $"SELECT * FROM [User] WHERE Username = '{Username}'";
+            string selectQuery = $"SELECT * FROM Users WHERE Username = '{Username}'";
             SqlDataReader UserReader = DBClass.UserReader(selectQuery);
 
             if (UserReader.HasRows)
@@ -52,10 +52,31 @@ namespace ChampionsConsulting.Pages.Login
 
             if (Username != null && Password != null && FirstName != null && LastName != null && Email != null)
             {
-                DBClass.CreateHashedUser(Username, Password);
+                // Hash the password before storing it in the database
+                string hashedPassword = PasswordHash.HashPassword(Password);
+                DBClass.CreateHashedUser(Username, hashedPassword); // Store hashedPassword instead of Password
+                DBClass.AUTHDBConnection.Close();
+
+                // Insert user into users table
+                string insertQuery = @"INSERT INTO Users (FirstName, LastName, Username, UserPassword, Email, UserType)
+                                           VALUES ('" + FirstName + "','" + LastName + "','" + Username + "','" + Password + "','" + Email + "','" + UserType + "');";
+                Console.WriteLine(insertQuery);
+
+                //SqlCommand insertCommand = new SqlCommand(insertQuery, CCDBConnection);
+                //insertCommand.Parameters.AddWithValue("@FirstName", FirstName);
+                //insertCommand.Parameters.AddWithValue("@LastName", LastName);
+                //insertCommand.Parameters.AddWithValue("@Username", Username);
+                //insertCommand.Parameters.AddWithValue("@UserPassword", Password);
+                //insertCommand.Parameters.AddWithValue("@Email", Email);
+                //insertCommand.Parameters.AddWithValue("@UserType", UserType);
+
+                DBClass.InsertQuery(insertQuery);
                 DBClass.CCDBConnection.Close();
+
+
                 TempData["SuccessMessage"] = "User created successfully.";
                 return Page();
+
             }
 
             ModelState.AddModelError("Error", "Please enter information");
