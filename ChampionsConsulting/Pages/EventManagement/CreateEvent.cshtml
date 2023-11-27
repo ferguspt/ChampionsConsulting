@@ -3,6 +3,14 @@
 @{
 }
 
+@* @{
+    if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+} *@
+
+<h2>Create New Event</h2>
 <form asp-page="Create Event">
     <div class="form-text">Event Name</div>
     <input asp-for="Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
@@ -24,9 +32,10 @@
     <span asp-validation-for="EndDateAndTime" class="text-danger"></span>
     <br />
 
-    <div class="form-text">Event Location</div>
-    <input asp-for="LocationID" placeholder="Location" class="form-control" id="LocationIDInput" />
-    <span asp-validation-for="LocationID" class="text-danger"></span>
+    <div class="form-text">Choose Location</div>
+    <select asp-for="LocationID" asp-items="Model.Location">
+        <option value="" id="LocationID">Choose Location</option>
+    </select>
     <br />
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -47,7 +56,7 @@
         document.getElementById('EventDescriptionInput').value = 'AI Panels and Socials with prominant figures in the community';
         document.getElementById('StartDateAndTimeInput').value = '5/15/2024 8:00 AM';
         document.getElementById('EndDateAndTimeInput').value = '5/30/2024 8:00 AM';
-        document.getElementById('RoomIDInput').value = '1';
+        document.getElementById('LocationID').value = '1';
     });
 </script>
 

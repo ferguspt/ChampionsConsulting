@@ -1,0 +1,60 @@
+﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
+@model ChampionsConsulting.Pages.EventManagement.EditModel
+@{
+}
+
+
+<form asp-page="Edit">
+    <div class="form-text">Enter EventID to change</div>
+    <input asp-for="NewEvent.EventID" placeholder="EventID" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="NewEvent.EventID" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Event Name</div>
+    <input asp-for="NewEvent.Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Event Description</div>
+    <input asp-for="NewEvent.Description" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+    <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Start Time</div>
+    <input asp-for="NewEvent.StartDateAndTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
+    <span asp-validation-for="NewEvent.StartDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">End Time</div>
+    <input asp-for="NewEvent.EndDateAndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
+    <span asp-validation-for="NewEvent.EndDateAndTime" class="text-danger"></span>
+    <br />
+
+    <div class="form-text">Choose Location</div>
+    <select asp-for="NewEvent.LocationID" asp-items="Model.Location">
+        <option value="" id="LocationID">Choose Location</option>
+    </select>
+    <br />
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br />
+
+    <input type="submit" class="btn btn-primary" value="Update" />
+    <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+    <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+    <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+</form>
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('EventNameInput').value = 'AI Global Expo ';
+        document.getElementById('EventDescriptionInput').value = 'AI Panels and Socials with prominant figures in the community';
+        document.getElementById('StartDateAndTimeInput').value = '5/15/2024 8:00 AM';
+        document.getElementById('EndDateAndTimeInput').value = '5/30/2024 8:00 AM';
+        document.getElementById('LocationID').value = '1';
+    });
+</script>

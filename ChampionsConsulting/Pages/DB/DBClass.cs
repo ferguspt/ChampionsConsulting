@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
+using ChampionsConsulting.Pages.DataClasses;
 
 namespace ChampionsConsulting.Pages.DB
 {
@@ -11,16 +12,16 @@ namespace ChampionsConsulting.Pages.DB
 
         // Localhost Connection string
         // Use this when testing things locally
-         public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
-         public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
+        public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
+        public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
 
 
         // AWS Connection String
         // use this when interacting with AWS
-        // private static readonly String CCConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com;
-                                                        // Database=CCDB;uid=CCAdmin;password=1Champions!";
-        // public static readonly String AuthConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com; 
-                                                        // Database=AUTH;uid=CCAdmin;password=1Champions!";
+        private static readonly String CCConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com;
+                                                        Database=CCDB;uid=CCAdmin;password=1Champions!";
+        public static readonly String AuthConnString = @"Server=ccmaindb.cev3oaq5oesc.us-east-1.rds.amazonaws.com; 
+                                                        Database=AUTH;uid=CCAdmin;password=1Champions!";
 
         //Readers for data tables
         public static SqlDataReader UserReader()
@@ -421,6 +422,38 @@ namespace ChampionsConsulting.Pages.DB
             cmdInsert.CommandText = sqlQuery;
             cmdInsert.Connection.Open();
             cmdInsert.ExecuteNonQuery();
+        }
+
+        public static void UpdateEvent(Event c)
+        {
+            String sqlQuery = "Update Events SET";
+            sqlQuery += "Name='" + c.Name + "',";
+            sqlQuery += "Description='" + c.Description + "',";
+            sqlQuery += "StartDateAndTime='" + c.StartDateAndTime + "',";
+            sqlQuery += "EndDateAndTime='" + c.EndDateAndTime + "',";
+            sqlQuery += "LocationID='" + c.LocationID + "'"
+                + "'Where EventNumber=" + c.EventID;
+
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+
+            cmdConferenceRead.ExecuteNonQuery();
+        }
+
+        public static void DeleteEvent(Event c)
+        {
+            String sqlQuery = "Delete From Events Where Name = '" + c.Name + "';";
+
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+
+            cmdConferenceRead.ExecuteNonQuery();
         }
     }
 }

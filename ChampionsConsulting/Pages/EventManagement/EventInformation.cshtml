@@ -24,6 +24,8 @@
             <th>EndDateAndTime:</th>
 
             <th>Location:</th>
+            <th>Edit Event</th>
+            <th>Delete Event</th>
 
         </tr>
 
@@ -50,6 +52,14 @@
                     <td>@ConferenceReader["EndDateAndTime"]</td>
 
                     <td>@ConferenceReader["LocationID"]</td>
+
+                    <td><a asp-page="/EventManagement/Edit">Edit</a></td>
+
+                    <td><a asp-page="/EventManagement/Delete">Delete</a></td>
+
+                    @*<td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
+
+                    <td><button asp-page="EventInformation" button asp-page-handler="DeleteHandler" class="btn btn-danger">Delete</button></td>*@
 
                 </tr>
 

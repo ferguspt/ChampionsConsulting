@@ -1,5 +1,6 @@
-using ChampionsConsulting.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
+using ChampionsConsulting.Pages.DB;
+using ChampionsConsulting.Pages.DataClasses;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
@@ -7,8 +8,18 @@ using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages.EventManagement
 {
-    public class CreateEventModel : PageModel
+    public class EditModel : PageModel
     {
+
+        [BindProperty]
+        public Event NewEvent { get; set; }
+
+        public List<SelectListItem> Event { get; set; }
+
+        [BindProperty]
+        [Required]
+        public int EventID { get; set; }
+
         [BindProperty]
         [Required]
         public String Name { get; set; }
@@ -28,7 +39,7 @@ namespace ChampionsConsulting.Pages.EventManagement
         [BindProperty]
         [Required]
         public String LocationID { get; set; }
-
+        [BindProperty]
         public List<SelectListItem>? Location { get; set; }
 
         public IActionResult OnGet()
@@ -58,35 +69,30 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            string CreateQuery = @"INSERT INTO Events (Name, Description, StartDateAndTime, EndDateAndTime, LocationID) VALUES (" + "'" + Name + "','" + Description + "','" + StartDateAndTime.ToString() + "','" + EndDateAndTime.ToString() + "'," + LocationID + ");";
-
-            if (Name == null || Description == null || StartDateAndTime == null || EndDateAndTime == null || LocationID == null)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Try populating");
+                DBClass.UpdateEvent(NewEvent);
                 DBClass.CCDBConnection.Close();
                 return Page();
             }
+            else
+            {
+                return RedirectToPage("/EventManagement/UpdatedEventInfo");
+            }
 
-            DBClass.InsertQuery(CreateQuery);
-            TempData["SuccessMessage"] = "Event created successfully.";
-            DBClass.CCDBConnection.Close();
-            return RedirectToPage("/EventManagement/CreateEvent2", new { EventName = Name });
         }
 
-        // Used to populate text fields
         public IActionResult OnPostPopulateHandler()
         {
             ModelState.Clear(); // used to ignore validation
             return Page();
         }
 
-        //Returns admin or organizer to home page
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("../Index");
+            return RedirectToPage("/EventManagement/EventInformation");
         }
 
-        // Used to clear all text fields by reloading the page
         public IActionResult OnPostClearHandler()
         {
             ModelState.Clear(); // used to ignore validation
