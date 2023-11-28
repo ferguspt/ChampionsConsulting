@@ -6,64 +6,426 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Champions Consulting Event System</h1>
-</div>
-<br/>
-<h2 class="h2">Upcoming Events:</h2>
 
-<table class="table table-bordered table-responsive table-striped table-hover">
+<head>
+    <title> Table V03</title>
 
-    <thead class="table-dark">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <tr>
-            <th>Name:</th>
+    <meta name="robots" content="noindex, follow">
+    <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyVGFibGUlMjBWMDMlMjIlMkMlMjJ4JTIyJTNBMC43NTM0NzQ3NTUxNjA0MDc3JTJDJTIydyUyMiUzQTE2MDAlMkMlMjJoJTIyJTNBOTAwJTJDJTIyaiUyMiUzQTc3NSUyQyUyMmUlMjIlM0ExNjAwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGdGIlMkZUYWJsZV9IaWdobGlnaHRfVmVydGljYWxfSG9yaXpvbnRhbCUyRmluZGV4Lmh0bWwlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGdGFibGUtd2l0aC12ZXJ0aWNhbC1ob3Jpem9udGFsLWhpZ2hsaWdodCUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EzMDAlMkMlMjJxJTIyJTNBJTVCJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIwJTIyJTJDJTIyY29uZmlnJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTJDJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIxJTIyJTJDJTIyVUEtMjM1ODE1NjgtMTMlMjIlMkMlN0IlMjJzY29wZSUyMiUzQSUyMnBhZ2UlMjIlN0QlNUQlN0QlNUQlN0Q="> </script>
+    <script nonce="d0eb08f8-a294-44c7-b50a-fc282117edcb">
+        (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
+    </script>
 
-            <th>Description:</th>
+</head>
+<style>
+    @@font-face {
+        font-family: Montserrat-Regular;
+        src: url('../fonts/montserrat/Montserrat-Regular.ttf');
+    }
 
-            <th>Start Date And Time:</th>
+    @@font-face {
+        font-family: Montserrat-Medium;
+        src: url('../fonts/montserrat/Montserrat-Medium.ttf');
+    }
 
-            <th>End Date And Time:</th>
+    iframe {
+        border: none !important;
+    }
 
-            <th>Location:</th>
+    .limiter {
+        width: 100%;
+        margin: 0 auto;
+    }
 
-        </tr>
+    .container-table100 {
+        width: 100%;
+        min-height: 100vh;
+        background: none;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 33px 30px;
+    }
 
-    </thead>
+    .wrap-table100 {
+        width: 1300px;
+    }
 
-    <tbody>
+    table {
+        width: 100%;
+        background-color: #fff;
+    }
 
-        @{
-            string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
+    th, td {
+        font-weight: unset;
+        padding-right: 10px;
+    }
 
-            SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
+    .column100 {
+        width: 130px;
+        padding-left: 25px;
+    }
 
-            while (ConferenceReader.Read())
+        .column100.column1 {
+            width: 265px;
+            padding-left: 42px;
+        }
 
-            {
+    .row100.head th {
+        padding-top: 24px;
+        padding-bottom: 20px;
+    }
 
-                <tr>
+    .row100 td {
+        padding-top: 18px;
+        padding-bottom: 14px;
+    }
+    /*==================================================================
+            [ Ver6 ]*/
 
-                    <td>@ConferenceReader["Name"]</td>
+    .table100.ver6 {
+        border-radius: 16px;
+        overflow: hidden;
+        background: #7918f2;
+        background: -webkit-linear-gradient(-68deg, #ac32e4, #4801ff);
+        background: -o-linear-gradient(-68deg, #ac32e4, #4801ff);
+        background: -moz-linear-gradient(-68deg, #ac32e4, #4801ff);
+        background: linear-gradient(-68deg, #ac32e4, #4801ff);
+    }
 
-                    <td>@ConferenceReader["Description"]</td>
+        .table100.ver6 table {
+            background-color: transparent;
+        }
 
-                    <td>@ConferenceReader["StartDateAndTime"]</td>
+        .table100.ver6 td {
+            font-size: 14px;
+            color: #fff;
+            line-height: 1.4;
+        }
 
-                    <td>@ConferenceReader["EndDateAndTime"]</td>
+        .table100.ver6 th {
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            line-height: 2;
+            text-transform: uppercase;
+            background-color: rgba(255,255,255,0.32);
+        }
 
-                    <td>@ConferenceReader["Place"]</td>
+        .table100.ver6 .row100:hover td {
+            background-color: rgba(255,255,255,0.1);
+        }
 
-                </tr>
+        .table100.ver6 .hov-column-ver6 {
+            background-color: rgba(255,255,255,0.1);
+        }
 
+
+        .table100.ver6 .row100 td:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        color: #333;
+        line-height: 1.6;
+        background-image: linear-gradient(#f048c6, #f6ea41 );
+        font-family: Verdana, sans-serif;
+        margin: 0
+    }
+
+    h2 {
+        text-align: center;
+        color: white;
+    }
+
+    .styled-table {
+        border-collapse: collapse;
+        background: rgb(199, 136, 255);
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgb(255,255,255, .5);
+    }
+
+        .styled-table thead tr {
+            background-color: black;
+            color: white;
+            text-align: left;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+            padding: 1rem;
+        }
+
+            .styled-table tbody tr:nth-of-type(even) {
+                background-color: rgb(141,141,141);
+            }
+
+            .styled-table tbody tr:last-of-type {
+                border-bottom: 2px solid #009879;
+            }
+
+            .styled-table tbody tr.active-row {
+                font-weight: bold;
+                color: black;
             }
 
 
+    * {
+        box-sizing: border-box
+    }
 
-            DBClass.CCDBConnection.Close();
+    .mySlides {
+        display: none;
+        z-index: 1;
+    }
 
+    img {
+        vertical-align: middle;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+        /* max-width: auto; */
+        position: relative;
+        max-width: 100%;
+        height: auto;
+        /* margin: auto; */
+        z-index: 1;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
         }
 
-    </tbody>
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
 
-</table>
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        cursor: pointer;
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+
+    /* On smaller screens, decrease text size */
+    @@media only screen and (max-width: 300px) {
+        .prev, .next, .text {
+            font-size: 11px
+        }
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        min-height: 50px;
+        max-height: 80px;
+        background-color: rgba(36, 32, 33, 0.9);
+        color: white;
+        font-family: "Helvetica Neue", Helvetica;
+        padding: 10px 0px;
+        padding-top: 10px;
+        margin-top: 30px;
+        font-weight: 100;
+        clear: both;
+    }
+</style>
+
+<body>
+    <div class="limiter">
+
+        <h2>Upcoming Events:</h2>
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100 ver6 m-b-110">
+                    <table data-vertable="ver6">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">Name:</th>
+                                <th class="column100 column2" data-column="column2">Description:</th>
+                                <th class="column100 column3" data-column="column3">Start Date And Time:</th>
+                                <th class="column100 column4" data-column="column4">End Date And Time:</th>
+                                <th class="column100 column5" data-column="column5">Location:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                @{
+                                    string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
+
+                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
+
+                                    while (ConferenceReader.Read())
+
+                                    {
+
+                                    <tr class="row100">
+
+                                        <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+
+                                        <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+
+                                        <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
+
+                                        <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
+
+                                        <td class="column100 column5" data-column="column5">@ConferenceReader["Place"]</td>
+
+                                    </tr>
+
+                                    }
+
+
+
+                                    DBClass.CCDBConnection.Close();
+
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slideshow-container">
+
+        <div class="mySlides">
+            <div class="numbertext">1 / 3</div>
+            <img src="~/images/bg1.webp" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">2 / 3</div>
+            <img src="~/images/conf2.jpg" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+
+        <div class="mySlides">
+            <div class="numbertext">3 / 3</div>
+            <img src="~/images/conf3.jpg" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+    </div>
+    <br>
+
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
+</body>
