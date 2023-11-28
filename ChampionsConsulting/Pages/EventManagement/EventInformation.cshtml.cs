@@ -8,6 +8,8 @@ namespace ChampionsConsulting.Pages.EventManagement
 {
     public class EventInformationModel : PageModel
     {
+        public List<SelectListItem>? Event { get; set; }
+
         public IActionResult OnGet()
         {
             if (HttpContext.Session.GetString("Username") == null)
@@ -16,8 +18,20 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
             else
             {
+                SqlDataReader EventReader = DBClass.EventReader();
+
+                Event = new List<SelectListItem>();
+
+                while (EventReader.Read())
+                {
+                    Event.Add(new SelectListItem(
+                        EventReader["EventID"].ToString(),
+                        EventReader["Name"].ToString()
+                        ));
+                }
                 return Page();
             }
+
         }
 
         public IActionResult OnPostEditHandler()

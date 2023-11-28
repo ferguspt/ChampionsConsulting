@@ -6,7 +6,12 @@
 }
 
 
-
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") != "Organizer")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
+else
+{
 <h2 class="h2">Events:</h2>
 
 <table class="table table-bordered table-responsive table-striped table-hover">
@@ -75,4 +80,4 @@
     </tbody>
 
 </table>
-
+}
