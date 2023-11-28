@@ -65,7 +65,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                 DBClass.InsertQuery(insertQuery);
                 TempData["SuccessMessage"] = "Sub Event created successfully.";
                 DBClass.CCDBConnection.Close();
-                return Page();
+                return RedirectToPage("/EventManagement/Confirmation");
             }
         }
     }

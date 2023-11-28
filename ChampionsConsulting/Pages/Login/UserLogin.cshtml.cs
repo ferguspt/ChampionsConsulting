@@ -52,27 +52,10 @@ namespace ChampionsConsulting.Pages.Login
 
                 if (reader.Read())
                 {
-                    string hashedPasswordFromDB = reader["UserPassword"].ToString();
-
-                    // Hash the entered password for comparison
-                    string hashedEnteredPassword = PasswordHash.HashPassword(Password);
-
-                    // Compare the hashed entered password with the hashed password from the database
-                    bool passwordMatches = PasswordHash.ValidatePassword(Password, hashedPasswordFromDB);
-
-                    if (passwordMatches)
-                    {
-                        HttpContext.Session.SetString("Username", reader["Username"].ToString());
-                        HttpContext.Session.SetString("UserType", reader["UserType"].ToString());
-                        DBClass.CCDBConnection.Close();
-                        return RedirectToPage("/Login/UserPage");
-                    }
-                    else
-                    {
-                        ViewData["LoginMessage"] = "Username and/or Password Incorrect";
-                        DBClass.CCDBConnection.Close();
-                        return Page();
-                    }
+                    HttpContext.Session.SetString("Username", reader["Username"].ToString());
+                    HttpContext.Session.SetString("UserType", reader["UserType"].ToString());
+                    DBClass.CCDBConnection.Close();
+                    return RedirectToPage("/Login/UserPage");
                 }
                 else
                 {

@@ -1,0 +1,19 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.ConfirmationModel
+@{
+}
+
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") != "Organizer")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
+else
+{
+<h2 class="h2">Event Successfully created!</h2>
+<br/> 
+<br/>
+ <form asp-page="Confirmation">
+<input type="submit" class="btn btn-primary" value="Create Another Event" />
+<button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+</form>
+}

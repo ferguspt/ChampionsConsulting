@@ -3,6 +3,13 @@
 @{
 }
 
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") != "Organizer")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
+else
+{
+
 @* @{
     if (TempData["SuccessMessage"] != null)
     {
@@ -59,4 +66,4 @@
         document.getElementById('LocationID').value = '1';
     });
 </script>
-
+}

@@ -46,9 +46,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/CreateEvent">Create Event</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/CreateSubEvent">Create SubEvent</a>
-                                </li>
+                                // <li class="nav-item">
+                                //     <a class="nav-link text-light" asp-page="/EventManagement/CreateSubEvent">Create SubEvent</a>
+                                // </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
                                 </li>
@@ -58,6 +58,10 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/EventInformation">Edit Events</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="../Index">View Feedback</a>
+                                </li>
+
                             }
                             @if (Context.Session.GetString("UserType") == "Presenter")
                             {
