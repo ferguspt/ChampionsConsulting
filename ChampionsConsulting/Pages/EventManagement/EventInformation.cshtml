@@ -91,18 +91,18 @@ else
                     @*<td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
 
                     <td><button asp-page="EventInformation" button asp-page-handler="DeleteHandler" class="btn btn-danger">Delete</button></td>*@
+            
+                    </tr>
 
-                </tr>
-
-            }
-
-
-
-            DBClass.CCDBConnection.Close();
+                }
+               
+                DBClass.CCDBConnection.Close();
 
         }
+
 
     </tbody>
 
 </table>
 }
+    

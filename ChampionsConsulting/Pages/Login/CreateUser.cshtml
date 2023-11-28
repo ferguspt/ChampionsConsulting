@@ -96,9 +96,14 @@
         <span asp-validation-for="Email" class="text-danger"></span>
         <br />
 
+            <div class="form-group">Phone</div>
+            <input asp-for="Phone" placeholder="Phone" class="form-control" id="PhoneInput" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+            <br />
+
         <div class="form-group">Role</div>
         <select asp-for="UserType" placeholder="Role" class="form-select" id="UserTypeInput">
-            <option selected>Attendee</option>
+            <option selected>Participant</option>
             <option value="Presenter">Presenter</option>
         </select>
         <span asp-validation-for="UserType" class="text-danger"></span>

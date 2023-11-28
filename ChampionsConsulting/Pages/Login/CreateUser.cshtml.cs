@@ -30,10 +30,15 @@ namespace ChampionsConsulting.Pages.Login
 
         [BindProperty]
         [Required]
+        public String Phone { get; set; }
+
+        [BindProperty]
+        [Required]
         public String UserType { get; set; }
 
         public void OnGet()
         {
+            TempData["SucessMessage"] = null;
         }
 
         public IActionResult OnPost()
@@ -56,10 +61,10 @@ namespace ChampionsConsulting.Pages.Login
                 string hashedPassword = PasswordHash.HashPassword(Password);
                 DBClass.CreateHashedUser(Username, hashedPassword); // Store hashedPassword instead of Password
                 DBClass.AUTHDBConnection.Close();
-
+                DBClass.CCDBConnection.Close();
                 // Insert user into users table
-                string insertQuery = @"INSERT INTO Users (FirstName, LastName, Username, UserPassword, Email, UserType)
-                                           VALUES ('" + FirstName + "','" + LastName + "','" + Username + "','" + Password + "','" + Email + "','" + UserType + "');";
+                string insertQuery = @"INSERT INTO Users (FirstName, LastName, Username, UserPassword, Email,Phone, UserType)
+                                           VALUES ('" + FirstName + "','" + LastName + "','" + Username + "','" + Password + "','" + Email + "','"+Phone +"','"+ UserType + "');";
                 Console.WriteLine(insertQuery);
 
                 //SqlCommand insertCommand = new SqlCommand(insertQuery, CCDBConnection);

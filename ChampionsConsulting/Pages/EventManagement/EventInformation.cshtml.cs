@@ -29,6 +29,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                         EventReader["Name"].ToString()
                         ));
                 }
+                DBClass.CCDBConnection.Close();
                 return Page();
             }
 
@@ -41,7 +42,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPostDeleteHandler()
         {
-            return RedirectToPage("/Delete");
+            return Page();
         }
     }
 }
