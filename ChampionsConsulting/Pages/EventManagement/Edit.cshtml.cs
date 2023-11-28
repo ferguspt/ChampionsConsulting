@@ -50,19 +50,19 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
             else
             {
-                SqlDataReader LocationReader = DBClass.LocationReader();
+                //SqlDataReader LocationReader = DBClass.LocationReader();
 
-                Location = new List<SelectListItem>();
+                //Location = new List<SelectListItem>();
 
-                while (LocationReader.Read())
-                {
-                    Location.Add(new SelectListItem(
-                        LocationReader["Place"].ToString(),
-                        LocationReader["LocationID"].ToString()
-                        ));
-                }
+                //while (LocationReader.Read())
+                //{
+                //    Location.Add(new SelectListItem(
+                //        LocationReader["Place"].ToString(),
+                //        LocationReader["LocationID"].ToString()
+                //        ));
+                //}
 
-                DBClass.CCDBConnection.Close();
+                //DBClass.CCDBConnection.Close();
                 return Page();
             }
         }
