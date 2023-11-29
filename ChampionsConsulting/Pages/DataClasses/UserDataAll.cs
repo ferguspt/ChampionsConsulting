@@ -1,4 +1,4 @@
-﻿namespace ChampionsConsulting.Pages.DataClasses
+﻿ namespace ChampionsConsulting.Pages.DataClasses
 {
     public class UserDataAll
     {

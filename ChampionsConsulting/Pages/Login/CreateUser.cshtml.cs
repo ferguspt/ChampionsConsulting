@@ -38,7 +38,9 @@ namespace ChampionsConsulting.Pages.Login
 
         public void OnGet()
         {
+
             TempData["SucessMessage"] = null;
+
         }
 
         public IActionResult OnPost()

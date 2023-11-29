@@ -34,7 +34,9 @@
 
         @{
 
-            SqlDataReader ConferenceReader = DBClass.EventReader();
+            string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
+
+            SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery); 
 
             while (ConferenceReader.Read())
 
@@ -50,7 +52,7 @@
 
                     <td>@ConferenceReader["EndDateAndTime"]</td>
 
-                    <td>@ConferenceReader["LocationID"]</td>
+                    <td>@ConferenceReader["Place"]</td>
 
                 </tr>
 
