@@ -18,12 +18,16 @@ namespace ChampionsConsulting.Pages.Login
 
         public void OnGet()
         {
-            string SelectQuery = "SELECT  " +
-            "Event.EventName, Location.LocationName, Event.EventStatus, Meeting.MeetingName, Meeting.MeetingDate, " +
-            "Meeting.MeetingType, Meeting.MeetingStatus FROM [User] INNER JOIN EventAttendance ON [User].UserID = EventAttendance.UserID " +
-            "INNER JOIN Event ON EventAttendance.EventID = Event.EventID INNER JOIN Location ON Event.LocationID = Location.LocationID " +
-            "INNER JOIN Meeting ON Event.EventID = Meeting.EventID " +
-            "WHERE [User].Username = '" + HttpContext.Session.GetString("Username") + "'";
+            //string SelectQuery = "SELECT  " +
+            //"Events.Name, Location.LocationName, SubEvent.Name, SubEvent.Description, SubEvent.StartDateAndTime, " +
+            //"SubEvent.EndDateAndTime FROM [User] INNER JOIN Events ON [User].UserID = Events.UserID " +
+            //"INNER JOIN Events ON Events.EventID = Event.EventID INNER JOIN Location ON Events.LocationID = Location.LocationID " +
+            //"INNER JOIN Meeting ON Event.EventID = Meeting.EventID " +
+            //"WHERE [User].Username = '" + HttpContext.Session.GetString("Username") + "'";
+
+            string SelectQuery = "SELECT E.Name, L.Place, SE.Name, SE.Description, SE.StartDateAndTime, SE.EndDateAndTime" +
+                "FROM Events E, Location L, SubEvent SE, Users U, AttendEvent AE" +
+                "WHERE E.EventID = AE.EventID AND U.UserID = AE.UserID";
 
             //SqlDataReader dataReader = DBClass.UserReader(SelectQuery);
 

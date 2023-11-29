@@ -8,16 +8,12 @@
 
 
 <head>
-    <title> Table V03</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="robots" content="noindex, follow">
     <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyVGFibGUlMjBWMDMlMjIlMkMlMjJ4JTIyJTNBMC43NTM0NzQ3NTUxNjA0MDc3JTJDJTIydyUyMiUzQTE2MDAlMkMlMjJoJTIyJTNBOTAwJTJDJTIyaiUyMiUzQTc3NSUyQyUyMmUlMjIlM0ExNjAwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGdGIlMkZUYWJsZV9IaWdobGlnaHRfVmVydGljYWxfSG9yaXpvbnRhbCUyRmluZGV4Lmh0bWwlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGdGFibGUtd2l0aC12ZXJ0aWNhbC1ob3Jpem9udGFsLWhpZ2hsaWdodCUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EzMDAlMkMlMjJxJTIyJTNBJTVCJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIwJTIyJTJDJTIyY29uZmlnJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTJDJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIxJTIyJTJDJTIyVUEtMjM1ODE1NjgtMTMlMjIlMkMlN0IlMjJzY29wZSUyMiUzQSUyMnBhZ2UlMjIlN0QlNUQlN0QlNUQlN0Q="> </script>
     <script nonce="d0eb08f8-a294-44c7-b50a-fc282117edcb">
         (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
     </script>
-
 </head>
 <style>
     @@font-face {
@@ -145,47 +141,7 @@
         text-align: center;
         color: white;
     }
-
-    .styled-table {
-        border-collapse: collapse;
-        background: rgb(199, 136, 255);
-        margin: 25px 0;
-        font-size: 0.9em;
-        font-family: sans-serif;
-        min-width: 400px;
-        box-shadow: 0 0 20px rgb(255,255,255, .5);
-    }
-
-        .styled-table thead tr {
-            background-color: black;
-            color: white;
-            text-align: left;
-        }
-
-        .styled-table th,
-        .styled-table td {
-            padding: 12px 15px;
-        }
-
-        .styled-table tbody tr {
-            border-bottom: 1px solid #dddddd;
-            padding: 1rem;
-        }
-
-            .styled-table tbody tr:nth-of-type(even) {
-                background-color: rgb(141,141,141);
-            }
-
-            .styled-table tbody tr:last-of-type {
-                border-bottom: 2px solid #009879;
-            }
-
-            .styled-table tbody tr.active-row {
-                font-weight: bold;
-                color: black;
-            }
-
-
+     
     * {
         box-sizing: border-box
     }
