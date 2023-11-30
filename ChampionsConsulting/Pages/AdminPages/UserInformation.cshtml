@@ -1,0 +1,25 @@
+﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
+@using ChampionsConsulting.Pages.DataClasses;
+@model ChampionsConsulting.Pages.AdminPages.UserInformationModel
+@{
+
+
+            string sqlQuery = @"Select Username From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
+
+            
+
+            SqlDataReader ConferenceReader = DBClass.UserReader(sqlQuery);
+
+
+            while (ConferenceReader.Read())
+            {
+                <tr>
+                    <td>@ConferenceReader["Username"]</td>
+                 </tr>
+            }
+                DBClass.CCDBConnection.Close();
+            
+
+        }

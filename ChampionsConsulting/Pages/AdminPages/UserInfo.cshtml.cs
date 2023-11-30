@@ -25,7 +25,7 @@ namespace ChampionsConsulting.Pages.AdminPages
             "FROM Users INNER JOIN EventAttendance ON [User].UserID = EventAttendance.UserID " +
             "INNER JOIN Event ON EventAttendance.EventID = Event.EventID INNER JOIN Location ON Event.LocationID = Location.LocationID " +
             "INNER JOIN Meeting ON Event.EventID = Meeting.EventID " +
-            "WHERE [User].userID = " + userID;
+            "WHERE [User].userID = " + HttpContext.Session.GetString("UserID");
 
             SqlDataReader dataReader = DBClass.UserReader(SelectQuery);
 
