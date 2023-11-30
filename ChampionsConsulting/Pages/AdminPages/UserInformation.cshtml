@@ -5,21 +5,22 @@
 @model ChampionsConsulting.Pages.AdminPages.UserInformationModel
 @{
 
-
-            string sqlQuery = @"Select Username From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
+        string sqlQuery = @"Select UserType, FirstName, LastName, Email From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
 
             
 
             SqlDataReader ConferenceReader = DBClass.UserReader(sqlQuery);
 
-
             while (ConferenceReader.Read())
             {
                 <tr>
-                    <td>@ConferenceReader["Username"]</td>
+                    <td>@ConferenceReader["UserType"]:</td>
+                    <td>@ConferenceReader["FirstName"]</td>
+                    <td>@ConferenceReader["LastName"]</td>
+                    <br/>
+                    <td>@ConferenceReader["Email"]</td>
                  </tr>
             }
                 DBClass.CCDBConnection.Close();
-            
 
         }
