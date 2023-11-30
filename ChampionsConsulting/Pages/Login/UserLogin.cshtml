@@ -8,71 +8,10 @@
         <p class="text-danger">@ViewData["LoginMessage"]</p>
     }
 }
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        color: #333;
-        line-height: 1.6;
-        background-image: linear-gradient(#f6ea41, #f048c6);
-        font-family: Verdana, sans-serif;
-        margin: 0
-    }
-
-    .login-container {
-        width: 100%;
-        max-width: 400px;
-        padding: 20px;
-        margin: 0 auto;
-    }
-
-    .login-header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .login-form .form-group {
-        margin-bottom: 15px;
-    }
-
-    .login-form .btn-block {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .alert {
-        margin-top: 20px;
-    }
-
-    .logout-section {
-        text-align: center;
-        padding: 20px;
-    }
-
-        .logout-section h2 {
-            margin-bottom: 15px;
-        }
-
-        .logout-section .btn-danger {
-            width: auto;
-            padding: 10px 20px;
-        }
-
-    footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        min-height: 50px;
-        max-height: 80px;
-        background-color: rgba(36, 32, 33, 0.9);
-        color: white;
-        font-family: "Helvetica Neue", Helvetica;
-        padding: 10px 0px;
-        padding-top: 10px;
-        margin-top: 30px;
-        font-weight: 100;
-        clear: both;
-    }
-</style>
+<head>
+    <link rel="stylesheet" type="text/css" href="site.css" />
+</head>
+<body>
 @{
     string messageClass = "alert alert-info";
     string message = "";
@@ -125,5 +64,5 @@
     }
 </div>
 
-
+</body>
 

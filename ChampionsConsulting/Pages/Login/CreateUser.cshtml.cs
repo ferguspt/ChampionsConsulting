@@ -38,7 +38,7 @@ namespace ChampionsConsulting.Pages.Login
 
         public void OnGet()
         {
-            TempData["SucessMessage"] = null;
+            TempData["LoginSuccessMessage"] = null;
         }
 
         public IActionResult OnPost()
@@ -79,7 +79,7 @@ namespace ChampionsConsulting.Pages.Login
                 DBClass.CCDBConnection.Close();
 
 
-                TempData["SuccessMessage"] = "User created successfully.";
+                TempData["LoginSuccessMessage"] = "User created successfully.";
                 return Page();
 
             }
