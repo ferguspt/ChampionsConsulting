@@ -2,6 +2,7 @@ using ChampionsConsulting.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages.AdminPages
@@ -10,6 +11,10 @@ namespace ChampionsConsulting.Pages.AdminPages
     {
         [BindProperty]
         public int UserID { get; set; }
+
+        [BindProperty]
+        [Required]
+        public string Username { get; set; }
 
         [BindProperty]
         public List<SelectListItem>? Users { get; set; }
@@ -27,7 +32,7 @@ namespace ChampionsConsulting.Pages.AdminPages
                         UserReader["Username"].ToString(),
                         UserReader["UserID"].ToString()));
             }
-
+            HttpContext.Session.SetString("username", Username);
             DBClass.CCDBConnection.Close();
         }
         public IActionResult OnPost()
