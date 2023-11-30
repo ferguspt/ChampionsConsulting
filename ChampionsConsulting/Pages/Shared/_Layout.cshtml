@@ -98,7 +98,7 @@
                     @{
                         if (Context.Session.GetString("Username") != null)
                         {
-                            <a class="nav-link text-light">@Context.Session.GetString("Username")</a>
+                            <a class="nav-link text-light">@Context.Session.GetString("UserType"): @Context.Session.GetString("Username")</a>
                             <form method="get" asp-page="/EventManagement/Search" id="SearchButton">
                                 <button type="submit" class="btn btn-outline-light">Search</button>
                             </form>
