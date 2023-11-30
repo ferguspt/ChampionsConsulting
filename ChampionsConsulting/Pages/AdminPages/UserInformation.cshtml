@@ -5,7 +5,7 @@
 @model ChampionsConsulting.Pages.AdminPages.UserInformationModel
 @{
 
-        string sqlQuery = @"Select UserType, FirstName, LastName, Email From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
+        string sqlQuery = @"Select UserType, FirstName, LastName, Email, Phone From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
 
             
 
@@ -18,7 +18,9 @@
                     <td>@ConferenceReader["FirstName"]</td>
                     <td>@ConferenceReader["LastName"]</td>
                     <br/>
-                    <td>@ConferenceReader["Email"]</td>
+                    <td>Email: @ConferenceReader["Email"]</td>
+                    <br/>
+                    <td>Phone: @ConferenceReader["Phone"]</td>
                  </tr>
         </h3>
             }
