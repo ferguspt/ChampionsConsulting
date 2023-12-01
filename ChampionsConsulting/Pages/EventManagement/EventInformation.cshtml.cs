@@ -1,3 +1,4 @@
+using ChampionsConsulting.Pages.DataClasses;
 using ChampionsConsulting.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,41 +9,32 @@ namespace ChampionsConsulting.Pages.EventManagement
 {
     public class EventInformationModel : PageModel
     {
-        public List<SelectListItem>? Event { get; set; }
+        public List<Event> EventList { get; set; }
 
-        public IActionResult OnGet()
+        public EventInformationModel()
         {
-            if (HttpContext.Session.GetString("Username") == null)
-            {
-                return RedirectToPage("/Login/UserLogin");
-            }
-            else
-            {
-                SqlDataReader EventReader = DBClass.EventReader();
+            EventList = new List<Event>();
+        }
 
-                Event = new List<SelectListItem>();
+        public void OnGet()
+        {
+            string GetEvents = @"Select EventID, Name, Description, StartDateAndTime, EndDateAndTime, Place 
+                FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
 
-                while (EventReader.Read())
+            SqlDataReader getEvents = DBClass.EventReader(GetEvents);
+
+            while (getEvents.Read())
+            {
+                EventList.Add(new Event
                 {
-                    Event.Add(new SelectListItem(
-                        EventReader["EventID"].ToString(),
-                        EventReader["Name"].ToString()
-                        ));
-                }
-                DBClass.CCDBConnection.Close();
-                return Page();
+                    EventID = Int32.Parse(getEvents["EventID"].ToString()),
+                    Name = getEvents["Name"].ToString(),
+                    Description = getEvents["Description"].ToString(),
+                    StartDateAndTime = DateTime.Parse(getEvents["StartDateAndTime"].ToString()),
+                    EndDateAndTime = DateTime.Parse(getEvents["EndDateAndTime"].ToString()),
+                });
             }
-
-        }
-
-        public IActionResult OnPostEditHandler()
-        {
-            return RedirectToPage("/Edit");
-        }
-
-        public IActionResult OnPostDeleteHandler()
-        {
-            return Page();
+            DBClass.CCDBConnection.Close();
         }
     }
 }

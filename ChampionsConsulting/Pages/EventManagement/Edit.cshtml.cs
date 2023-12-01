@@ -10,15 +10,12 @@ namespace ChampionsConsulting.Pages.EventManagement
 {
     public class EditModel : PageModel
     {
-
         [BindProperty]
-        public Event NewEvent { get; set; }
-
-        public List<SelectListItem> Event { get; set; }
+        public Event CurrEventToUpdate { get; set; }
 
         [BindProperty]
         [Required]
-        public int EventID { get; set; }
+        public string EventID { get; set; }
 
         [BindProperty]
         [Required]
@@ -42,9 +39,17 @@ namespace ChampionsConsulting.Pages.EventManagement
         [BindProperty]
         public List<SelectListItem>? Location { get; set; }
 
-        public IActionResult OnGet()
+        public EditModel()
         {
-            if (HttpContext.Session.GetString("Username") == null)
+            CurrEventToUpdate = new Event();
+        }
+
+        public IActionResult OnGet(int EventID)
+        {
+            string getEventCommand = @"Select Name, Description, StartDateAndTime, EndDateAndTime, LocationID 
+                FROM Events WHERE EventID = " + EventID + ";";
+
+            if (HttpContext.Session.GetString("UserType") != "Organizer")
             {
                 return RedirectToPage("/Login/UserLogin");
             }
@@ -61,6 +66,20 @@ namespace ChampionsConsulting.Pages.EventManagement
                         LocationReader["LocationID"].ToString()
                         ));
                 }
+                DBClass.CCDBConnection.Close();
+
+                //SqlDataReader currEventReader = DBClass.EventReader(getEvent);
+                SqlDataReader getEvent = DBClass.SingleEventReader(EventID);
+
+                while (getEvent.Read())
+                {
+                    CurrEventToUpdate.EventID = EventID;
+                    CurrEventToUpdate.Name = getEvent["Name"].ToString();
+                    CurrEventToUpdate.Description = getEvent["Description"].ToString();
+                    CurrEventToUpdate.StartDateAndTime = DateTime.Parse(getEvent["StartDateAndTime"].ToString());
+                    CurrEventToUpdate.EndDateAndTime = DateTime.Parse(getEvent["EndDateAndTime"].ToString());
+                    CurrEventToUpdate.LocationID = Int32.Parse(getEvent["LocationID"].ToString());
+                }
 
                 DBClass.CCDBConnection.Close();
                 return Page();
@@ -69,17 +88,10 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
-            {
-                DBClass.UpdateEvent(NewEvent);
-                DBClass.CCDBConnection.Close();
-                return Page();
-            }
-            else
-            {
-                return RedirectToPage("/EventManagement/UpdatedEventInfo");
-            }
-
+            DBClass.UpdateEvent(CurrEventToUpdate);
+            DBClass.CCDBConnection.Close();
+            TempData["UpdatedEventSuccess"] = "Event Updated Successfully";
+            return Page();
         }
 
         public IActionResult OnPostPopulateHandler()

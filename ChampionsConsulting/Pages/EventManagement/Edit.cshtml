@@ -4,38 +4,39 @@
 @model ChampionsConsulting.Pages.EventManagement.EditModel
 @{
 }
-<head>
-    <link rel="stylesheet" type="text/css" href="site.css" />
-</head>
-<body>
-<form asp-page="Edit">
-@*     <div class="form-text">Enter EventID to change</div>
-    <input asp-for="NewEvent.EventID" placeholder="EventID" class="form-control" id="EventNameInput" />
-    <span asp-validation-for="NewEvent.EventID" class="text-danger"></span>
-    <br /> *@
 
+@{
+    if (TempData["UpdatedEventSuccess"] != null)
+    {
+        <div class="alert alert-success">@TempData["UpdatedEventSuccess"]</div>
+    }
+}
+
+
+<form asp-page="Edit">
+    <input type="hidden" asp-for="@Model.CurrEventToUpdate.EventID" />
     <div class="form-text">Event Name</div>
-    <input asp-for="NewEvent.Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
-    <span asp-validation-for="NewEvent.Name" class="text-danger"></span>
+    <input asp-for="@Model.CurrEventToUpdate.Name" placeholder="Event Name" class="form-control" id="EventNameInput" />
+    <span asp-validation-for="CurrEventToUpdate.Name" class="text-danger"></span>
     <br />
 
     <div class="form-text">Event Description</div>
-    <input asp-for="NewEvent.Description" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
-    <span asp-validation-for="NewEvent.Description" class="text-danger"></span>
+    <input asp-for="@Model.CurrEventToUpdate.Description" placeholder="Event Description" class="form-control" id="EventDescriptionInput" />
+    <span asp-validation-for="CurrEventToUpdate.Description" class="text-danger"></span>
     <br />
 
     <div class="form-text">Start Time</div>
-    <input asp-for="NewEvent.StartDateAndTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
-    <span asp-validation-for="NewEvent.StartDateAndTime" class="text-danger"></span>
+    <input asp-for="@Model.CurrEventToUpdate.StartDateAndTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
+    <span asp-validation-for="CurrEventToUpdate.StartDateAndTime" class="text-danger"></span>
     <br />
 
     <div class="form-text">End Time</div>
-    <input asp-for="NewEvent.EndDateAndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
-    <span asp-validation-for="NewEvent.EndDateAndTime" class="text-danger"></span>
+    <input asp-for="@Model.CurrEventToUpdate.EndDateAndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
+    <span asp-validation-for="CurrEventToUpdate.EndDateAndTime" class="text-danger"></span>
     <br />
 
     <div class="form-text">Choose Location</div>
-    <select asp-for="NewEvent.LocationID" asp-items="Model.Location">
+    <select asp-for="@Model.CurrEventToUpdate.LocationID" asp-items="Model.Location">
         <option value="" id="LocationID">Choose Location</option>
     </select>
     <br />
@@ -43,10 +44,10 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <br />
 
-    <input type="submit" class="btn btn-dark" value="Update" />
-    <button asp-page-handler="PopulateHandler" class="btn btn-dark" id="PopulateButton">Populate</button>
-    <button asp-page-handler="ClearHandler" class="btn btn-dark">Clear</button>
-    <button asp-page-handler="ReturnHandler" class="btn btn-dark">Return</button>
+    <input type="submit" class="btn btn-primary" value="Update" />
+    <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+    <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+    <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
 </form>
 
 <script>
@@ -60,4 +61,3 @@
         document.getElementById('LocationID').value = '1';
     });
 </script>
-</body>
