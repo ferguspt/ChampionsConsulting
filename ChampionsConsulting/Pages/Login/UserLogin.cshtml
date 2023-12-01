@@ -31,7 +31,7 @@
     @if (HttpContext.Session.GetString("Username") != null)
     {
         <div class="logout-section">
-            <h2>Welcome, @HttpContext.Session.GetString("Username")!</h2>
+            @*<h2>Welcome, @HttpContext.Session.GetString("Username")!</h2> *@
             <p>You are currently logged in. Would you like to logout?</p>
             <form asp-page="UserLogin" asp-page-handler="LogoutHandler" method="post">
                 <button class="btn btn-danger" type="submit">Logout</button>
@@ -58,7 +58,7 @@
                     <label for="PasswordInput">Password</label>
                     <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <button type="submit" class="btn btn-dark btn-block">Login</button>
             </form>
         </div>
     }
