@@ -1,0 +1,9 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.EventSignUpModel
+@{
+}
+
+<div class="form-text">Choose Event</div>
+<select asp-for="EventID" asp-items="Model.EventList">
+    <option value="" id="EventID">Choose Event</option>
+</select>
