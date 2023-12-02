@@ -6,7 +6,6 @@
     ViewData["Title"] = "Home page";
 }
 
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, follow">
@@ -46,7 +45,7 @@
 
                                     <tr class="row100">
 
-                                        <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                        <td class="column100 column1" data-column="column1"><a class="nav-link text-light" asp-page="/EventManagement/EventInformation">@ConferenceReader["Name"]</a></td>
 
                                         <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
 

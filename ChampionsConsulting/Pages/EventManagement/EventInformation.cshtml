@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
 
-@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") != "Organizer")
+@if (HttpContext.Session.GetString("Username") != null); @*|| HttpContext.Session.GetString("UserType") != "Organizer")*@
 {
     <h2 class="center">Authorized Users only!</h2>
 }
@@ -40,31 +40,34 @@ else
                             </thead>
                             <tbody>
                                 @{
-                                    string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
 
-                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
 
-                                    while (ConferenceReader.Read())
+                                    String? username = HttpContext.Session.GetString("Username");
+
+                                    SqlDataReader IndividualEventReader = DBClass.IndividualEventReader(username);
+
+                                    while (IndividualEventReader.Read())
 
                                     {
 
                                         <tr class="row100">
 
-                                            <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                            <td class="column100 column1" data-column="column1">@IndividualEventReader["Username"]</td>
+                                            <td class="column100 column2" data-column="column2">@IndividualEventReader["Name"]</td>
 
-                                            <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                            @* <td class="column100 column2" data-column="column2">@IndividualEventReader["Description"]</td>
 
-                                            <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
+                                            <td class="column100 column3" data-column="column3">@IndividualEventReader["StartDateAndTime"]</td>
 
-                                            <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
+                                            <td class="column100 column4" data-column="column4">@IndividualEventReader["EndDateAndTime"]</td>
 
-                                            <td class="column100 column5" data-column="column5">@ConferenceReader["Place"]</td>
+                                            <td class="column100 column5" data-column="column5">@IndividualEventReader["Place"]</td>
 
                                             <td class="column100 column6" data-column="column6"><a style="color: white;" asp-page="/EventManagement/Edit">Edit</a></td>
 
                                             <td class="column100 column7" data-column="column7"><a style="color: white;" asp-page="/EventManagement/Delete">Delete</a></td>
 
-                                            @*<td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
+                                            <td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
 
                                 <td><button asp-page="EventInformation" button asp-page-handler="DeleteHandler" class="btn btn-danger">Delete</button></td>*@
 
@@ -85,6 +88,7 @@ else
         </div>
         </body>
     }
+}
 <script>
     let slideIndex = 1;
     showSlides(slideIndex);
