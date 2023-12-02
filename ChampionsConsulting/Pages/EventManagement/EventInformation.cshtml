@@ -1,18 +1,7 @@
 ﻿@page
-@using System.Data.SqlClient
-@using ChampionsConsulting.Pages.DB
 @model ChampionsConsulting.Pages.EventManagement.EventInformationModel
 @{
 }
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, follow">
-    <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyVGFibGUlMjBWMDMlMjIlMkMlMjJ4JTIyJTNBMC43NTM0NzQ3NTUxNjA0MDc3JTJDJTIydyUyMiUzQTE2MDAlMkMlMjJoJTIyJTNBOTAwJTJDJTIyaiUyMiUzQTc3NSUyQyUyMmUlMjIlM0ExNjAwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGdGIlMkZUYWJsZV9IaWdobGlnaHRfVmVydGljYWxfSG9yaXpvbnRhbCUyRmluZGV4Lmh0bWwlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGdGFibGUtd2l0aC12ZXJ0aWNhbC1ob3Jpem9udGFsLWhpZ2hsaWdodCUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EzMDAlMkMlMjJxJTIyJTNBJTVCJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIwJTIyJTJDJTIyY29uZmlnJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTJDJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIxJTIyJTJDJTIyVUEtMjM1ODE1NjgtMTMlMjIlMkMlN0IlMjJzY29wZSUyMiUzQSUyMnBhZ2UlMjIlN0QlNUQlN0QlNUQlN0Q="> </script>
-    <script nonce="d0eb08f8-a294-44c7-b50a-fc282117edcb">
-        (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
-    </script>
-    <link rel="stylesheet" type="text/css" href="site.css" />
-</head>
 
 @if (HttpContext.Session.GetString("Username") != null); @*|| HttpContext.Session.GetString("UserType") != "Organizer")*@
 {
@@ -41,35 +30,29 @@ else
                             <tbody>
                                 @{
 
+                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
 
-                                    String? username = HttpContext.Session.GetString("Username");
-
-                                    SqlDataReader IndividualEventReader = DBClass.IndividualEventReader(username);
-
-                                    while (IndividualEventReader.Read())
+                                    while (ConferenceReader.Read())
 
                                     {
 
-                                        <tr class="row100">
+            <th>StartDateAndTime:</th>
 
-                                            <td class="column100 column1" data-column="column1">@IndividualEventReader["Username"]</td>
-                                            <td class="column100 column2" data-column="column2">@IndividualEventReader["Name"]</td>
+                                            <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
 
-                                            @* <td class="column100 column2" data-column="column2">@IndividualEventReader["Description"]</td>
+                                            <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
 
-                                            <td class="column100 column3" data-column="column3">@IndividualEventReader["StartDateAndTime"]</td>
+                                            <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
 
-                                            <td class="column100 column4" data-column="column4">@IndividualEventReader["EndDateAndTime"]</td>
+                                            <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
 
-                                            <td class="column100 column5" data-column="column5">@IndividualEventReader["Place"]</td>
+                                            <td class="column100 column5" data-column="column5">@ConferenceReader["Place"]</td>
 
-                                            <td class="column100 column6" data-column="column6"><a style="color: white;" asp-page="/EventManagement/Edit">Edit</a></td>
+                    <td style="max-width: 550px;">@Event.Description</td>
 
-                                            <td class="column100 column7" data-column="column7"><a style="color: white;" asp-page="/EventManagement/Delete">Delete</a></td>
+                                            @*<td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
 
-                                            <td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
-
-                                <td><button asp-page="EventInformation" button asp-page-handler="DeleteHandler" class="btn btn-danger">Delete</button></td>*@
+                    <td style="min-width: 250px">@Event.EndDateAndTime</td>
 
                                         </tr>
 
@@ -88,7 +71,6 @@ else
         </div>
         </body>
     }
-}
 <script>
     let slideIndex = 1;
     showSlides(slideIndex);

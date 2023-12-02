@@ -1,0 +1,119 @@
+﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
+@using ChampionsConsulting.Pages.DataClasses;
+@model ChampionsConsulting.Pages.AdminPages.UserInformationModel
+@{
+
+        string sqlQuery = @"Select UserType, FirstName, LastName, Email, Phone From Users Where Users.UserID='" + HttpContext.Session.GetString("UserID") + "';";
+
+            
+
+            SqlDataReader ConferenceReader = DBClass.UserReader(sqlQuery);
+
+            while (ConferenceReader.Read())
+            {<h3>
+                <tr>
+                    <td>@ConferenceReader["UserType"]:</td>
+                    <td>@ConferenceReader["FirstName"]</td>
+                    <td>@ConferenceReader["LastName"]</td>
+                    <br/>
+                    <td>Email: @ConferenceReader["Email"]</td>
+                    <br/>
+                    <td>Phone: @ConferenceReader["Phone"]</td>
+                 </tr>
+        </h3>
+            }
+                DBClass.CCDBConnection.Close();
+
+
+   
+        
+    }
+    <h2>Upcoming Events & Meetings</h2>
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver6 m-b-110">
+                <form method="post">
+                    <table data-vertable="ver6">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">Name:</th>
+                                <th class="column100 column2" data-column="column2">Description:</th>
+                                <th class="column100 column3" data-column="column3">Start Date And Time:</th>
+                                <th class="column100 column4" data-column="column4">End Date And Time:</th>
+                                <th class="column100 column5" data-column="column5">Location:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody>
+                            <tr class="row100">
+
+                                <td class="column100 column1" data-column="column1">Tech Expo</td>
+
+                                <td class="column100 column2" data-column="column2">Showcasing the latest tech</td>
+
+                                <td class="column100 column3" data-column="column3">2023-12-01 09:00:00.000</td>
+
+                                <td class="column100 column4" data-column="column4">2023-12-03 17:00:00.000</td>
+
+                                <td class="column100 column5" data-column="column5">Garden City Conference Center</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <br />
+
+    <h2>Past Events & Meetings</h2>
+
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver6 m-b-110">
+                <form method="post">
+                    <table data-vertable="ver6">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">Name:</th>
+                                <th class="column100 column2" data-column="column2">Description:</th>
+                                <th class="column100 column3" data-column="column3">Start Date And Time:</th>
+                                <th class="column100 column4" data-column="column4">End Date And Time:</th>
+                                <th class="column100 column5" data-column="column5">Location:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tbody>
+                            <tr class="row100">
+
+
+                                <td class="column100 column1" data-column="column1">Tech Conference 2023</td>
+
+                                <td class="column100 column2" data-column="column2">Annual technology conference</td>
+
+                                <td class="column100 column3" data-column="column3">2023-10-15 09:00:00.000</td>
+
+                                <td class="column100 column4" data-column="column4">2023-10-17 17:00:00.000</td>
+
+                                <td class="column100 column5" data-column="column5">Convention Center A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@{
+
+    if (HttpContext.Session.GetString("Username") == null)
+    {
+        <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+    }
+}

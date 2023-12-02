@@ -14,7 +14,7 @@ namespace ChampionsConsulting.Pages.AdminPages
 
         [BindProperty]
         [Required]
-        public string Username { get; set; }
+        public string Username2 { get; set; }
 
         [BindProperty]
         public List<SelectListItem>? Users { get; set; }
@@ -32,12 +32,12 @@ namespace ChampionsConsulting.Pages.AdminPages
                         UserReader["Username"].ToString(),
                         UserReader["UserID"].ToString()));
             }
-            HttpContext.Session.SetString("username", Username);
             DBClass.CCDBConnection.Close();
         }
         public IActionResult OnPost()
         {
-            return RedirectToPage("/AdminPages/UserInfo", new { UserID });
+            HttpContext.Session.SetString("UserID", UserID.ToString());
+            return RedirectToPage("/AdminPages/UserInformation"/*, new { UserID }*/);
         }
 
         public IActionResult OnPostReturnHandler()

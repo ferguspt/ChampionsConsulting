@@ -204,6 +204,39 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
+        public static SqlDataReader SingleEventReader(int eventID)
+        {
+            SqlCommand cmdSingleEventRead = new SqlCommand();
+            cmdSingleEventRead.Connection = CCDBConnection;
+            cmdSingleEventRead.Connection.ConnectionString = CCConnString;
+            cmdSingleEventRead.CommandText = @"Select Name, Description, StartDateAndTime, EndDateAndTime, LocationID 
+                FROM Events WHERE EventID = " + eventID + ";";
+            cmdSingleEventRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdSingleEventRead.ExecuteReader();
+
+            return tempReader;
+        }
+
+        public static void UpdateEvent(Event c)
+        {
+            String sqlQuery = "Update Events SET ";
+            sqlQuery += "Name = '" + c.Name + "',";
+            sqlQuery += "Description = '" + c.Description + "',";
+            sqlQuery += "StartDateAndTime = '" + c.StartDateAndTime + "',";
+            sqlQuery += "EndDateAndTime = '" + c.EndDateAndTime + "',";
+            sqlQuery += "LocationID ='" + c.LocationID + "'"
+                + "Where EventID = " + c.EventID;
+
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+
+            cmdConferenceRead.ExecuteNonQuery();
+        }
+
         public static SqlDataReader SubEventReader()
         {
             SqlCommand cmdSubEventRead = new SqlCommand();
@@ -499,24 +532,24 @@ namespace ChampionsConsulting.Pages.DB
             cmdInsert.ExecuteNonQuery();
         }
 
-        public static void UpdateEvent(Event c)
-        {
-            String sqlQuery = "Update Events SET";
-            sqlQuery += "Name='" + c.Name + "',";
-            sqlQuery += "Description='" + c.Description + "',";
-            sqlQuery += "StartDateAndTime='" + c.StartDateAndTime + "',";
-            sqlQuery += "EndDateAndTime='" + c.EndDateAndTime + "',";
-            sqlQuery += "LocationID='" + c.LocationID + "'"
-                + "'Where EventNumber=" + c.EventID;
+        //public static void UpdateEvent(Event c)
+        //{
+        //    String sqlQuery = "Update Events SET";
+        //    sqlQuery += "Name='" + c.Name + "',";
+        //    sqlQuery += "Description='" + c.Description + "',";
+        //    sqlQuery += "StartDateAndTime='" + c.StartDateAndTime + "',";
+        //    sqlQuery += "EndDateAndTime='" + c.EndDateAndTime + "',";
+        //    sqlQuery += "LocationID='" + c.LocationID + "'"
+        //        + "'Where EventNumber=" + c.EventID;
 
-            SqlCommand cmdConferenceRead = new SqlCommand();
-            cmdConferenceRead.Connection = CCDBConnection;
-            cmdConferenceRead.Connection.ConnectionString = CCConnString;
-            cmdConferenceRead.CommandText = sqlQuery;
-            cmdConferenceRead.Connection.Open();
+        //    SqlCommand cmdConferenceRead = new SqlCommand();
+        //    cmdConferenceRead.Connection = CCDBConnection;
+        //    cmdConferenceRead.Connection.ConnectionString = CCConnString;
+        //    cmdConferenceRead.CommandText = sqlQuery;
+        //    cmdConferenceRead.Connection.Open();
 
-            cmdConferenceRead.ExecuteNonQuery();
-        }
+        //    cmdConferenceRead.ExecuteNonQuery();
+        //}
 
         public static void DeleteEvent(Event c)
         {

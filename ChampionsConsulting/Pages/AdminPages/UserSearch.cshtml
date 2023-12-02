@@ -11,13 +11,16 @@
     <form asp-action="ChooseUser">
         <h2>Select a User:</h2>
         <br />
-        <select asp-for="UserID" asp-items="Model.Users">
-            <option value="">Select a Username</option>
-        </select>
-        <br />
-        <br />
-        <input asp-for="UserID" type="submit" value="View Data" class="btn btn-primary" />
-        <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <h5>
+                <select asp-for="UserID" asp-items="Model.Users">
+                    <option value="">Select a Username</option>
+                </select>
+                <br />
+                <br />
+                <input asp-for="UserID" type="submit" value="View Data" class="btn btn-dark" />
+                <button asp-page-handler="ReturnHandler" class="btn btn-dark">Return</button>
+            </h5></div>
     </form>
 }
 
