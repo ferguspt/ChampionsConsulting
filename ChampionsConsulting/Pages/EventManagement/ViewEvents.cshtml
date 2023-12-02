@@ -1,11 +1,9 @@
 ﻿@page
 @using System.Data.SqlClient
 @using ChampionsConsulting.Pages.DB
-@model IndexModel
+@model ChampionsConsulting.Pages.EventManagement.ViewEventsModel
 @{
-    ViewData["Title"] = "Home page";
 }
-
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,98 +13,9 @@
         (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
     </script>
     <link rel="stylesheet" type="text/css" href="site.css" />
-</head>  
-
-<h2>Welcome to Champion Events!</h2>
-<br/>
-<br/>
-<div class="position-center">
-    <h5>The preferred, easy-to-use event management system</h5> 
-    <br/>
-    <h5>that connects users to desired events.</h5>
-    </div>
-
-@{
-    if (ViewData["LoginMessage"] != null)
-    {
-        <p class="text-danger">@ViewData["LoginMessage"]</p>
-    }
-}
-<head>
-    <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
+
 <body>
-    @{
-        string messageClass = "alert alert-info";
-        string message = "";
-        if (ViewData["LoginMessage"] != null)
-        {
-            messageClass = "alert alert-danger";
-            message = ViewData["LoginMessage"].ToString();
-        }
-        else if (HttpContext.Session.GetString("LoginError") != null)
-        {
-            messageClass = "alert alert-danger";
-            message = HttpContext.Session.GetString("LoginError");
-        }
-    }
-
-    <div class="login-container">
-        @if (HttpContext.Session.GetString("Username") != null)
-        {
-            <div class="logout-section">
-                @*<h2>Welcome, @HttpContext.Session.GetString("Username")!</h2> *@
-                <p>You are currently logged in. Would you like to logout?</p>
-                <form asp-page="UserLogin" asp-page-handler="LogoutHandler" method="post">
-                    <button class="btn btn-danger" type="submit">Logout</button>
-                </form>
-            </div>
-        }
-        else
-        {
-            <div class="login-header">
-                <h2>Login to Your Account</h2>
-                @if (!string.IsNullOrEmpty(message))
-                {
-                    <div class="@messageClass">@message</div>
-                }
-            </div>
-
-            <div class="login-form">
-                <form asp-page="UserLogin" method="post">
-                    <div class="form-group">
-                        <label for="UsernameInput">Username</label>
-                        <input asp-for="Username" class="form-control" id="UsernameInput" placeholder="Enter username" />
-                    </div>
-                    <div class="form-group">
-                        <label for="PasswordInput">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
-                    </div>
-                    <button type="submit" class="btn btn-dark btn-block">Login</button>
-                    <br/>
-                    Don't have an account?<a asp-page="/Login/CreateUser">Register Here</a>
-                </form>
-            </div>
-        }
-    </div>
-
-</body>
-
-@* <br/>
-<h3>What is Champion Events?</h3>
-<p>An easy to use event management system, that connects users to their desired events.</p>
-<br/>
-<h3>What are the roles?</h3>
-<br/>
-<h4>Participant:</h4>
-<p>As a participant you can view and sign up for events that interest you.</p>
-<h4>Organizer:</h4>
-<p>As an organizer you are able to facilitate the organization of events through creation, editing, or deletign events
-    you have created. 
-</p> *@
-
-
-@* <body>
     <div class="limiter">
 
         <h2>Upcoming Events:</h2>
@@ -124,14 +33,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @{
-                                    string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
+                            @{
+                                string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
 
-                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
+                                SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
 
-                                    while (ConferenceReader.Read())
+                                while (ConferenceReader.Read())
 
-                                    {
+                                {
 
                                     <tr class="row100">
 
@@ -139,7 +48,7 @@
 
                                         @*<td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>*@
 
-@*                                         <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                        <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
 
                                         <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
 
@@ -149,14 +58,14 @@
 
                                     </tr>
 
-                                    }
-
-
-
-                                    DBClass.CCDBConnection.Close();
-
                                 }
-                            
+
+
+
+                                DBClass.CCDBConnection.Close();
+
+                            }
+
                         </tbody>
                     </table>
                 </div>
@@ -239,4 +148,4 @@
         gtag('config', 'UA-23581568-13');
     </script>
     <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
-</body> *@
+</body>

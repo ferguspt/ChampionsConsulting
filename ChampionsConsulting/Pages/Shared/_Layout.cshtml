@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color: #34005e">
             <div class="container">
-                <a class="navbar-brand mb-0 h1" asp-area="" asp-page="/Index">Champions Consulting</a>
+                <a class="navbar-brand mb-0 h1" asp-area="" asp-page="/Index">Champion Events</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,10 +26,13 @@
                                     <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/CreateEvent">Create Event</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up for an event</a>
+                                    <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
@@ -42,6 +45,9 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/CreateEvent">Create Event</a>
@@ -69,6 +75,9 @@
                                     <a class="nav-link text-light" asp-page="/Login/UserPage"> My Home</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up for an event</a>
                                 </li>
                                 // <li class="nav-item">
@@ -79,6 +88,9 @@
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up</a>
@@ -113,7 +125,7 @@
                                 <button type="submit" class="btn btn-outline-light">Login</button>
                             </form>
                             <form method="get" asp-page="/Login/CreateUser" id="SignUpButton">
-                                <button type="submit" class="btn btn-outline-warning">Sign Up</button>
+                                <button type="submit" class="btn btn-outline-warning">Register</button>
                             </form>
                         }
                      }
