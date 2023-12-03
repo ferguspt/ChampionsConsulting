@@ -28,8 +28,8 @@
                                 <th class="column100 column2" data-column="column2">Description:</th>
                                 <th class="column100 column3" data-column="column3">Start Date And Time:</th>
                                 <th class="column100 column4" data-column="column4">End Date And Time:</th>
-                                <th class="column100 column5" data-column="column5">Edit Event</th>
-                                <th class="column100 column6" data-column="column6">Delete Event</th>
+                                <th class="column100 column5 editDelete" data-column="column5">Edit Event</th>
+                                <th class="column100 column6 editDelete" data-column="column6">Delete Event</th>
                             </tr>
                         </thead>
 
@@ -49,11 +49,11 @@
                                         {
                                             
                                         }*@
-                                        <td class="column100 column5" data-column="column5">
+                                        <td class="column100 column5 editDelete" data-column="column5">
                                             <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
                                         </td>
 
-                                        <td class="column100 column6" data-column="column6">
+                                        <td class="column100 column6 editDelete" data-column="column6" >
                                             <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
                                         </td>
                                     </tr>

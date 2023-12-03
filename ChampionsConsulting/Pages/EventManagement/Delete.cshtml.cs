@@ -28,7 +28,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
                 if (eventReader.Read())
                 {
-                    this.EventID = EventID;
+                    //this.EventID = EventID;
                     Name = eventReader["Name"].ToString();
                     // Set other properties as needed
                 }
@@ -41,7 +41,7 @@ namespace ChampionsConsulting.Pages.EventManagement
         {
             Event eventToDelete = new Event
             {
-                EventID = this.EventID,
+                //EventID = this.EventID,
                 Name = this.Name
                 // Set other properties as needed
             };

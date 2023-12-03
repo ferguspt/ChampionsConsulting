@@ -16,17 +16,20 @@
 }
 
 <form asp-page="Delete" method="post">
-    <div class="form-group">
+    @* <div class="form-group">
         <label asp-for="@Model.EventID" class="control-label"></label>
         <input asp-for="@Model.EventID" class="form-control" readonly />
-    </div>
+    </div> *@
     <div class="form-group">
-        <label asp-for="@Model.Name" class="control-label"></label>
+        
+        <label asp-for="@Model.Name" class="control-label">Are you sure you want to delete this event?</label>
+        
         <input asp-for="@Model.Name" class="form-control" readonly />
     </div>
 
-    <!-- Other fields if necessary -->
+    <br />
 
-    <input type="submit" value="Delete" class="btn btn-danger" /> |
-    <a asp-page="/EventManagement/EventInformation">Cancel</a>
+    <input type="submit" value="Delete" class="btn btn-danger" /> 
+    <a asp-page="/EventManagement/EventInformation" class="btn btn-primary">Return</a>
+ 
 </form>
