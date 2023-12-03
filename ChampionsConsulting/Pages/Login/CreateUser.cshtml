@@ -20,52 +20,52 @@
     }
 
     <form asp-page="CreateUser">
-    <div class="create-container">
-        <div class="form-group">First Name</div>
-        <input asp-for="FirstName" placeholder="First Name" class="form-control" id="FirstNameInput" />
-        <span asp-validation-for="FirstName" class="text-danger"></span>
-        <br />
+        <div class="create-container">
+            <div class="form-group">First Name</div>
+            <input asp-for="FirstName" placeholder="First Name" class="form-control" id="FirstNameInput" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+            <br />
 
-        <div class="form-group">Last Name</div>
-        <input asp-for="LastName" placeholder="Last Name" class="form-control" id="LastNameInput" />
-        <span asp-validation-for="LastName" class="text-danger"></span>
-        <br />
+            <div class="form-group">Last Name</div>
+            <input asp-for="LastName" placeholder="Last Name" class="form-control" id="LastNameInput" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+            <br />
 
-        <div class="form-group">Username</div>
-        <input asp-for="Username" placeholder="Username" class="form-control" id="UsernameInput" />
-        <span asp-validation-for="Username" class="text-danger"></span>
-        <br />
+            <div class="form-group">Username</div>
+            <input asp-for="Username" placeholder="Username" class="form-control" id="UsernameInput" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+            <br />
 
-        <div class="form-group">Password</div>
-        <input asp-for="Password" placeholder="Password" class="form-control" id="PasswordInput" type="password" />
-        <span asp-validation-for="Password" class="text-danger"></span>
-        <br />
+            <div class="form-group">Password</div>
+            <input asp-for="Password" placeholder="Password" class="form-control" id="PasswordInput" type="password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+            <br />
 
-        <div class="form-group">Email</div>
-        <input asp-for="Email" placeholder="Email" class="form-control" id="EmailInput" />
-        <span asp-validation-for="Email" class="text-danger"></span>
-        <br />
+            <div class="form-group">Email</div>
+            <input asp-for="Email" placeholder="Email" class="form-control" id="EmailInput" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <br />
 
             <div class="form-group">Phone</div>
             <input asp-for="Phone" placeholder="Phone" class="form-control" id="PhoneInput" />
             <span asp-validation-for="Phone" class="text-danger"></span>
             <br />
 
-        <div class="form-group">Role</div>
-        <select asp-for="UserType" placeholder="Role" class="form-select" id="UserTypeInput">
-            <option selected>Participant</option>
-            <option value="Presenter">Presenter</option>
-        </select>
-        <span asp-validation-for="UserType" class="text-danger"></span>
-        <br />
+            <div class="form-group">Role</div>
+            <select asp-for="UserType" placeholder="Role" class="form-select" id="UserTypeInput">
+                <option selected>Participant</option>
+                <option value="Presenter">Presenter</option>
+            </select>
+            <span asp-validation-for="UserType" class="text-danger"></span>
+            <br />
 
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <br />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <br />
 
-        <input type="submit" class="btn btn-primary" value="Create" />
-        <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
-        <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
-        <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
+            <input type="submit" class="btn btn-primary" value="Create" />
+            <button asp-page-handler="PopulateHandler" class="btn btn-primary" id="PopulateButton">Populate</button>
+            <button asp-page-handler="ClearHandler" class="btn btn-primary">Clear</button>
+            <button asp-page-handler="ReturnHandler" class="btn btn-primary">Return</button>
         </div>
     </form>
 }

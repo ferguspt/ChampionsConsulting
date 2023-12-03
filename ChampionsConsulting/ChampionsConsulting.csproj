@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\EventManagement\Class.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\EventManagement\Component.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
