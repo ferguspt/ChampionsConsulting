@@ -1,116 +1,101 @@
 ﻿@page
+
 @model ChampionsConsulting.Pages.EventManagement.EventInformationModel
+
 @{
+
 }
 
-@if (HttpContext.Session.GetString("Username") != null); @*|| HttpContext.Session.GetString("UserType") != "Organizer")*@
-{
-    <h2 class="center">Authorized Users only!</h2>
-}
-else
-{
-    <h2 class="h2">Events:</h2>
-    <body>
-        <div class="limiter">
-            <div class="container-table100">
-                <div class="wrap-table100">
-                    <div class="table100 ver6 m-b-110">
-                        <table data-vertable="ver6">
-                            <thead>
-                                <tr class="row100 head">
-                                    <th class="column100 column1" data-column="column1">Name:</th>
-                                    <th class="column100 column2" data-column="column2">Description:</th>
-                                    <th class="column100 column3" data-column="column3">Start Date And Time:</th>
-                                    <th class="column100 column4" data-column="column4">End Date And Time:</th>
-                                    <th class="column100 column5" data-column="column5">Location:</th>
-                                    <th class="column100 column6" data-column="column6">Edit:</th>
-                                    <th class="column100 column7" data-column="column7">Delete:</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
 
-                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
 
-                                    while (ConferenceReader.Read())
+<h2>This is a Table of Events</h2>
 
-                                    {
+
+
+<table>
+
+    <thead class="table-dark">
+
+        <tr>
+
+
+
+            <th>Name:</th>
+
+
+
+            <th>Description:</th>
+
+
 
             <th>StartDateAndTime:</th>
 
-                                            <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
 
-                                            <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
 
-                                            <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
+            <th>EndDateAndTime:</th>
 
-                                            <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
 
-                                            <td class="column100 column5" data-column="column5">@ConferenceReader["Place"]</td>
+
+            <th>Edit Event</th>
+
+            <th>Delete Event</th>
+
+
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @{
+
+            foreach (var Event in Model.EventList)
+
+            {
+
+                <tr>
+
+                    <td class="invisible">@Event.EventID</td>
+
+
+
+                    <td>@Event.Name</td>
+
+
 
                     <td style="max-width: 550px;">@Event.Description</td>
 
-                                            @*<td><button asp-page="EventInformation" button asp-page-handler="EditHandler" class="btn btn-primary">Edit</button></td>
+
+
+                    <td style="min-width: 250px">@Event.StartDateAndTime</td>
+
+
 
                     <td style="min-width: 250px">@Event.EndDateAndTime</td>
 
-                                        </tr>
-
-                                    }
-
-                                    DBClass.CCDBConnection.Close();
-
-                                }
 
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </body>
-    }
-<script>
-    let slideIndex = 1;
-    showSlides(slideIndex);
+                    <td>
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
+                        <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
 
-    function currentSlide(n) {
-        showSlides(slideIndex = n);
-    }
+                    </td>
 
-    function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) { slideIndex = 1 }
-        if (n < 1) { slideIndex = slides.length }
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
+                    <td>
+
+                        <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
+
+                    </td>
+
+                </tr>
+
+            }
+
         }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " active";
-    }
-</script>
 
-<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="vendor/bootstrap/js/popper.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="vendor/select2/select2.min.js"></script>
-<script src="js/main.js"></script>
-<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    </tbody>
 
-    gtag('config', 'UA-23581568-13');
-</script>
-<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
+</table> 
