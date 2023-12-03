@@ -1,51 +1,101 @@
 ﻿@page
+
 @model ChampionsConsulting.Pages.EventManagement.EventInformationModel
+
 @{
+
 }
 
-<h2>This is a Table of Events</h2>
+
+
+<h2>All Events</h2>
+
+
 
 <table>
+
     <thead class="table-dark">
+
         <tr>
+
+
 
             <th>Name:</th>
 
+
+
             <th>Description:</th>
+
+
 
             <th>StartDateAndTime:</th>
 
+
+
             <th>EndDateAndTime:</th>
 
+
+
             <th>Edit Event</th>
+
             <th>Delete Event</th>
 
+
+
         </tr>
+
     </thead>
 
+
+
     <tbody>
+
         @{
+
             foreach (var Event in Model.EventList)
+
             {
+
                 <tr>
+
                     <td class="invisible">@Event.EventID</td>
+
+
 
                     <td>@Event.Name</td>
 
+
+
                     <td style="max-width: 550px;">@Event.Description</td>
+
+
 
                     <td style="min-width: 250px">@Event.StartDateAndTime</td>
 
+
+
                     <td style="min-width: 250px">@Event.EndDateAndTime</td>
 
+
+
                     <td>
+
                         <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
+
                     </td>
+
                     <td>
+
                         <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
+
                     </td>
+
                 </tr>
+
             }
+
         }
+
     </tbody>
-</table>
+
+</table> 

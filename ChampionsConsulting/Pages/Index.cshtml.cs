@@ -20,16 +20,16 @@ namespace ChampionsConsulting.Pages
             _logger = logger;
         }
 
-        //public IActionResult OnGet(String logout)
-        //{
-        //    if (logout == "true")
-        //    {
-        //        HttpContext.Session.Clear();
-        //        ViewData["LoginMessage"] = "Successfully Logged Out!";
-        //    }
-        //    return Page();
+        public IActionResult OnGet(String logout)
+        {
+            if (logout == "true")
+            {
+                HttpContext.Session.Clear();
+                ViewData["LoginMessage"] = "Successfully Logged Out!";
+            }
+            return Page();
 
-        //}
+        }
 
         public IActionResult OnPost()
         {

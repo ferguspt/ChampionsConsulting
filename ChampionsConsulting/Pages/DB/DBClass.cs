@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Data.SqlClient;
 using ChampionsConsulting.Pages.DataClasses;
+using System.Data;
 
 namespace ChampionsConsulting.Pages.DB
 {
@@ -95,6 +96,80 @@ namespace ChampionsConsulting.Pages.DB
 
             return tempReader;
         }
+        public static SqlDataReader IndividualEventReader(String? username)
+        {
+            SqlCommand cmdProductRead = new SqlCommand();
+            cmdProductRead.Connection = CCDBConnection;
+            cmdProductRead.Connection.ConnectionString = CCConnString;
+
+            cmdProductRead.CommandText = "SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Location.Place, RoomName FROM Events, AttendEvent, Users, Location, Room WHERE Users.Username=@username AND Users.UserID = AttendEvent.UserID AND Events.EventID = AttendEvent.EventID AND Events.LocationID = Location.LocationID AND Room.LocationID = Location.LocationID;";
+            cmdProductRead.Parameters.AddWithValue("@username", username);
+            cmdProductRead.Connection.Open();
+
+            SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            
+            return tempReader;
+        }
+        //public static SqlDataReader FutureEventReader(String? username)
+        //{
+        //    SqlCommand cmdProductRead = new SqlCommand();
+        //    cmdProductRead.Connection = CCDBConnection;
+        //    cmdProductRead.Connection.ConnectionString = CCConnString;
+            
+        //    cmdProductRead.CommandText = "SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Location.Place, RoomName FROM Events, AttendEvent, Users, Location, Room WHERE Users.Username=@username AND Users.UserID = AttendEvent.UserID AND Events.EventID = AttendEvent.EventID AND Events.LocationID = Location.LocationID AND Room.LocationID = Location.LocationID;";
+        //    cmdProductRead.Parameters.AddWithValue("@username", username);
+        //    cmdProductRead.Connection.Open();
+
+        //    SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            
+        //    return tempReader;
+        //}
+
+        //public static SqlDataReader PastEventReader(String? username)
+        //{
+        //    SqlCommand cmdProductRead = new SqlCommand();
+        //    cmdProductRead.Connection = CCDBConnection;
+        //    cmdProductRead.Connection.ConnectionString = CCConnString;
+
+        //    cmdProductRead.CommandText = "SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Location.Place, RoomName FROM Events, AttendEvent, Users, Location, Room WHERE Users.Username=@username AND Users.UserID = AttendEvent.UserID AND Events.EventID = AttendEvent.EventID AND Events.LocationID = Location.LocationID AND Room.LocationID = Location.LocationID;";
+        //    cmdProductRead.Parameters.AddWithValue("@username", username);
+        //    cmdProductRead.Connection.Open();
+
+        //    SqlDataReader tempReader = cmdProductRead.ExecuteReader();
+            
+        //    return tempReader;
+        //}
+
+        public static SqlDataReader FutureEventReader(string username)
+    {
+        using (SqlConnection conn = new SqlConnection(CCConnString))
+        {
+            conn.Open();
+            // Prepare and execute your query for future events
+            SqlCommand cmd = new SqlCommand("SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Location.Place, RoomName FROM Events, AttendEvent, Users, Location, Room WHERE Users.Username=@username AND Users.UserID = AttendEvent.UserID AND Events.EventID = AttendEvent.EventID AND Events.LocationID = Location.LocationID AND Room.LocationID = Location.LocationID AND Events.StartDateAndTime > GETDATE();", conn);
+                // Add parameters if necessary
+                cmd.Parameters.AddWithValue("@username", username);
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+    }
+
+    public static SqlDataReader PastEventReader(string username)
+    {
+        using (SqlConnection conn = new SqlConnection(CCConnString))
+        {
+            conn.Open();
+            // Prepare and execute your query for past events
+            SqlCommand cmd = new SqlCommand("SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Location.Place, RoomName FROM Events, AttendEvent, Users, Location, Room WHERE Users.Username=@username AND Users.UserID = AttendEvent.UserID AND Events.EventID = AttendEvent.EventID AND Events.LocationID = Location.LocationID AND Room.LocationID = Location.LocationID AND Events.StartDateAndTime < GETDATE();", conn);
+                // Add parameters if necessary
+                cmd.Parameters.AddWithValue("@username", username);
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+    }
+
+
+
+
+
 
         public static SqlDataReader EventReaderCheck(string selectQuery)
         {

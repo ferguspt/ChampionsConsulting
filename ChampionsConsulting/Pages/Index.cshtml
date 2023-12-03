@@ -6,7 +6,6 @@
     ViewData["Title"] = "Home page";
 }
 
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, follow">
@@ -17,24 +16,27 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>  
 
-<h2>Welcome to Champion Events!</h2>
+<h1>Welcome to Champion Events!</h1>
 <br/>
 <br/>
-<div class="position-center">
-    <h5>The preferred, easy-to-use event management system</h5> 
+<br/>
+<div class="position-relative">
+    <div class="position-absolute top-0 start-50 translate-middle-x"></div>
+    <h5>The preferred, easy-to-use event</h5>
+    <br />
+    <h5>management system that </h5>
     <br/>
-    <h5>that connects users to desired events.</h5>
-    </div>
+    <h5>connects users to desired events.</h5>
+</div>
 
-@{
-    if (ViewData["LoginMessage"] != null)
-    {
-        <p class="text-danger">@ViewData["LoginMessage"]</p>
-    }
-}
+
+
+
 <head>
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
+
+
 <body>
     @{
         string messageClass = "alert alert-info";
@@ -51,46 +53,38 @@
         }
     }
 
-    <div class="login-container">
-        @if (HttpContext.Session.GetString("Username") != null)
-        {
-            <div class="logout-section">
-                @*<h2>Welcome, @HttpContext.Session.GetString("Username")!</h2> *@
-                <p>You are currently logged in. Would you like to logout?</p>
-                <form asp-page="UserLogin" asp-page-handler="LogoutHandler" method="post">
-                    <button class="btn btn-danger" type="submit">Logout</button>
-                </form>
-            </div>
-        }
-        else
-        {
-            <div class="login-header">
-                <h2>Login to Your Account</h2>
-                @if (!string.IsNullOrEmpty(message))
-                {
-                    <div class="@messageClass">@message</div>
-                }
-            </div>
+    
+    <div class="position-relative">
+        <div class="position-absolute top-50 end-0 translate-middle-y">
+             <div class="login-container">
+                    <div class="login-header">
+                        <h2>Login to Your Account</h2>
+                        @if (!string.IsNullOrEmpty(message))
+                        {
+                            <div class="@messageClass">@message</div>
+                        }
+                    </div>
 
-            <div class="login-form">
-                <form asp-page="UserLogin" method="post">
-                    <div class="form-group">
-                        <label for="UsernameInput">Username</label>
-                        <input asp-for="Username" class="form-control" id="UsernameInput" placeholder="Enter username" />
+                    <div class="login-form">
+                        <form asp-page="UserLogin" method="post">
+                            <div class="form-group">
+                                <label for="UsernameInput">Username</label>
+                                <input asp-for="Username" class="form-control" id="UsernameInput" placeholder="Enter username" />
+                            </div>
+                            <div class="form-group">
+                                <label for="PasswordInput">Password</label>
+                                <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-block">Login</button>
+                            <br />
+                            Don't have an account?<a asp-page="/Login/CreateUser">Register Here</a>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="PasswordInput">Password</label>
-                        <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
-                    </div>
-                    <button type="submit" class="btn btn-dark btn-block">Login</button>
-                    <br/>
-                    Don't have an account?<a asp-page="/Login/CreateUser">Register Here</a>
-                </form>
-            </div>
-        }
+            </div>  
+        </div>
     </div>
-
 </body>
+  
 
 @* <br/>
 <h3>What is Champion Events?</h3>
@@ -106,137 +100,3 @@
 </p> *@
 
 
-@* <body>
-    <div class="limiter">
-
-        <h2>Upcoming Events:</h2>
-        <div class="container-table100">
-            <div class="wrap-table100">
-                <div class="table100 ver6 m-b-110">
-                    <table data-vertable="ver6">
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="column100 column1" data-column="column1">Name:</th>
-                                <th class="column100 column2" data-column="column2">Description:</th>
-                                <th class="column100 column3" data-column="column3">Start Date And Time:</th>
-                                <th class="column100 column4" data-column="column4">End Date And Time:</th>
-                                <th class="column100 column5" data-column="column5">Location:</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                @{
-                                    string sqlQuery = "Select Name, Description, StartDateAndTime, EndDateAndTime, Place FROM Events Inner Join Location ON Events.LocationId = Location.LocationID;";
-
-                                    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
-
-                                    while (ConferenceReader.Read())
-
-                                    {
-
-                                    <tr class="row100">
-
-                                        <td class="column100 column1" data-column="column1"><a style="color: white;" asp-page="/EventManagement/SubEventInfo">@ConferenceReader["Name"]</a></td>
-
-                                        @*<td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>*@
-
-@*                                         <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
-
-                                        <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
-
-                                        <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
-
-                                        <td class="column100 column5" data-column="column5">@ConferenceReader["Place"]</td>
-
-                                    </tr>
-
-                                    }
-
-
-
-                                    DBClass.CCDBConnection.Close();
-
-                                }
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="slideshow-container">
-
-        <div class="mySlides">
-            <div class="numbertext">1 / 3</div>
-            <img src="~/images/bg1.webp" style="width:100%">
-            <div class="text">Caption Text</div>
-        </div>
-
-        <div class="mySlides">
-            <div class="numbertext">2 / 3</div>
-            <img src="~/images/conf2.jpg" style="width:100%">
-            <div class="text">Caption Two</div>
-        </div>
-
-        <div class="mySlides">
-            <div class="numbertext">3 / 3</div>
-            <img src="~/images/conf3.jpg" style="width:100%">
-            <div class="text">Caption Three</div>
-        </div>
-
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-    </div>
-    <br>
-
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
-
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function currentSlide(n) {
-            showSlides(slideIndex = n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("mySlides");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) { slideIndex = 1 }
-            if (n < 1) { slideIndex = slides.length }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            for (i = 0; i < dots.length; i++) {
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
-            slides[slideIndex - 1].style.display = "block";
-            dots[slideIndex - 1].className += " active";
-        }
-    </script>
-
-    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-    <script src="vendor/bootstrap/js/popper.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
-    <script src="js/main.js"></script>
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-23581568-13');
-    </script>
-    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
-</body> *@

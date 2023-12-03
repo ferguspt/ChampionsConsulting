@@ -1,10 +1,32 @@
 ﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB
 @model ChampionsConsulting.Pages.EventManagement.DeleteModel
 @{
+    Layout = "_Layout";
 }
 <head>
-    <link rel="stylesheet" type="text/css" href="site.css" />
+
 </head>
-<body>
-Event Successfully Deleted
-</body>
+<h2>Delete Event</h2>
+
+@if (TempData["DeletedEventSuccess"] != null)
+{
+    <div class="alert alert-success">@TempData["DeletedEventSuccess"]</div>
+}
+
+<form asp-page="Delete" method="post">
+    <div class="form-group">
+        <label asp-for="@Model.EventID" class="control-label"></label>
+        <input asp-for="@Model.EventID" class="form-control" readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Name" class="control-label"></label>
+        <input asp-for="@Model.Name" class="form-control" readonly />
+    </div>
+
+    <!-- Other fields if necessary -->
+
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-page="/EventManagement/EventInformation">Cancel</a>
+</form>
