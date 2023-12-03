@@ -15,7 +15,87 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
 
-<body>
+
+<h2>All Events</h2>
+
+
+
+<table>
+
+    <thead class="table-dark">
+
+        <tr>
+
+
+
+            <th>Name:</th>
+
+
+
+            <th>Description:</th>
+
+
+
+            <th>StartDateAndTime:</th>
+
+
+
+            <th>EndDateAndTime:</th>
+
+
+
+            <th>Edit Event</th>
+
+            <th>Delete Event</th>
+
+
+
+        </tr>
+
+    </thead>
+
+
+
+    <tbody>
+
+        @{
+
+            foreach (var Event in Model.EventList)
+
+            {
+
+                <tr>
+
+                    <td class="invisible">@Event.EventID</td>
+
+
+
+                    <td><a asp-page="/EventManagement/SubEventInfo">@Event.Name</a></td>
+
+
+
+                    <td style="max-width: 550px;">@Event.Description</td>
+
+
+
+                    <td style="min-width: 250px">@Event.StartDateAndTime</td>
+
+
+
+                    <td style="min-width: 250px">@Event.EndDateAndTime</td>
+
+
+                </tr>
+
+            }
+
+        }
+
+    </tbody>
+
+</table>
+
+@* @* <body>
     <div class="limiter">
 
         <h2>Upcoming Events:</h2>
@@ -48,7 +128,7 @@
 
                                         @*<td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>*@
 
-                                        <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                       @*  <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
 
                                         <td class="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
 
@@ -148,4 +228,4 @@
         gtag('config', 'UA-23581568-13');
     </script>
     <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
-</body>
+</body> *@ 
