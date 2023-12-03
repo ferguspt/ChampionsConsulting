@@ -1,19 +1,28 @@
 ﻿@page
-@model ChampionsConsulting.Pages.EventManagement.FeedBackModel
+@model ChampionsConsulting.Pages.FeedbackModel
 @{
 }
+
 <head>
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
-<body>
-Please select the event you would like to give feedback for:
-<br/>
-*insert dropdown of events the user has ALREADY attended*
 
-<br/>
-<br/>
+<h2>Event Feedback</h2>
 
-Please provide any questions or comments for the event you attended:
-<br/>
-*insert giant text box here*
-</body>
+<form asp-action="SelectEvent">
+    <div>
+        <label>Select an Event:</label>
+        <select asp-for="EventId" asp-items="Model.EventOptions">
+            <option value="">Select an event</option>
+        </select>
+    </div>
+
+
+    <div>
+        <label>Feedback:</label><br />
+        <textarea asp-for="Feedback" rows="6" cols="40"></textarea>
+        <span asp-validation-for="Feedback" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Submit Feedback</button>
+</form>

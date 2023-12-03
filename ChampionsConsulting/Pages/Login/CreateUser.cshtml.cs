@@ -64,7 +64,7 @@ namespace ChampionsConsulting.Pages.Login
                 DBClass.CCDBConnection.Close();
                 // Insert user into users table
                 string insertQuery = @"INSERT INTO Users (FirstName, LastName, Username, UserPassword, Email,Phone, UserType)
-                                           VALUES ('" + FirstName + "','" + LastName + "','" + Username + "','" + Password + "','" + Email + "','"+Phone +"','"+ UserType + "');";
+                                           VALUES ('" + FirstName + "','" + LastName + "','" + Username + "','" + Password + "','" + Email + "','" + Phone + "','" + UserType + "');";
                 Console.WriteLine(insertQuery);
 
                 //SqlCommand insertCommand = new SqlCommand(insertQuery, CCDBConnection);
