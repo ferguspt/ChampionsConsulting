@@ -49,7 +49,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             DBClass.DeleteEvent(eventToDelete);
             DBClass.CCDBConnection.Close();
             TempData["DeletedEventSuccess"] = "Event Deleted Successfully";
-            return RedirectToPage("/EventManagement/EventInformation");
+            return RedirectToPage("/EventManagement/ViewEvents");
         }
     }
 }

@@ -102,7 +102,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("/EventManagement/EventInformation");
+            return RedirectToPage("/EventManagement/ViewEvents");
         }
 
         public IActionResult OnPostClearHandler()
