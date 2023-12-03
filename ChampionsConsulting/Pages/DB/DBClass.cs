@@ -13,8 +13,8 @@ namespace ChampionsConsulting.Pages.DB
 
         // Localhost Connection string
         // Use this when testing things locally
-        // public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
-        // public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
+        //public static readonly String CCConnString = "Server=Localhost; Database=CCDB; Trusted_Connection=True";
+        //public static readonly String AuthConnString = "Server=Localhost; Database=AUTH; Trusted_Connection=True";
 
 
         // AWS Connection String
