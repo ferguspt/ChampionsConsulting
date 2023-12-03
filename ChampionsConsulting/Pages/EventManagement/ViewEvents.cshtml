@@ -39,7 +39,7 @@
                                 {
                                     <tr class="row100">
                                         @*<td class="invisible">@Event.EventID</td>*@
-                                        <td class="column100 column1" data-column="column1">@Event.Name</td>
+                                        <td class="column100 column1" data-column="column1"><a class="white"; asp-page="/EventManagement/SubEventInfo">@Event.Name</a></td>
                                         <td class="column100 column2" data-column="column2">@Event.Description</td>
                                         <td class="column100 column3" data-column="column3">@Event.StartDateAndTime</td>
                                         <td class="column100 column4" data-column="column4">@Event.EndDateAndTime</td>
@@ -49,11 +49,11 @@
                                         {
                                             
                                         }*@
-                                        <td class="column100 column5 editDelete" data-column="column5">
+                                        <td class="column100 column5" data-column="column5">
                                             <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
                                         </td>
 
-                                        <td class="column100 column6 editDelete" data-column="column6" >
+                                        <td class="column100 column6" data-column="column6">
                                             <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
                                         </td>
                                     </tr>
