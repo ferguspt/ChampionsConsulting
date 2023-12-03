@@ -5,97 +5,71 @@
 @{
 
 }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyVGFibGUlMjBWMDMlMjIlMkMlMjJ4JTIyJTNBMC43NTM0NzQ3NTUxNjA0MDc3JTJDJTIydyUyMiUzQTE2MDAlMkMlMjJoJTIyJTNBOTAwJTJDJTIyaiUyMiUzQTc3NSUyQyUyMmUlMjIlM0ExNjAwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGdGIlMkZUYWJsZV9IaWdobGlnaHRfVmVydGljYWxfSG9yaXpvbnRhbCUyRmluZGV4Lmh0bWwlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGdGFibGUtd2l0aC12ZXJ0aWNhbC1ob3Jpem9udGFsLWhpZ2hsaWdodCUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EzMDAlMkMlMjJxJTIyJTNBJTVCJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIwJTIyJTJDJTIyY29uZmlnJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTJDJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIxJTIyJTJDJTIyVUEtMjM1ODE1NjgtMTMlMjIlMkMlN0IlMjJzY29wZSUyMiUzQSUyMnBhZ2UlMjIlN0QlNUQlN0QlNUQlN0Q="> </script>
+    <script nonce="d0eb08f8-a294-44c7-b50a-fc282117edcb">
+        (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
+    </script>
+    <link rel="stylesheet" type="text/css" href="site.css" />
+</head>
+<body>
+    <h2>All Events</h2>
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver6 m-b-110">
+                <form method="post">
+                    <table data-vertable="ver6">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">Name:</th>
+                                <th class="column100 column2" data-column="column2">Description:</th>
+                                <th class="column100 column3" data-column="column3">Start Date And Time:</th>
+                                <th class="column100 column4" data-column="column4">End Date And Time:</th>
+                                <th class="column100 column5" data-column="column5">Edit Event</th>
+                                <th class="column100 column6" data-column="column6">Delete Event</th>
+                            </tr>
+                        </thead>
 
+                        <tbody>
+                            @{
+                                foreach (var Event in Model.EventList)
+                                {
+                                    <tr class="row100">
+                                        @*<td class="invisible">@Event.EventID</td>*@
+                                        <td class="column100 column1" data-column="column1">@Event.Name</td>
+                                        <td class="column100 column2" data-column="column2">@Event.Description</td>
+                                        <td class="column100 column3" data-column="column3">@Event.StartDateAndTime</td>
+                                        <td class="column100 column4" data-column="column4">@Event.EndDateAndTime</td>
+                                        <td class="column100 column5" data-column="column5">
+                                            <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
+                                        </td>
 
+                                        <td class="column100 column6" data-column="column6">
+                                            <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-<h2>This is a Table of Events</h2>
-
-
-
-<table>
-
-    <thead class="table-dark">
-
-        <tr>
-
-
-
-            <th>Name:</th>
-
-
-
-            <th>Description:</th>
-
-
-
-            <th>StartDateAndTime:</th>
-
-
-
-            <th>EndDateAndTime:</th>
-
-
-
-            <th>Edit Event</th>
-
-            <th>Delete Event</th>
-
-
-
-        </tr>
-
-    </thead>
-
-
-
-    <tbody>
-
-        @{
-
-            foreach (var Event in Model.EventList)
-
-            {
-
-                <tr>
-
-                    <td class="invisible">@Event.EventID</td>
-
-
-
-                    <td>@Event.Name</td>
-
-
-
-                    <td style="max-width: 550px;">@Event.Description</td>
-
-
-
-                    <td style="min-width: 250px">@Event.StartDateAndTime</td>
-
-
-
-                    <td style="min-width: 250px">@Event.EndDateAndTime</td>
-
-
-
-                    <td>
-
-                        <a asp-page="/EventManagement/Edit" class="btn btn-primary" asp-route-eventid="@Event.EventID">Edit</a>
-
-                    </td>
-
-                    <td>
-
-                        <a asp-page="/EventManagement/Delete" class="btn btn-danger" asp-route-eventid="@Event.EventID">Delete</a>
-
-                    </td>
-
-                </tr>
-
-            }
-
-        }
-
-    </tbody>
-
-</table> 
+        gtag('config', 'UA-23581568-13');
+    </script>
+    <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js/v84a3a4012de94ce1a686ba8c167c359c1696973893317" integrity="sha512-euoFGowhlaLqXsPWQ48qSkBSCFs3DPRyiwVu3FjR96cMPx+Fr+gpWRhIafcHwqwCqWS42RZhIudOvEI+Ckf6MA==" data-cf-beacon="{&quot;rayId&quot;:&quot;82d495d80acc81f1&quot;,&quot;version&quot;:&quot;2023.10.0&quot;,&quot;token&quot;:&quot;cd0b4b3a733644fc843ef0b185f98241&quot;}" crossorigin="anonymous"></script>
+</body>
