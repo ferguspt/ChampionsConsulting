@@ -51,7 +51,10 @@ footer {
     font-weight: 100;
     clear: both;
 }
-
+.editDelete {
+    text-align: center;
+    align-content: center;
+}
 
 /*----------------------Table CSS From Web UPDATE---------------------------------- */
 iframe {
