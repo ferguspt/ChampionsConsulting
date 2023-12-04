@@ -1,0 +1,60 @@
+﻿@page
+@model ChampionsConsulting.Pages.EventManagement.AddSubeventModel
+@{
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="site.css" />
+</head>
+<body>
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") != "Organizer")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
+else
+{
+    <form asp-page="CreateEvent2">
+        <div class="form-text">Sub Event Name</div>
+        <input asp-for="SubEventName" placeholder="Sub Event Name" class="form-control" id="SubEventNameInput" />
+        <span asp-validation-for="SubEventName" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Sub Event Description</div>
+        <input asp-for="SubEventDescription" placeholder="Sub Event Description" class="form-control" id="SubEventDescriptionInput" />
+        <span asp-validation-for="SubEventDescription" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">Start Time</div>
+        <input asp-for="StartTime" type="datetime" placeholder="Start Date and Time" class="form-control" id="StartDateAndTimeInput" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+        <br />
+
+        <div class="form-text">End Time</div>
+        <input asp-for="EndTime" type="datetime" placeholder="End Date and Time" class="form-control" id="EndDateAndTimeInput" />
+        <span asp-validation-for="EndTime" class="text-danger"></span>
+        <br />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <br />
+
+        <input type="submit" class="btn btn-dark" value="Create" />
+        <button asp-page-handler="PopulateHandler" class="btn btn-dark" id="PopulateButton">Populate</button>
+        <button asp-page-handler="ClearHandler" class="btn btn-dark">Clear</button>
+        <button asp-page-handler="ReturnHandler" class="btn btn-dark">Return</button>
+    </form>
+}
+
+
+<script>
+    document.getElementById('PopulateButton').addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        document.getElementById('SubEventNameInput').value = 'Annual Bitcoin Social';
+        document.getElementById('SubEventDescriptionInput').value = 'Extravagant lunch social with prominant members of the bitcoin community. 20 BTC in wallet required for entry.';
+        document.getElementById('StartDateAndTimeInput').value = '5/15/2024 8:00 AM';
+        document.getElementById('EndDateAndTimeInput').value = '5/30/2024 8:00 AM';
+    });
+</script>
+
+
+</body>
