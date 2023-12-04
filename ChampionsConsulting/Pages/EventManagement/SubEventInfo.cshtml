@@ -4,47 +4,67 @@
 @model ChampionsConsulting.Pages.EventManagement.SubEventInfoModel
 @{
 }
-
-
-<h2>@Model.CurrEvent.Name</h2>
-<h3>Subevents: </h3>
-<br/>
-
-
- <table class="table table-bordered table-responsive table-striped table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>Name:</th>
-            <th>Description:</th>
-@*             <th>StartDateAndTime:</th>
-            <th>EndDateAndTime:</th> *@
-        </tr>
-    </thead>
-    <tbody> 
-
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <script defer="" referrerpolicy="origin" src="/cdn-cgi/zaraz/s.js?z=JTdCJTIyZXhlY3V0ZWQlMjIlM0ElNUIlNUQlMkMlMjJ0JTIyJTNBJTIyVGFibGUlMjBWMDMlMjIlMkMlMjJ4JTIyJTNBMC43NTM0NzQ3NTUxNjA0MDc3JTJDJTIydyUyMiUzQTE2MDAlMkMlMjJoJTIyJTNBOTAwJTJDJTIyaiUyMiUzQTc3NSUyQyUyMmUlMjIlM0ExNjAwJTJDJTIybCUyMiUzQSUyMmh0dHBzJTNBJTJGJTJGY29sb3JsaWIuY29tJTJGZXRjJTJGdGIlMkZUYWJsZV9IaWdobGlnaHRfVmVydGljYWxfSG9yaXpvbnRhbCUyRmluZGV4Lmh0bWwlMjIlMkMlMjJyJTIyJTNBJTIyaHR0cHMlM0ElMkYlMkZjb2xvcmxpYi5jb20lMkZ3cCUyRnRlbXBsYXRlJTJGdGFibGUtd2l0aC12ZXJ0aWNhbC1ob3Jpem9udGFsLWhpZ2hsaWdodCUyRiUyMiUyQyUyMmslMjIlM0EyNCUyQyUyMm4lMjIlM0ElMjJVVEYtOCUyMiUyQyUyMm8lMjIlM0EzMDAlMkMlMjJxJTIyJTNBJTVCJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIwJTIyJTJDJTIyY29uZmlnJTIyJTJDJTdCJTIyc2NvcGUlMjIlM0ElMjJwYWdlJTIyJTdEJTVEJTdEJTJDJTdCJTIybSUyMiUzQSUyMnNldCUyMiUyQyUyMmElMjIlM0ElNUIlMjIxJTIyJTJDJTIyVUEtMjM1ODE1NjgtMTMlMjIlMkMlN0IlMjJzY29wZSUyMiUzQSUyMnBhZ2UlMjIlN0QlNUQlN0QlNUQlN0Q="> </script>
+    <script nonce="d0eb08f8-a294-44c7-b50a-fc282117edcb">
+        (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
+    </script>
+    <link rel="stylesheet" type="text/css" href="site.css" />
+</head>
 @{
-            string sqlQuery = @"Select Name, Description, StartDateAndTime, EndDateAndTime from SubEvent Where EventID = '" + @Model.CurrEvent.EventID + "';";
-
-    SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
-
-    while (ConferenceReader.Read())
-    {
-        <tr>
-            <td><h4>@ConferenceReader["Name"]</h4></td>
-            <td>@ConferenceReader["Description"]</td>
-            @*<td>@ConferenceReader["StartDateAndTime"]</td>
-            <td>@ConferenceReader["EndDateAndTime"]</td>*@
-        </tr>
-    }
-
-    DBClass.CCDBConnection.Close();
-
+    var startDate = Convert.ToDateTime(@Model.CurrEvent.StartDateAndTime).ToString("M/d");
+    var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
-     </tbody>
-</table> 
+<h2>@Model.CurrEvent.Name @startDate @endDate</h2>
+<h3>Subevents: </h3>
+<br />
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver6 m-b-110">
+            <form method="post">
+                <table data-vertable="ver6">
+                    <thead>
+                        <tr class="row100 head">
+                            <th class="column100 column1" data-column="column1">Name:</th>
+                            <th class="column100 column2" data-column="column2">Description:</th>
+                            <th class="column100 column3" data-column="column3">Start Time:</th>
+                            <th class="column100 column4" data-column="column4">End Time:</th>
 
+                        </tr>
+                    </thead>
+                    <tbody>
 
-<form method="post" asp-page-handler="DownloadUserList">
-    <input type="hidden" asp-for="CurrEvent.EventID" />
-    <button type="submit" class="btn btn-primary">Download User List</button>
-</form>
+                        @{
+                            string sqlQuery = @"Select Name, Description, StartDateAndTime, EndDateAndTime from SubEvent Where EventID = '" + @Model.CurrEvent.EventID + "';";
+
+                            SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
+
+                            while (ConferenceReader.Read())
+                            {
+                                var startTime = Convert.ToDateTime(ConferenceReader["StartDateAndTime"]).ToString("M/d h:mm tt");
+                                var endTime = Convert.ToDateTime(ConferenceReader["EndDateAndTime"]).ToString("M/d h:mm tt");
+                                <tr class="row100">
+                                    <td class ="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                    <td class ="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                    <td class ="column100 column3" data-column="column3">@startTime</td>
+                                    <td class ="column100 column4" data-column="column4">@endTime</td>
+                                    @*<td>@ConferenceReader["StartDateAndTime"]</td>
+                            <td>@ConferenceReader["EndDateAndTime"]</td>*@
+                                </tr>
+                            }
+
+                            DBClass.CCDBConnection.Close();
+
+                        }
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</br>
+    <form method="post" asp-page-handler="DownloadUserList">
+        <input type="hidden" asp-for="CurrEvent.EventID" />
+        <button type="submit" class="btn btn-primary">Download User List</button>
+    </form>

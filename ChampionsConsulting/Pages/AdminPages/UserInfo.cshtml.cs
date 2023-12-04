@@ -37,7 +37,7 @@ namespace ChampionsConsulting.Pages.AdminPages
                     FirstName = dataReader["FirstName"].ToString(),
                     LastName = dataReader["LastName"].ToString(),
                     Email = dataReader["Email"].ToString(),
-                    PhoneNumber = dataReader["PhoneNumber"].ToString(),
+                    Phone = dataReader["Phone"].ToString(),
                     Username = dataReader["Username"].ToString(),
                     UserType = dataReader["UserType"].ToString(),
 

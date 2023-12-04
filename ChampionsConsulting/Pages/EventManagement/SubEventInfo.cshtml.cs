@@ -96,9 +96,13 @@ namespace ChampionsConsulting.Pages.EventManagement
                         var user = new UserDataAll
                         {
                             // Assume User has properties like UserId, Username, etc.
-                            userID = reader.GetInt32(reader.GetOrdinal("UserID")),
+
                             Username = reader.GetString(reader.GetOrdinal("Username")),
-                            // ... other user properties
+                            FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                            LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                            Email = reader.GetString(reader.GetOrdinal("Email")),
+                            Phone = reader.GetString(reader.GetOrdinal("Phone"))
+                            
                         };
                         users.Add(user);
                     }
@@ -111,11 +115,11 @@ namespace ChampionsConsulting.Pages.EventManagement
         private string GenerateCsv(IEnumerable<UserDataAll> users)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("UserID,Username,OtherFields"); // CSV headers
+            sb.AppendLine("Check-In, Username, FirstName, LastName, Email, PhoneNumber"); 
 
             foreach (var user in users)
             {
-                sb.AppendLine($"{user.userID},{user.Username},..."); // Add other fields as needed
+                sb.AppendLine($" , {user.Username},{user.FirstName}, {user.LastName}, {user.Email}, {user.Phone}"); 
             }
 
             return sb.ToString();
