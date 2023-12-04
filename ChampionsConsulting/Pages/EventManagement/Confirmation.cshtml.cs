@@ -17,7 +17,7 @@ namespace ChampionsConsulting.Pages.EventManagement
 
         public IActionResult OnPostReturnHandler()
         {
-            return RedirectToPage("../Index");
+            return RedirectToPage("/EventManagement/ViewEvents");
         }
     }
 }
