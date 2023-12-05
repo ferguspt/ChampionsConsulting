@@ -1,11 +1,8 @@
 using ChampionsConsulting.Pages.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.Data.SqlClient;
-using System.Xml.Linq;
 
 namespace ChampionsConsulting.Pages.EventManagement
 {

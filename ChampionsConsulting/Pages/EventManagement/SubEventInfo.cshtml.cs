@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
-using System.Reflection;
 using System.Text;
 
 
@@ -102,7 +101,7 @@ namespace ChampionsConsulting.Pages.EventManagement
                             LastName = reader.GetString(reader.GetOrdinal("LastName")),
                             Email = reader.GetString(reader.GetOrdinal("Email")),
                             Phone = reader.GetString(reader.GetOrdinal("Phone"))
-                            
+
                         };
                         users.Add(user);
                     }
@@ -115,11 +114,11 @@ namespace ChampionsConsulting.Pages.EventManagement
         private string GenerateCsv(IEnumerable<UserDataAll> users)
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Check-In, Username, FirstName, LastName, Email, PhoneNumber"); 
+            sb.AppendLine("Check-In, Username, FirstName, LastName, Email, PhoneNumber");
 
             foreach (var user in users)
             {
-                sb.AppendLine($" , {user.Username},{user.FirstName}, {user.LastName}, {user.Email}, {user.Phone}"); 
+                sb.AppendLine($" , {user.Username},{user.FirstName}, {user.LastName}, {user.Email}, {user.Phone}");
             }
 
             return sb.ToString();
