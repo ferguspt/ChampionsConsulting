@@ -21,13 +21,7 @@
     var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
 
-@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Participant")
-{
-    <h2 class="center">Authorized Users only!</h2>
-}
 
-else
-{
     
 
 <h2>@Model.CurrEvent.Name @startDate @endDate</h2>
@@ -78,8 +72,15 @@ else
     </div>
     </div>
 <br/>
-<form method="post" asp-page-handler="DownloadUserList">
-        <input type="hidden" asp-for="CurrEvent.EventID" />
-        <button type="submit" class="btn btn-primary">Download User List</button>
-    </form>
+
+@{
+
+    if (HttpContext.Session.GetString("UserType") == "Organizer" || HttpContext.Session.GetString("UserType") == "Admin")
+    {
+        <form method="post" asp-page-handler="DownloadUserList">
+            <input type="hidden" asp-for="CurrEvent.EventID" />
+            <button type="submit" class="btn btn-primary">Download User List</button>
+        </form>
+    }
 }
+
