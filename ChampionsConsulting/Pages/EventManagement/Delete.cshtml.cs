@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-using ChampionsConsulting.Pages.DB;
 using ChampionsConsulting.Pages.DataClasses;
+using ChampionsConsulting.Pages.DB;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 

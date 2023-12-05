@@ -1,8 +1,6 @@
-using ChampionsConsulting.Pages.DB;
 using ChampionsConsulting.Pages.DataClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages.Login
 {

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace ChampionsConsulting.Pages.DB
 {
     public class PasswordHash
     {
         public const int SaltByteSize = 24;
-        public const int HashByteSize = 24; 
-        public const int Pbkdf2Iterations = 10000; 
+        public const int HashByteSize = 24;
+        public const int Pbkdf2Iterations = 10000;
 
         public static string HashPassword(string password)
         {

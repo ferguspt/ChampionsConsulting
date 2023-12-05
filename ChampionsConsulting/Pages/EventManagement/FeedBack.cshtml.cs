@@ -1,10 +1,7 @@
 using ChampionsConsulting.Pages.DB;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Data.SqlClient;
 
 namespace ChampionsConsulting.Pages
@@ -37,9 +34,9 @@ namespace ChampionsConsulting.Pages
             }
             else
             {
-                
+
                 var username2 = HttpContext.Session.GetString("Username");
-               
+
                 // Query to fetch attended events based on UserID
                 string query = @"
                     SELECT Events.EventID, Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Events.LocationID 
@@ -50,7 +47,7 @@ namespace ChampionsConsulting.Pages
 
 
                 SqlDataReader EventReader = DBClass.EventReader(query);
-                
+
                 EventOptions = new List<SelectListItem>();
 
                 while (EventReader.Read())
