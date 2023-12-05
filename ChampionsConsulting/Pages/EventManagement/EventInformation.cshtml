@@ -5,7 +5,7 @@
 @{
 
 }
-@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Participant")
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Attendee")
 {
     <h2 class="center">Authorized Users only!</h2>
 }

@@ -38,7 +38,7 @@
                                 //     <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up</a>
                                 // </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
+                                    <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">Information</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewFeedback">View Feedback</a>
@@ -90,7 +90,7 @@
                                 //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
                                 // </li>
                             }
-                            @if (Context.Session.GetString("UserType") == "Participant")
+                            @if (Context.Session.GetString("UserType") == "Attendee")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/Login/UserPage2">My Home</a>
