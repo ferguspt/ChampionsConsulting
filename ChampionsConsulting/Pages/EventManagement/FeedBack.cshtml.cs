@@ -77,13 +77,15 @@ namespace ChampionsConsulting.Pages
                 return Page();
             }
 
-            string insertFeedbackQuery = $"INSERT INTO Feedback (EventID, FeedbackText) VALUES (" + EventId + ",'" + Feedback + "')";
 
-            DBClass.InsertQuery(insertFeedbackQuery);
-            DBClass.CCDBConnection.Close(); // Close the database connection
+                string insertFeedbackQuery = $"INSERT INTO Feedback (EventID, FeedbackText) VALUES (" + EventId + ",'" + Feedback + "')";
 
-            TempData["FeedbackSuccessMessage"] = "Feedback submitted successfully.";
-            return RedirectToPage("../Index"); // Redirect after submitting feedback
+                DBClass.InsertQuery(insertFeedbackQuery);
+                DBClass.CCDBConnection.Close(); // Close the database connection
+
+                TempData["FeedbackSuccessMessage"] = "Feedback submitted successfully.";
+                return RedirectToPage("../Index"); // Redirect after submitting feedback
+            
         }
     }
 }
