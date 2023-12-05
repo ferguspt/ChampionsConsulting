@@ -4,6 +4,7 @@
 @model ChampionsConsulting.Pages.EventManagement.SubEventInfoModel
 @{
 }
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, follow">
@@ -14,9 +15,21 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
 @{
+
+
     var startDate = Convert.ToDateTime(@Model.CurrEvent.StartDateAndTime).ToString("M/d");
     var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
+
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Participant")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
+
+else
+{
+    
+
 <h2>@Model.CurrEvent.Name @startDate @endDate</h2>
 <h3>Subevents: </h3>
 <br />
@@ -63,8 +76,10 @@
             </form>
         </div>
     </div>
-</br>
+ </div>
+@* </br> *@
     <form method="post" asp-page-handler="DownloadUserList">
         <input type="hidden" asp-for="CurrEvent.EventID" />
         <button type="submit" class="btn btn-primary">Download User List</button>
     </form>
+}

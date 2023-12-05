@@ -15,6 +15,7 @@ namespace ChampionsConsulting.Pages.EventManagement
         {
             Data = new List<UserDataAll>();
         }
+
         public void OnGet(string Keyword, string Presenter)
         {
             string searchQuery = "SELECT concat_ws(' ', FirstName, LastName) as FullName, Event.EventName, Meeting.MeetingName, Meeting.MeetingDescription, Meeting.MeetingDate " +

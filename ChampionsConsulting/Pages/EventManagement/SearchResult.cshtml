@@ -2,6 +2,14 @@
 @model ChampionsConsulting.Pages.EventManagement.SearchResultModel
 @{
 }
+
+@if (HttpContext.Session.GetString("Username") == null)
+{
+    <h2 class="center">You Must Login!</h2>
+}
+else
+{
+    
 <head>
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
@@ -30,3 +38,4 @@
     <button asp-page-handler="ReturnHandler" class="btn btn-primary" id="ReturnButton">Return</button>
 </form>
 </body>
+}
