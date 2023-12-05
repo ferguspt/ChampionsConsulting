@@ -76,8 +76,10 @@ else
             </form>
         </div>
     </div>
-</br>
-    <form method="post" asp-page-handler="DownloadUserList">
+    </div>
+<br/>
+<form method="post" asp-page-handler="DownloadUserList">
         <input type="hidden" asp-for="CurrEvent.EventID" />
         <button type="submit" class="btn btn-primary">Download User List</button>
     </form>
+}
