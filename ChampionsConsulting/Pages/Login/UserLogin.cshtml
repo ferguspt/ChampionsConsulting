@@ -28,9 +28,10 @@
     }
     
         <div class="login-container loginBox">
-            <h2 style="color: black; padding-top:30px;">Login</h2>
+            
             @if (HttpContext.Session.GetString("Username") != null)
             {
+            <h2 style="color: black; padding-top:30px;">Logout</h2>
                 <div class="logout-section">
                     @*<h2>Welcome, @HttpContext.Session.GetString("Username")!</h2> *@
                     <p>You are currently logged in. Would you like to logout?</p>
@@ -41,6 +42,7 @@
             }
             else
             {
+            <h2 style="color: black; padding-top:30px;">Login</h2>
                 <div class="login-header">
                     
                     @if (!string.IsNullOrEmpty(message))
