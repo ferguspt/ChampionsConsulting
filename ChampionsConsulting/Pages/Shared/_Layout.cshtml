@@ -90,7 +90,7 @@
                                 //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
                                 // </li>
                             }
-                            @if (Context.Session.GetString("UserType") == "Participant")
+                            @if (Context.Session.GetString("UserType") == "Attendee")
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/Login/UserPage2">My Home</a>
