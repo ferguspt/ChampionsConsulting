@@ -66,18 +66,23 @@ namespace ChampionsConsulting.Pages
         }
 
 
+
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            if (Feedback == null || EventName == null)
             {
                 return Page();
             }
 
-            // Process the feedback data (save to database, send notifications, etc.)
-            // Implement the logic to handle the submitted feedback
 
-            TempData["FeedbackSuccessMessage"] = "Feedback submitted successfully.";
-            return RedirectToPage("./Index"); // Redirect after submitting feedback
+                string insertFeedbackQuery = $"INSERT INTO Feedback (EventID, FeedbackText) VALUES (" + EventId + ",'" + Feedback + "')";
+
+                DBClass.InsertQuery(insertFeedbackQuery);
+                DBClass.CCDBConnection.Close(); // Close the database connection
+
+                TempData["FeedbackSuccessMessage"] = "Feedback submitted successfully.";
+                return RedirectToPage("../Index"); // Redirect after submitting feedback
+            
         }
     }
 }

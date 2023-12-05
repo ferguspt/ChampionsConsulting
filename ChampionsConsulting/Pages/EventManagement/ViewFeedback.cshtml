@@ -1,8 +1,50 @@
 ﻿@page
+@using System.Data.SqlClient
+@using ChampionsConsulting.Pages.DB;
 @model ChampionsConsulting.Pages.EventManagement.ViewFeedbackModel
 @{
 }
+<h2 class="h2">Feedback:</h2>
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver6 m-b-110">
+            <form method="post">
+                <table data-vertable="ver6">
+                    <thead>
+                        <tr class="row100 head">
+                            <th class="column100 column1" data-column="column1">Name:</th>
+                            <th class="column100 column2" data-column="column2">Feedback:</th>
 
-List of all events and the corresponding anonymous feedback for those events
-<br/>
-Separated by events
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+
+
+
+                            string sqlQuery = @"Select E.name, F.FeedbackText
+                        From Events E inner join Feedback F on E.EventID = F.EventID;";
+
+
+
+                            SqlDataReader ConferenceReader = DBClass.GeneralReaderQuery(sqlQuery);
+
+
+                            while (ConferenceReader.Read())
+                            {
+                                <tr class="row100">
+                                    <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                    <td class="column100 column3" data-column="column2">@ConferenceReader["FeedbackText"]</td>
+                                </tr>
+                            }
+                            DBClass.CCDBConnection.Close();
+
+
+                        }
+                    </tbody>
+                </table>
+
+            </form>
+        </div>
+    </div>
+</div>

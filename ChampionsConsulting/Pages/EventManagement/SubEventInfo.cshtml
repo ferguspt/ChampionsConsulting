@@ -21,13 +21,7 @@
     var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
 
-@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Participant")
-{
-    <h2 class="center">Authorized Users only!</h2>
-}
 
-else
-{
     
 
 <h2>@Model.CurrEvent.Name @startDate @endDate</h2>
