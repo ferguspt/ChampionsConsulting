@@ -38,7 +38,7 @@
                                 //     <a class="nav-link text-light" asp-page="/EventManagement/SubEventSignUp">Sign up</a>
                                 // </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
+                                    <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Information</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewFeedback">View Feedback</a>
@@ -126,7 +126,7 @@
                         }
                         else
                         {
-                            <a class="nav-link text-light">No user is logged in</a>
+                            //<a class="nav-link text-light">No user is logged in</a>
                             <form method="get" asp-page="/Login/UserLogin" id="LoginButton">
                                 <button type="submit" class="btn btn-outline-light">Login</button>
                             </form>

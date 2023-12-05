@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
 }
 
 .white{
@@ -20,9 +21,10 @@ html {
 
 body {
     font-family: 'Arial', sans-serif;
-    color: #333;
+    background-image: linear-gradient(to top left, #450084, #BF6C8C);
+    /*background-color: #D9D9D9;*/
     line-height: 1.6;
-    background-image: linear-gradient(#f048c6, #f6ea41 );
+    /*background-image: linear-gradient(#f048c6, #f6ea41 );*/
     font-family: Verdana, sans-serif;
     margin: 0
 }
@@ -56,6 +58,63 @@ footer {
     align-content: center;
 }
 
+.boxGrey {
+    background-color: white;
+}
+
+.indexContainer {
+    padding-top: 150px;
+}
+/*.leftSideIndex img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto
+}
+
+
+#imga {
+    z-index: 10;
+    
+}
+
+#imgb {
+    z-index: 20;
+}*/
+
+.imageTextOverlay {
+    position: relative;
+    text-align: center;
+}
+
+.overlayImage {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%; /* Adjust as needed */
+    height: 90%; /* Adjust as needed */
+    opacity: 50%;
+}
+
+.centeredText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* Or any other color */
+}
+
+.loginBox {
+    border-style: solid;
+    border-color: black;
+    background-color: white;
+
+}
+
+.form-text {
+    color: white;
+}
 /*----------------------Table CSS From Web UPDATE---------------------------------- */
 iframe {
     border: none !important;
@@ -231,9 +290,9 @@ th, td {
         padding: 10px 20px;
     }
 
-
+    /* add border box and heading around login*/
     /*---------Font Faces----------------------*/
-@font-face {
+/*@font-face {
     font-family: Montserrat-Regular;
     src: url('../fonts/montserrat/Montserrat-Regular.ttf');
 }
@@ -241,4 +300,4 @@ th, td {
 @font-face {
     font-family: Montserrat-Medium;
     src: url('../fonts/montserrat/Montserrat-Medium.ttf');
-}
+}*/

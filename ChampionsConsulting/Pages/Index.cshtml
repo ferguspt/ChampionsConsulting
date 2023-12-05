@@ -14,27 +14,10 @@
         (function (w, d) { !function (j, k, l, m) { j[l] = j[l] || {}; j[l].executed = []; j.zaraz = { deferred: [], listeners: [] }; j.zaraz.q = []; j.zaraz._f = function (n) { return async function () { var o = Array.prototype.slice.call(arguments); j.zaraz.q.push({ m: n, a: o }) } }; for (const p of ["track", "set", "debug"]) j.zaraz[p] = j.zaraz._f(p); j.zaraz.init = () => { var q = k.getElementsByTagName(m)[0], r = k.createElement(m), s = k.getElementsByTagName("title")[0]; s && (j[l].t = k.getElementsByTagName("title")[0].text); j[l].x = Math.random(); j[l].w = j.screen.width; j[l].h = j.screen.height; j[l].j = j.innerHeight; j[l].e = j.innerWidth; j[l].l = j.location.href; j[l].r = k.referrer; j[l].k = j.screen.colorDepth; j[l].n = k.characterSet; j[l].o = (new Date).getTimezoneOffset(); if (j.dataLayer) for (const w of Object.entries(Object.entries(dataLayer).reduce(((x, y) => ({ ...x[1], ...y[1] })), {}))) zaraz.set(w[0], w[1], { scope: "page" }); j[l].q = []; for (; j.zaraz.q.length;) { const z = j.zaraz.q.shift(); j[l].q.push(z) } r.defer = !0; for (const A of [localStorage, sessionStorage]) Object.keys(A || {}).filter((C => C.startsWith("_zaraz_"))).forEach((B => { try { j[l]["z_" + B.slice(7)] = JSON.parse(A.getItem(B)) } catch { j[l]["z_" + B.slice(7)] = A.getItem(B) } })); r.referrerPolicy = "origin"; r.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(j[l]))); q.parentNode.insertBefore(r, q) };["complete", "interactive"].includes(k.readyState) ? zaraz.init() : j.addEventListener("DOMContentLoaded", zaraz.init) }(w, d, "zarazData", "script"); })(window, document);
     </script>
     <link rel="stylesheet" type="text/css" href="site.css" />
-</head>  
-
-<h1>Welcome to Champion Events!</h1>
-<br/>
-<br/>
-<br/>
-<div class="position-relative">
-    <div class="position-absolute top-0 start-50 translate-middle-x"></div>
-    <h5>The preferred, easy-to-use event</h5>
-    <br/>
-    <h5>management system that </h5>
-    <br/>
-    <h5>connects users to desired events.</h5>
-</div>
-
-
-
-
-<head>
-    <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
+
+
+
 
 
 <body>
@@ -53,38 +36,59 @@
         }
     }
 
-    
-    <div class="position-relative">
-        <div class="position-absolute top-50 end-0 translate-middle-y">
-             <div class="login-container">
-                    <div class="login-header">
-                        <h2>Login to Your Account</h2>
-                        @if (!string.IsNullOrEmpty(message))
-                        {
-                            <div class="@messageClass">@message</div>
-                        }
-                    </div>
 
-                    <div class="login-form">
-                        <form asp-page="UserLogin" method="post">
-                            <div class="form-group">
-                                <label for="UsernameInput">Username</label>
-                                <input asp-for="Username" class="form-control" id="UsernameInput" placeholder="Enter username" />
+   
+    <div class="indexContainer">
+       <div class="row">
+            <div class="imageTextOverlay col-md-8">
+                <img class="overlayImage" src="css/Images/Career-Fair-new.jpg" alt="Conference" />
+                <img class="overlayImage" src="css/Images/purple.png" alt="Overlay" />
+                <div class="centeredText">
+                    <h1>Welcome to Champion Events!</h1>
+                    <h5>The preferred, easy-to-use event management system that connects users to desired events.</h5>
+                </div>
+            </div>
+            <div class="col-md-4">
+                
+                <div class="column">
+                    <div class="position-relative">
+                        <div>
+                            <div class="login-container boxGrey">
+                                <div class="login-header">
+                                    <h2 style="color: black;">Login</h2>
+                                    @if (!string.IsNullOrEmpty(message))
+                                    {
+                                        <div class="@messageClass">@message</div>
+                                    }
+                                </div>
+
+                                <div class="login-form">
+                                    <form asp-page="UserLogin" method="post">
+                                        <div class="form-group">
+                                            <label for="UsernameInput">Username</label>
+                                            <input asp-for="Username" class="form-control" id="UsernameInput" placeholder="Enter username" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="PasswordInput">Password</label>
+                                            <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
+                                        </div>
+                                        <button type="submit" class="btn btn-dark btn-block">Login</button>
+                                        <br />
+                                        Don't have an account?<a asp-page="/Login/CreateUser">Register Here</a>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="PasswordInput">Password</label>
-                                <input asp-for="Password" type="password" class="form-control" id="PasswordInput" placeholder="Enter password" />
-                            </div>
-                            <button type="submit" class="btn btn-dark btn-block">Login</button>
-                            <br />
-                            Don't have an account?<a asp-page="/Login/CreateUser">Register Here</a>
-                        </form>
+                        </div>
                     </div>
-            </div>  
+                </div>
+            </div>
         </div>
+
     </div>
+
+
 </body>
-  
+
 
 @* <br/>
 <h3>What is Champion Events?</h3>
@@ -96,7 +100,7 @@
 <p>As a participant you can view and sign up for events that interest you.</p>
 <h4>Organizer:</h4>
 <p>As an organizer you are able to facilitate the organization of events through creation, editing, or deletign events
-    you have created. 
+    you have created.
 </p> *@
 
 
