@@ -21,10 +21,13 @@ namespace ChampionsConsulting.Pages
         [BindProperty]
         public int EventId { get; set; }
 
+        [BindProperty]
+        public int UserID { get; set; }
+
         public List<SelectListItem>? EventOptions { get; set; }
 
 
-        public IActionResult OnGet(int UserID)
+        public IActionResult OnGet(String username)
         {
             // Check if the user is logged in or authorized to access this feature
             if (HttpContext.Session.GetString("Username") == null)
@@ -34,14 +37,16 @@ namespace ChampionsConsulting.Pages
             }
             else
             {
-
+                
+                var username2 = HttpContext.Session.GetString("Username");
+               
                 // Query to fetch attended events based on UserID
                 string query = @"
-    SELECT Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Events.LocationID 
-    FROM Events
-    INNER JOIN AttendEvent ON Events.EventID = AttendEvent.EventID
-    INNER JOIN Users ON AttendEvent.UserID = Users.UserID
-    WHERE Users.UserID = " + UserID + ";";
+                    SELECT Events.EventID, Events.Name, Events.Description, Events.StartDateAndTime, Events.EndDateAndTime, Events.LocationID 
+                    FROM Events
+                    INNER JOIN AttendEvent ON Events.EventID = AttendEvent.EventID
+                    INNER JOIN Users ON AttendEvent.UserID = Users.UserID
+                    WHERE Users.username = '" + username2 + "';";
 
 
                 SqlDataReader EventReader = DBClass.EventReader(query);
@@ -51,8 +56,8 @@ namespace ChampionsConsulting.Pages
                 while (EventReader.Read())
                 {
                     EventOptions.Add(new SelectListItem(
-                      EventReader["EventName"].ToString(),
-                      EventReader["EventID"].ToString()
+                      EventReader["Name"].ToString(),
+                      EventReader["EventId"].ToString()
                     ));
                 }
 

@@ -39,7 +39,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             
             SqlDataReader EventReader = DBClass.EventReader();
 
-            string SelectQuery = "SELECT EventID, Name FROM Events Where EventID = " + Event + "Desc;";
+            //string SelectQuery = "SELECT EventID, Name FROM Events Where EventID = " + Event + "Desc;";
 
             if (!EventReader.HasRows)
             {
@@ -66,7 +66,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
             else
             {
-                string insertQuery = @"INSERT INTO SubEvent (Name, Description, StartDateAndTime, EndDateAndTime, EventID) VALUES (" + "'" + SubEventName + "','" + SubEventDescription + "','" + StartTime.ToString() + "','" + EndTime.ToString() + "'," + EventId.ToString() + ");";
+                string insertQuery = @"INSERT INTO SubEvent (Name, Description, StartDateAndTime, EndDateAndTime, EventID) VALUES (" + "'" + SubEventName + "','" + SubEventDescription + "','" + StartTime.ToString() + "','" + EndTime.ToString() + "'," + EventID.ToString() + ");";
                 DBClass.InsertQuery(insertQuery);
                 TempData["SuccessMessage"] = "Sub Event created successfully.";
                 DBClass.CCDBConnection.Close();

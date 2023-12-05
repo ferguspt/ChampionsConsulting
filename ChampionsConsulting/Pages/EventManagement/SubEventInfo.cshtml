@@ -17,54 +17,60 @@
     var startDate = Convert.ToDateTime(@Model.CurrEvent.StartDateAndTime).ToString("M/d");
     var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
-<h2>@Model.CurrEvent.Name @startDate @endDate</h2>
-<h3>Subevents: </h3>
-<br />
-<div class="container-table100">
-    <div class="wrap-table100">
-        <div class="table100 ver6 m-b-110">
-            <form method="post">
-                <table data-vertable="ver6">
-                    <thead>
-                        <tr class="row100 head">
-                            <th class="column100 column1" data-column="column1">Name:</th>
-                            <th class="column100 column2" data-column="column2">Description:</th>
-                            <th class="column100 column3" data-column="column3">Start Time:</th>
-                            <th class="column100 column4" data-column="column4">End Time:</th>
+<body>
+    <h2>@Model.CurrEvent.Name @startDate @endDate</h2>
+    <h3>Subevents: </h3>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @{
-                            string sqlQuery = @"Select Name, Description, StartDateAndTime, EndDateAndTime from SubEvent Where EventID = '" + @Model.CurrEvent.EventID + "';";
-
-                            SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
-
-                            while (ConferenceReader.Read())
-                            {
-                                var startTime = Convert.ToDateTime(ConferenceReader["StartDateAndTime"]).ToString("M/d h:mm tt");
-                                var endTime = Convert.ToDateTime(ConferenceReader["EndDateAndTime"]).ToString("M/d h:mm tt");
-                                <tr class="row100">
-                                    <td class ="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
-                                    <td class ="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
-                                    <td class ="column100 column3" data-column="column3">@startTime</td>
-                                    <td class ="column100 column4" data-column="column4">@endTime</td>
-                                    @*<td>@ConferenceReader["StartDateAndTime"]</td>
-                            <td>@ConferenceReader["EndDateAndTime"]</td>*@
-                                </tr>
-                            }
-
-                            DBClass.CCDBConnection.Close();
-
-                        }
-                    </tbody>
-                </table>
-            </form>
-        </div>
-    </div>
-</br>
     <form method="post" asp-page-handler="DownloadUserList">
         <input type="hidden" asp-for="CurrEvent.EventID" />
-        <button type="submit" class="btn btn-primary">Download User List</button>
+        <button style="float: right;" type="submit" class="btn btn-primary">Download User List</button>
     </form>
+
+    <br />
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100 ver6 m-b-110">
+                <form method="post">
+                    <table data-vertable="ver6">
+                        <thead>
+                            <tr class="row100 head">
+                                <th class="column100 column1" data-column="column1">Name:</th>
+                                <th class="column100 column2" data-column="column2">Description:</th>
+                                <th class="column100 column3" data-column="column3">Start Time:</th>
+                                <th class="column100 column4" data-column="column4">End Time:</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @{
+                                string sqlQuery = @"Select Name, Description, StartDateAndTime, EndDateAndTime from SubEvent Where EventID = '" + @Model.CurrEvent.EventID + "';";
+
+                                SqlDataReader ConferenceReader = DBClass.EventReader(sqlQuery);
+
+                                while (ConferenceReader.Read())
+                                {
+                                    var startTime = Convert.ToDateTime(ConferenceReader["StartDateAndTime"]).ToString("M/d h:mm tt");
+                                    var endTime = Convert.ToDateTime(ConferenceReader["EndDateAndTime"]).ToString("M/d h:mm tt");
+                                    <tr class="row100">
+                                        <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                        <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                        <td class="column100 column3" data-column="column3">@startTime</td>
+                                        <td class="column100 column4" data-column="column4">@endTime</td>
+                                        @*<td>@ConferenceReader["StartDateAndTime"]</td>
+                                <td>@ConferenceReader["EndDateAndTime"]</td>*@
+                                    </tr>
+                                }
+
+                                DBClass.CCDBConnection.Close();
+
+                            }
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <br />
+        <br />
+        
+</body>

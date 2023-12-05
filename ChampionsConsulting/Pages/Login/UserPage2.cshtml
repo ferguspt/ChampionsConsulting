@@ -8,45 +8,55 @@
 @{
     <h1>Hello, @HttpContext.Session.GetString("Username")</h1>
 }
-<br/>
+<br />
 
 <h2 class="h2">Your Registered Events:</h2>
-<table class="table table-bordered table-responsive table-striped table-hover">
-    <thead class="table-dark">
-        <tr>
-            <th>Name:</th>
-            <th>Description:</th>
-            <th>Start Date and Time:</th>
-            <th>End Date And Time:</th>
-            <th>Location:</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver6 m-b-110">
+            <form method="post">
+                <table data-vertable="ver6">
+                    <thead>
+                        <tr class="row100 head">
+                            <th class="column100 column1" data-column="column1">Name:</th>
+                            <th class="column100 column2" data-column="column2">Description:</th>
+                            <th class="column100 column3" data-column="column3">Start Date and Time:</th>
+                            <th class="column100 column4" data-column="column4">End Date and Time:</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
 
 
 
-            string sqlQuery = @"Select E.Name, E.Description, E.StartDateAndTime, E.EndDateAndTime
-                                FROM Events E Inner Join AttendEvent A on E.EventID = A.EventID Inner Join Users U
-                                on A.UserID = U.UserID and U.Username = '" + HttpContext.Session.GetString("Username") + "' Order By E.StartDateAndTime DESC;";
+                            string sqlQuery = @"Select E.Name, E.Description, E.StartDateAndTime, E.EndDateAndTime
+                        FROM Events E Inner Join AttendEvent A on E.EventID = A.EventID Inner Join Users U
+                        on A.UserID = U.UserID and U.Username = '" + HttpContext.Session.GetString("Username") + "' Order By E.StartDateAndTime DESC;";
 
 
 
-            SqlDataReader ConferenceReader = DBClass.GeneralReaderQuery(sqlQuery);
+                            SqlDataReader ConferenceReader = DBClass.GeneralReaderQuery(sqlQuery);
 
 
-            while (ConferenceReader.Read())
-            {
-                <tr>
-                    <td>@ConferenceReader["Name"]</td>
-                    <td>@ConferenceReader["Description"]</td>
-                    <td>@ConferenceReader["StartDateAndTime"]</td>
-                    <td>@ConferenceReader["EndDateAndTime"]</td>
-                </tr>
-            }
-            DBClass.CCDBConnection.Close();
+                            while (ConferenceReader.Read())
+                            {
+                                <tr class="row100">
+                                    <td class="column100 column1" data-column="column1">@ConferenceReader["Name"]</td>
+                                    <td class="column100 column2" data-column="column2">@ConferenceReader["Description"]</td>
+                                    <td class ="column100 column3" data-column="column3">@ConferenceReader["StartDateAndTime"]</td>
+                                    <td class="column100 column4" data-column="column4">@ConferenceReader["EndDateAndTime"]</td>
+                                </tr>
+                            }
+                            DBClass.CCDBConnection.Close();
 
 
-        }
-    </tbody>
-</table>
+                        }
+                    </tbody>
+                </table>
+
+            </form>
+        </div>
+    </div>
+</div>
+
