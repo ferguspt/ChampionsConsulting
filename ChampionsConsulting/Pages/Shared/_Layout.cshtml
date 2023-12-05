@@ -23,10 +23,13 @@
                             @if (Context.Session.GetString("UserType") == "Admin")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage2">My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">Event Management</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/CreateEvent">Create Event</a>
@@ -37,6 +40,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/AdminPages/UserSearch">User Data</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-light" asp-page="/EventManagement/ViewFeedback">View Feedback</a>
+                                </li>
                                 // <li class="nav-item">
                                 //     <a class="nav-link text-light" asp-page="/EventManagement/Search">Event Search</a>
                                 // </li>
@@ -44,7 +50,7 @@
                             @if (Context.Session.GetString("UserType") == "Organizer")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage2">My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">Event Management</a>
@@ -72,7 +78,7 @@
                             @if (Context.Session.GetString("UserType") == "Presenter")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Login/UserPage"> My Home</a>
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage2"> My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
@@ -87,7 +93,7 @@
                             @if (Context.Session.GetString("UserType") == "Participant")
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-light" asp-page="/Login/UserPage">My Home</a>
+                                    <a class="nav-link text-light" asp-page="/Login/UserPage2">My Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-light" asp-page="/EventManagement/ViewEvents">All Events</a>
