@@ -2,12 +2,9 @@
 @model ChampionsConsulting.Pages.EventManagement.CreateSubEvent2Model
 @{
 }
-<head>
-    <link rel="stylesheet" type="text/css" href="site.css" />
-</head>
+
 <body>
-<h2>Create Meeting:</h2>
-<br />
+
 @{
     @if (TempData["SuccessMessage"] != null)
     {
@@ -21,6 +18,11 @@
 
     @if (HttpContext.Session.GetString("Username") != null)
     {
+        <head>
+            <link rel="stylesheet" type="text/css" href="site.css" />
+        </head>
+            <h2>Create Meeting:</h2>
+            <br />
         <form asp-page="CreateMeeting">
             <div class="form-text">Meeting Name</div>
             <input asp-for="SubEventName" placeholder="Meeting Name" class="form-control" id="MeetingNameInput" />
@@ -67,7 +69,7 @@
 
     @if (HttpContext.Session.GetString("Username") == null)
     {
-        <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+        <h2 class="center">You must <b>login</b> before accessing this feature.</h2>
     }
 }
 

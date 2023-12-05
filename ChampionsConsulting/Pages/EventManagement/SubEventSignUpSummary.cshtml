@@ -7,10 +7,10 @@
 </head>
 <body>
 
-<div class="alert alert-success">Registration Successful!</div>
 
 @if (HttpContext.Session.GetString("Username") != null)
 {
+        <div class="alert alert-success">Registration Successful!</div>
     <form method="post">
         <table class="table">
             <tr>
@@ -42,6 +42,6 @@
 
 @if (HttpContext.Session.GetString("Username") == null)
 {
-    <h2 class="center">You must <b>login</b> before accesing this feature.</h2>
+    <h2 class="center">You must <b>login</b> before accessing this feature.</h2>
 }
 </body>

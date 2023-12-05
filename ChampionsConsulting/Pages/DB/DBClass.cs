@@ -391,6 +391,39 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
+        public static int AttendEventCount(int userID, int eventID)
+        {
+            string selectQuery = "SELECT COUNT(*) FROM AttendEvent WHERE UserID = @UserID AND EventID = @EventID;";
+
+            SqlCommand cmdAttendEventCount = new SqlCommand();
+            cmdAttendEventCount.Connection = CCDBConnection;
+            cmdAttendEventCount.Connection.ConnectionString = CCConnString;
+
+            cmdAttendEventCount.CommandText = selectQuery;
+            cmdAttendEventCount.Parameters.AddWithValue("@UserID", userID);
+            cmdAttendEventCount.Parameters.AddWithValue("@EventID", eventID);
+
+            cmdAttendEventCount.Connection.Open();
+
+            int numAttend = (int)cmdAttendEventCount.ExecuteScalar();
+
+            return numAttend;
+        }
+
+        public static int AttendEventCount(string selectQuery)
+        {
+            SqlCommand cmdAttendEventCount = new SqlCommand();
+            cmdAttendEventCount.Connection = CCDBConnection;
+            cmdAttendEventCount.Connection.ConnectionString = CCConnString;
+            cmdAttendEventCount.CommandText = selectQuery;
+            cmdAttendEventCount.Connection.Open();
+
+            int numAttend = (int)cmdAttendEventCount.ExecuteScalar();
+
+            return numAttend;
+        }
+
+
         public static SqlDataReader MeetingAttendanceReader()
         {
             SqlCommand cmdProductRead = new SqlCommand();

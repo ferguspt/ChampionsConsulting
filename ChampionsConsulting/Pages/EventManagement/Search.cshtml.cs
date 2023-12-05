@@ -11,8 +11,17 @@ namespace ChampionsConsulting.Pages.EventManagement
         [BindProperty]
         public string Presenter { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet(int UserID)
         {
+            if (HttpContext.Session.GetString("Username") == null)
+            {
+                // Redirect to the login page if the user is not logged in
+                return RedirectToPage("/Login/UserLogin");
+            }
+            else
+            {
+                return Page();
+            }
         }
 
         public IActionResult OnPost()

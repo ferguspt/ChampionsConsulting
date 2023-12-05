@@ -4,6 +4,7 @@
 @model ChampionsConsulting.Pages.EventManagement.SubEventInfoModel
 @{
 }
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, follow">
@@ -14,30 +15,35 @@
     <link rel="stylesheet" type="text/css" href="site.css" />
 </head>
 @{
+
+
     var startDate = Convert.ToDateTime(@Model.CurrEvent.StartDateAndTime).ToString("M/d");
     var endDate = Convert.ToDateTime(@Model.CurrEvent.EndDateAndTime).ToString("M/d");
 }
-<body>
-    <h2>@Model.CurrEvent.Name @startDate @endDate</h2>
-    <h3>Subevents: </h3>
 
-    <form method="post" asp-page-handler="DownloadUserList">
-        <input type="hidden" asp-for="CurrEvent.EventID" />
-        <button style="float: right;" type="submit" class="btn btn-primary">Download User List</button>
-    </form>
+@if (HttpContext.Session.GetString("Username") == null || HttpContext.Session.GetString("UserType") == "Participant")
+{
+    <h2 class="center">Authorized Users only!</h2>
+}
 
-    <br />
-    <div class="container-table100">
-        <div class="wrap-table100">
-            <div class="table100 ver6 m-b-110">
-                <form method="post">
-                    <table data-vertable="ver6">
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="column100 column1" data-column="column1">Name:</th>
-                                <th class="column100 column2" data-column="column2">Description:</th>
-                                <th class="column100 column3" data-column="column3">Start Time:</th>
-                                <th class="column100 column4" data-column="column4">End Time:</th>
+else
+{
+    
+
+<h2>@Model.CurrEvent.Name @startDate @endDate</h2>
+<h3>Subevents: </h3>
+<br />
+<div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table100 ver6 m-b-110">
+            <form method="post">
+                <table data-vertable="ver6">
+                    <thead>
+                        <tr class="row100 head">
+                            <th class="column100 column1" data-column="column1">Name:</th>
+                            <th class="column100 column2" data-column="column2">Description:</th>
+                            <th class="column100 column3" data-column="column3">Start Time:</th>
+                            <th class="column100 column4" data-column="column4">End Time:</th>
 
                             </tr>
                         </thead>
@@ -64,13 +70,14 @@
 
                                 DBClass.CCDBConnection.Close();
 
-                            }
-                        </tbody>
-                    </table>
-                </form>
-            </div>
+                        }
+                    </tbody>
+                </table>
+            </form>
         </div>
-        <br />
-        <br />
-        
-</body>
+    </div>
+</br>
+    <form method="post" asp-page-handler="DownloadUserList">
+        <input type="hidden" asp-for="CurrEvent.EventID" />
+        <button type="submit" class="btn btn-primary">Download User List</button>
+    </form>
