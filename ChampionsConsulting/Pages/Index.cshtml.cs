@@ -62,7 +62,7 @@ namespace ChampionsConsulting.Pages
                     HttpContext.Session.SetString("Username", reader["Username"].ToString());
                     HttpContext.Session.SetString("UserType", reader["UserType"].ToString());
                     DBClass.CCDBConnection.Close();
-                    return RedirectToPage("/Login/UserPage");
+                    return RedirectToPage("/Login/UserPage2");
                 }
                 else
                 {
