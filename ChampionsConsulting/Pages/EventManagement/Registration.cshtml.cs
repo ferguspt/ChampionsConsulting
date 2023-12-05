@@ -76,7 +76,7 @@ namespace ChampionsConsulting.Pages.EventManagement
             }
 
             DBClass.CCDBConnection.Close();
-            return RedirectToPage("/EventManagement/ViewEvents");
+            return RedirectToPage("/EventManagement/UserPage2");
         }
 
         public IActionResult OnPostReturnHandler()
