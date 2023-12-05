@@ -38,6 +38,18 @@ namespace ChampionsConsulting.Pages.DB
             return tempReader;
         }
 
+        public static SqlDataReader GeneralReaderQuery(string sqlQuery)
+        {
+            SqlCommand cmdConferenceRead = new SqlCommand();
+            cmdConferenceRead.Connection = CCDBConnection;
+            cmdConferenceRead.Connection.ConnectionString = CCConnString;
+            cmdConferenceRead.CommandText = sqlQuery;
+            cmdConferenceRead.Connection.Open();
+            SqlDataReader tempReader = cmdConferenceRead.ExecuteReader();
+            return tempReader;
+        }
+
+
         public static SqlDataReader UserReader(string selectQuery)
         {
             SqlCommand cmdUserRead = new SqlCommand();
